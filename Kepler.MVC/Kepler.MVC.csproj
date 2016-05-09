@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{075A0D16-9A97-4429-9841-E07064566466}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kepler.MVC</RootNamespace>
+    <AssemblyName>Kepler.MVC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83bd5627d5f505c, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Asp.Mvc.1.3.0.0\lib\net45\Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Algo, Version=1.2.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Asp.Mvc, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Asp.Mvc.1.3.0.0\lib\net45\mko.Asp.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.BI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\mko.BI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Euklid.1.1.1.0\lib\net45\mko.Euklid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Newton, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Newton.1.1.2.0\lib\net45\mko.Newton.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlanetsController.cs" />
+    <Compile Include="Controllers\TheUniverseController.cs" />
+    <Compile Include="Controllers\TheUniverseFilterController.cs" />
+    <Compile Include="Controllers\TheUniverseFilterRestfulController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Paging.cs" />
+    <Compile Include="Models\TheUniverse\FilterPaging.cs" />
+    <Compile Include="Models\TheUniverse\HimmelskoerperPage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\pics\actions\bearbeiten.gif" />
+    <Content Include="Content\pics\actions\bearbeiten.png" />
+    <Content Include="Content\pics\actions\delete.gif" />
+    <Content Include="Content\pics\actions\delete.png" />
+    <Content Include="Content\pics\actions\Details-schmal.gif" />
+    <Content Include="Content\pics\actions\Details.gif" />
+    <Content Include="Content\pics\actions\Diagramm2.gif" />
+    <Content Include="Content\pics\actions\escape.gif" />
+    <Content Include="Content\pics\actions\FilterAus.gif" />
+    <Content Include="Content\pics\actions\ok.gif" />
+    <Content Include="Content\pics\actions\SymbolFilterAktiv.PNG" />
+    <Content Include="Content\pics\actions\SymbolIntervall.png" />
+    <Content Include="Content\pics\actions\SymbolIntervallAusschluss.png" />
+    <Content Include="Content\pics\actions\SymbolIntervallEinschluss.PNG" />
+    <Content Include="Content\pics\actions\SymbolKeinFilter.png" />
+    <Content Include="Content\pics\Ariel-big.jpg" />
+    <Content Include="Content\pics\Ariel-med.jpg" />
+    <Content Include="Content\pics\Ariel-small.jpg" />
+    <Content Include="Content\pics\Callisto-big.jpg" />
+    <Content Include="Content\pics\Callisto-med.jpg" />
+    <Content Include="Content\pics\Callisto-small.jpg" />
+    <Content Include="Content\pics\Charon-big.jpg" />
+    <Content Include="Content\pics\Charon-med.jpg" />
+    <Content Include="Content\pics\Charon-small.jpg" />
+    <Content Include="Content\pics\Charon-superbig.jpg" />
+    <Content Include="Content\pics\Deimos-big.jpg" />
+    <Content Include="Content\pics\Deimos-med.jpg" />
+    <Content Include="Content\pics\Deimos-small.jpg" />
+    <Content Include="Content\pics\Dione-big.jpg" />
+    <Content Include="Content\pics\Dione-med.jpg" />
+    <Content Include="Content\pics\Dione-small.jpg" />
+    <Content Include="Content\pics\Enceladus-big.jpg" />
+    <Content Include="Content\pics\Enceladus-med.jpg" />
+    <Content Include="Content\pics\Enceladus-small.jpg" />
+    <Content Include="Content\pics\Erde-big.jpg" />
+    <Content Include="Content\pics\Erde-med.jpg" />
+    <Content Include="Content\pics\Erde-small.jpg" />
+    <Content Include="Content\pics\Erdmond-big.jpg" />
+    <Content Include="Content\pics\Erdmond-small.jpg" />
+    <Content Include="Content\pics\etc\Gondeln.jpg" />
+    <Content Include="Content\pics\etc\KubyBoese.gif" />
+    <Content Include="Content\pics\etc\KubyLieb.gif" />
+    <Content Include="Content\pics\etc\KubyLiebBoese.gif" />
+    <Content Include="Content\pics\etc\KubyLiebBoese.png" />
+    <Content Include="Content\pics\etc\KubyLiebVollformat.bmp" />
+    <Content Include="Content\pics\etc\smiley-boese-gross.png" />
+    <Content Include="Content\pics\etc\smiley-boese.gif" />
+    <Content Include="Content\pics\etc\smiley-gross.png" />
+    <Content Include="Content\pics\etc\smiley.gif" />
+    <Content Include="Content\pics\etc\smiley.png" />
+    <Content Include="Content\pics\etc\StopVerboten.png" />
+    <Content Include="Content\pics\etc\Unbekannt.png" />
+    <Content Include="Content\pics\Europa-big.jpg" />
+    <Content Include="Content\pics\Europa-med.jpg" />
+    <Content Include="Content\pics\Europa-small.jpg" />
+    <Content Include="Content\pics\filetypes\mko-Email-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Email-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-Excel-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Excel-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-Gif-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Gif-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-Jpg-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Jpg-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-PDF-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-PDF-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-Png-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Png-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-PPT-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-PPT-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-Tif-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Tif-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-Word-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Word-Icon-32-32.png" />
+    <Content Include="Content\pics\filetypes\mko-Zip-Icon-16-16.png" />
+    <Content Include="Content\pics\filetypes\mko-Zip-Icon-32-32.png" />
+    <Content Include="Content\pics\Ganymede-big.jpg" />
+    <Content Include="Content\pics\Ganymede-med.jpg" />
+    <Content Include="Content\pics\Ganymede-small.jpg" />
+    <Content Include="Content\pics\Geometric\SymCircle.svg" />
+    <Content Include="Content\pics\Geometric\SymLine.svg" />
+    <Content Include="Content\pics\Geometric\SymRectangle.svg" />
+    <Content Include="Content\pics\HTML5\html5-article-section.svg" />
+    <Content Include="Content\pics\HTML5\html5-css.svg" />
+    <Content Include="Content\pics\HTML5\html5-figure.svg" />
+    <Content Include="Content\pics\HTML5\HTML5-Historie.svg" />
+    <Content Include="Content\pics\HTML5\html5-time.svg" />
+    <Content Include="Content\pics\HTML5\html5-validierung.svg" />
+    <Content Include="Content\pics\Iapetus-big.jpg" />
+    <Content Include="Content\pics\Iapetus-med.jpg" />
+    <Content Include="Content\pics\Iapetus-small.jpg" />
+    <Content Include="Content\pics\Io-big.jpg" />
+    <Content Include="Content\pics\Io-med.jpg" />
+    <Content Include="Content\pics\Io-small.jpg" />
+    <Content Include="Content\pics\Jupiter-big.jpg" />
+    <Content Include="Content\pics\Jupiter-med.jpg" />
+    <Content Include="Content\pics\Jupiter-small.jpg" />
+    <Content Include="Content\pics\logo\mko-Logo-18-mal-52.gif" />
+    <Content Include="Content\pics\logo\mko-Logo-2-1-1.gif" />
+    <Content Include="Content\pics\logo\mko-Logo-20-mal-88.gif" />
+    <Content Include="Content\pics\Mars-big.jpg" />
+    <Content Include="Content\pics\Mars-med.jpg" />
+    <Content Include="Content\pics\Mars-small.jpg" />
+    <Content Include="Content\pics\Merkur-big.jpg" />
+    <Content Include="Content\pics\Merkur-med.jpg" />
+    <Content Include="Content\pics\Merkur-small.jpg" />
+    <Content Include="Content\pics\Miranda-big.jpg" />
+    <Content Include="Content\pics\Miranda-med.jpg" />
+    <Content Include="Content\pics\Miranda-small.jpg" />
+    <Content Include="Content\pics\Mond-med.jpg" />
+    <Content Include="Content\pics\Neptun-big.jpg" />
+    <Content Include="Content\pics\Neptun-med.jpg" />
+    <Content Include="Content\pics\Neptun-small.jpg" />
+    <Content Include="Content\pics\Nereid-big.jpg" />
+    <Content Include="Content\pics\Nereid-med.jpg" />
+    <Content Include="Content\pics\Nereid-small.jpg" />
+    <Content Include="Content\pics\Oberon-med.jpg" />
+    <Content Include="Content\pics\Oberon-small.jpg" />
+    <Content Include="Content\pics\Phobos-big.jpg" />
+    <Content Include="Content\pics\Phobos-med.jpg" />
+    <Content Include="Content\pics\Phobos-small.jpg" />
+    <Content Include="Content\pics\Planet-symbol.png" />
+    <Content Include="Content\pics\pluto-big.gif" />
+    <Content Include="Content\pics\pluto-big.png" />
+    <Content Include="Content\pics\Pluto-med.jpg" />
+    <Content Include="Content\pics\Pluto-small.jpg" />
+    <Content Include="Content\pics\Rhea-big.jpg" />
+    <Content Include="Content\pics\Rhea-med.jpg" />
+    <Content Include="Content\pics\Rhea-small.jpg" />
+    <Content Include="Content\pics\russia\1000px-Map_of_Russian.png" />
+    <Content Include="Content\pics\russia\Atomeisbrecher.svg" />
+    <Content Include="Content\pics\russia\Baikal.svg" />
+    <Content Include="Content\pics\russia\Blockhaus.svg" />
+    <Content Include="Content\pics\russia\Diamanten.svg" />
+    <Content Include="Content\pics\russia\Kamtschatka.svg" />
+    <Content Include="Content\pics\russia\Kaspisches-Meer.svg" />
+    <Content Include="Content\pics\russia\Map_of_Russian_2008-01-01.svg" />
+    <Content Include="Content\pics\russia\Matroschka.svg" />
+    <Content Include="Content\pics\russia\Moskau.svg" />
+    <Content Include="Content\pics\russia\Musik.svg" />
+    <Content Include="Content\pics\russia\russland-karte-interaktiv.png" />
+    <Content Include="Content\pics\russia\Sojus-Rakete.svg" />
+    <Content Include="Content\pics\russia\sotchi-olympia.svg" />
+    <Content Include="Content\pics\russia\Transsib.svg" />
+    <Content Include="Content\pics\russia\Wolga-Wasserkraft.svg" />
+    <Content Include="Content\pics\Saturn-big.jpg" />
+    <Content Include="Content\pics\Saturn-med.jpg" />
+    <Content Include="Content\pics\Saturn-small.jpg" />
+    <Content Include="Content\pics\space\Asteroid-Black.bmp" />
+    <Content Include="Content\pics\space\Asteroid-Black.png" />
+    <Content Include="Content\pics\space\Asteroid.bmp" />
+    <Content Include="Content\pics\space\Asteroid.png" />
+    <Content Include="Content\pics\space\Galaxie-Black.bmp" />
+    <Content Include="Content\pics\space\Galaxie-Black.png" />
+    <Content Include="Content\pics\space\Galaxie.bmp" />
+    <Content Include="Content\pics\space\Galaxie.png" />
+    <Content Include="Content\pics\space\Komet-Black.bmp" />
+    <Content Include="Content\pics\space\Komet-Black.png" />
+    <Content Include="Content\pics\space\Komet.bmp" />
+    <Content Include="Content\pics\space\Komet.png" />
+    <Content Include="Content\pics\space\Mond-Black.bmp" />
+    <Content Include="Content\pics\space\Mond-Black.png" />
+    <Content Include="Content\pics\space\Mond.bmp" />
+    <Content Include="Content\pics\space\Mond.png" />
+    <Content Include="Content\pics\space\Planet-2-Black.bmp" />
+    <Content Include="Content\pics\space\Planet-2-Black.png" />
+    <Content Include="Content\pics\space\Planet-2.bmp" />
+    <Content Include="Content\pics\space\Planet-2.png" />
+    <Content Include="Content\pics\space\Raumschiff-Black.bmp" />
+    <Content Include="Content\pics\space\Raumschiff-Black.png" />
+    <Content Include="Content\pics\space\Raumschiff.bmp" />
+    <Content Include="Content\pics\space\Raumschiff.png" />
+    <Content Include="Content\pics\space\Schwarzes-Loch-black.png" />
+    <Content Include="Content\pics\space\Schwarzes-Loch.bmp" />
+    <Content Include="Content\pics\space\Schwarzes-Loch.png" />
+    <Content Include="Content\pics\space\Sonne-Black.bmp" />
+    <Content Include="Content\pics\space\Sonne-Black.png" />
+    <Content Include="Content\pics\space\Sonne.bmp" />
+    <Content Include="Content\pics\space\Sonne.png" />
+    <Content Include="Content\pics\space\Urknall.bmp" />
+    <Content Include="Content\pics\space\Urknall.png" />
+    <Content Include="Content\pics\Tethys-big.jpg" />
+    <Content Include="Content\pics\Tethys-med.jpg" />
+    <Content Include="Content\pics\Tethys-small.jpg" />
+    <Content Include="Content\pics\Titan-big.png" />
+    <Content Include="Content\pics\Titan-med.png" />
+    <Content Include="Content\pics\Titan-small.png" />
+    <Content Include="Content\pics\Titania-big.jpg" />
+    <Content Include="Content\pics\Titania-med.jpg" />
+    <Content Include="Content\pics\Titania-small.jpg" />
+    <Content Include="Content\pics\Triton-big.jpg" />
+    <Content Include="Content\pics\Triton-med.jpg" />
+    <Content Include="Content\pics\Triton-small.jpg" />
+    <Content Include="Content\pics\Umbriel-big.jpg" />
+    <Content Include="Content\pics\Umbriel-med.jpg" />
+    <Content Include="Content\pics\Umbriel-small.jpg" />
+    <Content Include="Content\pics\Uranus-med.jpg" />
+    <Content Include="Content\pics\Uranus-small.jpg" />
+    <Content Include="Content\pics\Venus-big.jpg" />
+    <Content Include="Content\pics\Venus-med.jpg" />
+    <Content Include="Content\pics\Venus-small.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\pics\etc\KubyLiebVollformat.odg" />
+    <Content Include="Content\pics\etc\StopVerboten.odg" />
+    <Content Include="Content\pics\etc\Unbekannt.odg" />
+    <Content Include="Content\pics\filetypes\mko-Email-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-Excel-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-Gif-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-Jpg-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-PDF-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-Png-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-PPT-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-Tif-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-Word-Icon.odg" />
+    <Content Include="Content\pics\filetypes\mko-Zip-Icon.odg" />
+    <Content Include="Content\pics\Geometric\SymCircle.odg" />
+    <Content Include="Content\pics\Geometric\SymLine.odg" />
+    <Content Include="Content\pics\Geometric\SymRectangle.odg" />
+    <Content Include="Content\pics\russia\Atomeisbrecher.odg" />
+    <Content Include="Content\pics\russia\Baikal.odg" />
+    <Content Include="Content\pics\russia\Blockhaus.odg" />
+    <Content Include="Content\pics\russia\Diamanten.odg" />
+    <Content Include="Content\pics\russia\Holzhäuser-Details.odg" />
+    <Content Include="Content\pics\russia\Kamtschatka.odg" />
+    <Content Include="Content\pics\russia\Kaspisches-Meer.odg" />
+    <Content Include="Content\pics\russia\Kleidung.odg" />
+    <Content Include="Content\pics\russia\Matroschka-ausmalen-1.odt" />
+    <Content Include="Content\pics\russia\Matroschka-ausmalen-2.odt" />
+    <Content Include="Content\pics\russia\Matroschka-ausmalen-3.odg" />
+    <Content Include="Content\pics\russia\Matroschka-ausmalen-4.odg" />
+    <Content Include="Content\pics\russia\Matroschka-Varianten.odg" />
+    <Content Include="Content\pics\russia\Matroschka.odg" />
+    <Content Include="Content\pics\russia\Moskau.odg" />
+    <Content Include="Content\pics\russia\Musik.odg" />
+    <Content Include="Content\pics\russia\russland-karte-interaktiv.odg" />
+    <Content Include="Content\pics\russia\Sojus-Rakete.odg" />
+    <Content Include="Content\pics\russia\sotchi-olympia.odg" />
+    <Content Include="Content\pics\russia\Transsib.odg" />
+    <Content Include="Content\pics\russia\Wolga-Wasserkraft.odg" />
+    <Content Include="Content\pics\space\Asteroid-Black.odg" />
+    <Content Include="Content\pics\space\Asteroid.odg" />
+    <Content Include="Content\pics\space\Galaxie-Black.odg" />
+    <Content Include="Content\pics\space\Galaxie.odg" />
+    <Content Include="Content\pics\space\Komet-Black.odg" />
+    <Content Include="Content\pics\space\Komet.odg" />
+    <Content Include="Content\pics\space\Mond-Black.odg" />
+    <Content Include="Content\pics\space\Mond.odg" />
+    <Content Include="Content\pics\space\Planet-2-Black.odg" />
+    <Content Include="Content\pics\space\Planet-2.odg" />
+    <Content Include="Content\pics\space\Planet.odg" />
+    <Content Include="Content\pics\space\Raumschiff-Black.odg" />
+    <Content Include="Content\pics\space\Raumschiff.odg" />
+    <Content Include="Content\pics\space\Schwarzes-Loch.odg" />
+    <Content Include="Content\pics\space\Sonne-Black.odg" />
+    <Content Include="Content\pics\space\Sonne.odg" />
+    <Content Include="Content\pics\space\Urknall.odg" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jqPlot\changes.txt" />
+    <Content Include="Scripts\jqPlot\copyright.txt" />
+    <Content Include="Scripts\jqPlot\excanvas.js" />
+    <Content Include="Scripts\jqPlot\excanvas.min.js" />
+    <Content Include="Scripts\jqPlot\gpl-2.0.txt" />
+    <Content Include="Scripts\jqPlot\jqPlotCssStyling.txt" />
+    <Content Include="Scripts\jqPlot\jqPlotOptions.txt" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot.css" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot.js" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot.min.css" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot.min.js" />
+    <Content Include="Scripts\jqPlot\jquery.js" />
+    <Content Include="Scripts\jqPlot\jquery.min.js" />
+    <Content Include="Scripts\jqPlot\MIT-LICENSE.txt" />
+    <Content Include="Scripts\jqPlot\optionsTutorial.txt" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.barRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.barRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.BezierCurveRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.BezierCurveRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.blockRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.blockRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.bubbleRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.bubbleRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisLabelRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisTickRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisTickRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasOverlay.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasOverlay.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasTextRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasTextRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.categoryAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ciParser.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ciParser.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.cursor.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.cursor.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dateAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dateAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.donutRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.donutRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dragable.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dragable.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.enhancedLegendRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.enhancedLegendRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.funnelRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.funnelRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.highlighter.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.highlighter.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.json2.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.json2.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.logAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.logAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.meterGaugeRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.meterGaugeRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mobile.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mobile.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ohlcRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ohlcRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pieRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pieRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pointLabels.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pointLabels.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidGridRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidGridRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.trendline.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.trendline.min.js" />
+    <Content Include="Scripts\jqPlot\README.txt" />
+    <Content Include="Scripts\jqPlot\usage.txt" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\TheUniverse\Index.cshtml" />
+    <Content Include="Views\Shared\PagingCtrl.cshtml" />
+    <Content Include="Views\TheUniverseFilter\Index.cshtml" />
+    <Content Include="Views\TheUniverseFilterRestful\Index.cshtml" />
+    <Content Include="Views\TheUniverseFilterRestful\FilterPaging.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Planets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DB.Kepler.EF60\DB.Kepler.EF60.csproj">
+      <Project>{5435103b-0dfa-4767-af62-f37d580b1f6d}</Project>
+      <Name>DB.Kepler.EF60</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kepler\Kepler.csproj">
+      <Project>{312d3165-25db-428c-97b8-3e7c20b9dc5c}</Project>
+      <Name>Kepler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51288</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51288/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

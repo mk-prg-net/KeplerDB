@@ -1,0 +1,19 @@
+﻿@model Kepler.MVC.Models.TheUniverse.FilterPaging
+
+<div class="btn-toolbar" role="toolbar">
+
+    <div class="btn-group" role="group">
+        <a class="btn btn-default" href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = Model.FltHimmelskoerpertyp })"><span class="glyphicon glyphicon-step-backward"></span></a>
+        <a class="btn btn-default" href="@Url.Action("NextPage", new { PageNumber = Model.Vorausgegangene_Seite, TypFlt = Model.FltHimmelskoerpertyp })"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="btn btn-default" href="@Url.Action("NextPage", new { PageNumber = Model.Naechste_Seite, TypFlt = Model.FltHimmelskoerpertyp })"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-default" href="@Url.Action("NextPage", new { PageNumber = Model.Letzte_Seite, TypFlt = Model.FltHimmelskoerpertyp })"><span class="glyphicon glyphicon-step-forward"></span></a>
+    </div>
+    <div class="btn-group" role="group">
+        <input class="btn btn-default" type="submit" value="Gehe zu" />
+        <input class="btn btn-default" type="number" id="PageNumber" name="PageNumber" value="@Model.Seitennummer" />
+        <span class="btn btn-default">
+            Seite @Model.Seitennummer von @Model.Anz_Seiten_gesamt
+        </span>
+    </div>
+</div>
+

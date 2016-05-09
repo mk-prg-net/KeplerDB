@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{753E5CE9-1008-475A-A688-777E86924FFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KeplerBI.DB</RootNamespace>
+    <AssemblyName>KeplerBI.DB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83bd5627d5f505c, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Algo, Version=1.2.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.BI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\mko.BI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Euklid.1.1.1.0\lib\net45\mko.Euklid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Newton, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Newton.1.1.2.0\lib\net45\mko.Newton.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CelestialBodyBase.cs" />
+    <Compile Include="CelesticalBodySystem.cs" />
+    <Compile Include="CelesticalBodyType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CelesticalBodyTypeDescriptor.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="CreateSolarSystem.cs" />
+    <Compile Include="DBUtil.cs" />
+    <Compile Include="KeplerDBContext.cs" />
+    <Compile Include="KeplerDBContext.Mapping.cs" />
+    <Compile Include="KeplerDBException.cs" />
+    <Compile Include="NaturalCelesticalBodies\Asteroid.cs" />
+    <Compile Include="NaturalCelesticalBodies\BigBang.cs" />
+    <Compile Include="NaturalCelesticalBodies\Comet.cs" />
+    <Compile Include="NaturalCelesticalBodies\Galaxy.cs" />
+    <Compile Include="NaturalCelesticalBodies\GalaxyCore.cs" />
+    <Compile Include="NaturalCelesticalBodies\Moon.cs" />
+    <Compile Include="NaturalCelesticalBodies\NaturalsCelesticalBody.cs" />
+    <Compile Include="NaturalCelesticalBodies\Planet.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\AsteroidsCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\CometsCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\MoonCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\PlanetCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\StarsCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Star.cs" />
+    <Compile Include="Orbit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpaceShips\Application.cs" />
+    <Compile Include="SpaceShips\MannedSpacecraft.cs" />
+    <Compile Include="SpaceShips\Repositories\SpaceShipsCo.cs" />
+    <Compile Include="SpaceShips\SpaceShip.cs" />
+    <Compile Include="SpaceShips\SpaceshipTask.cs" />
+    <Compile Include="Workflows\CreateCBSys\CBSysDraft.cs" />
+    <Compile Include="Workflows\CreateCBSys\FinitStateMachine.cs" />
+    <Compile Include="Workflows\CreateCBSys\Save\SaveNewCBSysContext.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\MoonAsCentralBodyContext.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\MoonAsCentralBodySTF.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\PlanetAsCentralBodyContext.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\PlanetAsCentralBodySTF.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\StarAsCentralBodyContext.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\StarAsCentralBodySTF.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectSatellite\ContextCore.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfMoonContext.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfMoonSTF.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfPlanetContext.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfPlanetSTF.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfStarContext.cs" />
+    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfStarSTF.cs" />
+    <Compile Include="Workflows\CreateCBSys\Start\StartSTF.cs" />
+    <Compile Include="Workflows\CreateCBSys\StateFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="KeplerBI.DB.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KeplerBI\KeplerBI.csproj">
+      <Project>{83b0d84a-6a8e-4e6f-8e66-c3e33e8e3a2b}</Project>
+      <Name>KeplerBI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

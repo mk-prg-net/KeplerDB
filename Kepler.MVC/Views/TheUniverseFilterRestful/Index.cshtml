@@ -1,0 +1,268 @@
+﻿@model Kepler.MVC.Models.TheUniverse.HimmelskoerperPage
+
+@{
+    ViewBag.Title = "Index";
+
+    // Definition für die Formatierung von Zahlen in US- Format erzeugen
+    var nif = new System.Globalization.CultureInfo("en-US").NumberFormat;
+
+}
+
+
+@using (Html.BeginForm(new { action = "SetFilter", method="post" }))
+{
+
+    <article>
+        <h1 style="color:red">Liste aller Himmelskörper</h1>
+
+        <p>
+            Demo Restful Filtern
+        </p>
+
+        @* Dropdown mit Bootstrap implementiert *@
+        <div class="dropdown">
+            <a data-toggle="dropdown" data-target="#">
+                Typfilter <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = -1 })">
+                        Alle
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Asteroid })">
+                        Asteroid
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Galaxie })">
+                        Galaxie
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Galaxiekern })">
+                        Galaxiekern
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Komet })">
+                        Komet
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Mond })">
+                        Mond
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Planet })">
+                        Planet
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Raumschiff })">
+                        Raumschiff
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Stern })">
+                        Stern
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("NextPage", new { PageNumber = Model.Erste_Seite, TypFlt = (int)Kepler.Bo.HimmelskoerperTypen.Urknall })">
+                        Urknall
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <table class="table table-responsive">
+
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <th>
+                        Typ
+                    </th>
+                    <th>Masse</th>
+                    <th>Masse Einheit</th>
+                    <th>umkreist</th>
+                    <th>... im Abstand von</th>
+                    <th>Satelliten</th>
+                </tr>
+
+                @foreach (var hk in Model.die_Himmelskoerper_auf_dieser_Seite)
+                {
+                    <tr>
+                        <td>
+                            @hk.Name
+                        </td>
+                        <td>
+                            @{ var hkType = (global::Kepler.Bo.HimmelskoerperTypen)hk.HimmelskoerperTyp_ID;}
+                            @switch (hkType)
+                            {
+                                case Kepler.Bo.HimmelskoerperTypen.Asteroid:
+                                    <img src="~/Content/pics/space/Asteroid.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Galaxie:
+                                <img src="~/Content/pics/space/Galaxie.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Galaxiekern:
+                                <img src="~/Content/pics/space/Galaxie.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Komet:
+                                <img src="~/Content/pics/space/Komet.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Mond:
+                                <img src="~/Content/pics/space/Mond.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Planet:
+                                <img src="~/Content/pics/space/Planet-2.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Raumschiff:
+                                <img src="~/Content/pics/space/Raumschiff.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Stern:
+                                <img src="~/Content/pics/space/Sonne.png" height="20" />
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Urknall:
+                                <img src="~/Content/pics/space/Urknall.png" height="20" />
+                                    break;
+                                default:
+                                <img src="~/Content/pics/etc/Unbekannt.png" height="20" />
+                                    break;
+                            }
+                        </td>
+                        <td>
+
+                            @switch (hkType)
+                            {
+                                case Kepler.Bo.HimmelskoerperTypen.Asteroid:
+                                    @(((global::Kepler.IPlanet)hk).Masse_in_Erdmassen.ToString("N4"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Planet:
+                                @(((global::Kepler.IPlanet)hk).Masse_in_Erdmassen.ToString("N4"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Galaxie:
+                                @(((global::Kepler.IGalaxie)hk).Masse_in_millionen_Sonnenmassen.ToString("N0"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Galaxiekern:
+                                @(((global::Kepler.IGalaxie)hk).Masse_in_millionen_Sonnenmassen.ToString("N0"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Komet:
+                                @(((global::Kepler.IKomet)hk).Masse_in_Vielfachen_des_Bodensees.ToString("N4"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Mond:
+                                @(((global::Kepler.IMond)hk).Masse_in_Erdmondmassen.ToString("N4"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Raumschiff:
+                                @(((global::Kepler.IRaumschiff)hk).Masse_in_kg.ToString("N4"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Stern:
+                                @(((global::Kepler.IStern)hk).Masse_in_Sonnenmassen.ToString("N3"))
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Urknall:
+                                <text>-1</text>
+                                    break;
+                                default:
+                                <img src="~/Content/pics/etc/Unbekannt.png" height="20" />
+                                    break;
+                            }
+
+                        </td>
+                        <td>
+
+                            @switch (hkType)
+                            {
+                                case Kepler.Bo.HimmelskoerperTypen.Asteroid:
+                                    <text>Erdmassen</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Planet:
+                                <text>Erdmassen</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Galaxie:
+                                <text>Mio. Sonnen</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Galaxiekern:
+                                <text>Mio. Sonnen</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Komet:
+                                <text>Bodenseen</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Mond:
+                                <text>Erdmondmassen</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Raumschiff:
+                                <text>kg</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Stern:
+                                <text>Sonnenmassen</text>
+                                    break;
+                                case Kepler.Bo.HimmelskoerperTypen.Urknall:
+                                <text>-1</text>
+                                    break;
+                                default:
+                                <img src="~/Content/pics/etc/Unbekannt.png" height="20" />
+                                    break;
+                            }
+
+                        </td>
+                        <td>
+
+                            @if (hk.Umlaufbahn != null)
+                            {
+                                @hk.Umlaufbahn.Zentralobjekt.Name
+                            }
+                            else
+                            {
+                                <span>Keine Umlaufbahndaten vorhanden</span>
+                            }
+                        </td>
+                        <td>
+
+                            @if (hk.Umlaufbahn != null)
+                            {
+                                @hk.Umlaufbahn.Laenge_grosse_Halbachse_in_km
+                            }
+                            else
+                            {
+                                <span>Keine Umlaufbahndaten vorhanden</span>
+                            }
+                        </td>
+                        <td>
+                            @if (hk.TrabantenUmlaufbahnen != null)
+                            {
+                                int anzTrabanten = hk.TrabantenUmlaufbahnen.Count;
+                                if (anzTrabanten <= 20)
+                                {
+                                    for (int i = 0; i < Math.Min(hk.TrabantenUmlaufbahnen.Count, 20); i++)
+                                    {
+                                        <img src="~/Content/pics/space/Raumschiff.bmp" height="20" />
+                                    }
+                                }
+                                else
+                                {
+                                    @anzTrabanten <text><span style="font-weight: bold">x</span> <img src="~/Content/pics/space/Raumschiff.bmp" height="20" /> </text>
+                                }
+
+                            }
+                            else
+                            {
+                                <span>hat keine Satelliten</span>
+                            }
+
+                        </td>
+                    </tr>
+                }
+        </table>
+
+        @*
+            Aufruf einer Partiellen View mit den Steuerelementen für die Seitenweise Ausgabe
+        *@
+        @Html.Partial("FilterPaging", Model)
+
+    </article>
+}
+

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="KeplerBI.ICelestialBodyBase" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>ICelestialBodyBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.ICelesticalBodySystem" Collapsed="true">
+    <Position X="21.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICelesticalBodySystem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.ICountry" Collapsed="true">
+    <Position X="23" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICountry.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IAsteroid" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IAsteroid.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IBigBang" Collapsed="true">
+    <Position X="12" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IBigBang.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IComet" Collapsed="true">
+    <Position X="16.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IComet.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IGalaxy" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IGalaxy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IGalaxyCore" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IGalaxyCore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IMoon" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IMoon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.INaturalCelesticalBody" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAIAgAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\INaturalsCelesticalBody.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IPlanet" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IPlanet.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IStar" Collapsed="true">
+    <Position X="14.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IStar.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.IAgriculture" Collapsed="true">
+    <Position X="11.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShips\IAgriculture.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.IAreaOfApplication" Collapsed="true">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShips\IAreaOfApplication.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.IMannedSpacecraft" Collapsed="true">
+    <Position X="18.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>SpaceShips\IMannedSpacecraft.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.IMetrology" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShips\IMetrology.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.IMilitary" Collapsed="true">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShips\IMilitary.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.INavigation" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShips\INavigation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.IScience" Collapsed="true">
+    <Position X="9.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShips\IScience.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.ISpaceShip" Collapsed="true">
+    <Position X="18.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>SpaceShips\ISpaceShip.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeplerBI.SpaceShips.ITelecommunications" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShips\ITelecommunications.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
