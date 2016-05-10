@@ -4,76 +4,83 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NCB = KeplerBI.DB.NaturalCelesticalBodies;
+
+
 namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 {
-    public class MoonCo : KeplerBI.NaturalCelesticalBodies.Repositories.MoonsCo // mko.BI.Repositories.BoCoBase<Moon, string>
+    public class MoonCo : KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo
     {
+        KeplerDBContext _ctx;
 
-        KeplerDBContext ORM;
-        public MoonCo(KeplerDBContext ORM)            
+        internal MoonCo(KeplerDBContext ctx)
         {
-            this.ORM = ORM;
+            _ctx = ctx;
         }
 
-        public override IQueryable<KeplerBI.NaturalCelesticalBodies.IMoon> BoCollection
+     
+        public bool ExistsBo(string id)
         {
-            get { 
-                return ORM.CelesticalBodies.OfType<Moon>(); 
+            return _ctx.CelesticalBodies.OfType<NCB.Moon>().Any(r => r.Name == id);
+            
+        }
+
+        public KeplerBI.NaturalCelesticalBodies.IMoon GetBo(string id)
+        {
+            return _ctx.CelesticalBodies.OfType<NCB.Moon>().First(r => r.Name == id);            
+        }
+
+        public KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo_FilteredAndSortedSetBuilder createNewFilteredSortedSetBuilder()
+        {
+            return new FilteredAndSortedSetBuilder(_ctx);
+        }
+
+        public class FilteredAndSortedSetBuilder : KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo_FilteredAndSortedSetBuilder
+        {
+            IQueryable<Moon> query;
+            List<mko.BI.Repositories.DefSortOrder<Moon>> SortOrders = new List<mko.BI.Repositories.DefSortOrder<Moon>>();
+
+            internal FilteredAndSortedSetBuilder(KeplerDBContext ctx)
+            {
+                query = ctx.CelesticalBodies.OfType<Moon>();
+            }
+
+            public void defAequatorialDiameterRange(mko.Newton.Length minDiammeter, mko.Newton.Length maxDiammeter)
+            {
+                double min = mko.Newton.Length.Kilometer(minDiammeter).Vector[0];
+                double max = mko.Newton.Length.Kilometer(maxDiammeter).Vector[0];
+                query = query.Where(r => min <= r.EquatorialDiameterInKilometer && r.EquatorialDiameterInKilometer <= max);
+            }
+
+            public void defMassRange(mko.Newton.Mass minMass, mko.Newton.Mass maxMass)
+            {
+                double min = mko.Newton.Mass.EarthMasses(minMass).Value;
+                double max = mko.Newton.Mass.EarthMasses(maxMass).Value;
+
+                query = query.Where(r => min <= r.MassInEarthmasses && r.MassInEarthmasses <= max);
+            }
+
+            public void OrderByAequatorialDiameter(bool descending)
+            {
+                SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Moon, double>(r => r.EquatorialDiameterInKilometer, descending));
+            }
+
+            public void OrderByMass(bool descending)
+            {
+                SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Moon, double>(r => r.MassInEarthmasses, descending));
+            }
+
+            public void OrderBySemiMajorAxisLength(bool descending)
+            {
+                throw new NotImplementedException();
+            }
+
+            public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IMoon> GetSet()
+            {
+                return new mko.BI.Repositories.FilteredSortedSet<Moon>(query, SortOrders);
             }
         }
 
-        public override KeplerBI.NaturalCelesticalBodies.IMoon CreateBo()
-        {
-            return ORM.CelesticalBodies.Create<Moon>();
-        }
+    }   
 
-        public override void AddToCollection(KeplerBI.NaturalCelesticalBodies.IMoon entity)
-        {
-            // Liskov verletzt !
-            ORM.CelesticalBodies.Add((Moon)entity);
-        }
-
-        public override void RemoveFromCollection(KeplerBI.NaturalCelesticalBodies.IMoon entity)
-        {
-            var e = ORM.CelesticalBodies.Single(r => r.Name == entity.Name);
-            ORM.CelesticalBodies.Remove(e);
-        }
-
-        public override void RemoveAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SubmitChanges()
-        {
-            ORM.SaveChanges();
-        }
-
-        public override Func<KeplerBI.NaturalCelesticalBodies.IMoon, bool> GetBoIDTest(string id)
-        {
-            return r => r.Name == id;
-        }
-
-        public override KeplerBI.NaturalCelesticalBodies.IMoon CreateBoAndAddToCollection()
-        {
-            var bo = CreateBo();
-            AddToCollection(bo);
-            return bo;
-        }
-
-
-        public override mko.Algo.Interval<double> DiameterFlt
-        {
-            get;            
-            set;
-            
-        }
-
-        public override bool DiameterFilterOn
-        {
-            get;            
-            set;
-            
-        }
-    }
 }

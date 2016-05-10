@@ -21,7 +21,7 @@ namespace KeplerBI.DB
             // Festlegen der Eigenschaft, welche über den Typ der Entities entscheidet 
             modelBuilder.Entity<CelestialBodyBase>().Map(cfg => cfg.Requires<CelesticalBodyType>(e => e.Type));
 
-            modelBuilder.Entity<CelestialBodyBase>().Map<SpaceShips.MannedSpacecraft>(cfg => cfg.ToTable("MannedSpacecraft"));
+            //modelBuilder.Entity<CelestialBodyBase>().Map<SpaceShips.MannedSpacecraft>(cfg => cfg.ToTable("MannedSpacecraft"));
             modelBuilder.Entity<CelestialBodyBase>().Map<SpaceShips.SpaceShip>(cfg => cfg.ToTable("SpaceShip"));
 
             modelBuilder.Entity<CelestialBodyBase>().Map<NCB.Asteroid>(cfg => cfg.ToTable("Asteroids"));
@@ -32,8 +32,8 @@ namespace KeplerBI.DB
             modelBuilder.Entity<CelestialBodyBase>().Map<NCB.Moon>(cfg => cfg.ToTable("Moons"));
             modelBuilder.Entity<CelestialBodyBase>().Map<NCB.Planet>(cfg => cfg.ToTable("Planets"));
             modelBuilder.Entity<CelestialBodyBase>().Map<NCB.Star>(cfg => cfg.ToTable("Stars"));
-            modelBuilder.Entity<CelestialBodyBase>().Map<NCB.NaturalCelesticalBody>(cfg => cfg.ToTable("NCBs"));
-           
+            //modelBuilder.Entity<CelestialBodyBase>().Map<NCB.NaturalCelesticalBody>(cfg => cfg.ToTable("NCBs"));
+
 
 
             //modelBuilder.Entity<SpaceShips.SpaceShip>().HasEntitySetName("AreasOfApplication").HasMany<SpaceShips.AreaOfApplication>(e => e.AreasOfApplication);

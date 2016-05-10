@@ -13,12 +13,12 @@ namespace KeplerBI.DB
 {
     public partial class KeplerDBContext : DbContext
     {
-        public KeplerDBContext() : base("KeplerBiContext") { }
+        public KeplerDBContext() : base("name=KeplerBiContext") { }
 
-        public DbSet<CelesticalBodyTypeDescriptor> CelesticalBodyTypes { get; set; }
+        public virtual DbSet<CelesticalBodyTypeDescriptor> CelesticalBodyTypes { get; set; }
 
-        public DbSet<CelestialBodyBase> CelesticalBodies { get; set; }
-        public DbSet<NaturalCelesticalBodies.NaturalCelesticalBody> NCBs { get; set; }
+        public virtual DbSet<CelestialBodyBase> CelesticalBodies { get; set; }
+        public virtual DbSet<NaturalCelesticalBodies.NaturalCelesticalBody> NCBs { get; set; }
 
         //public DbSet<NaturalCelesticalBodies.Asteroid> Asteroids { get; set; }
         //public DbSet<NaturalCelesticalBodies.BigBang> BigBangs { get; set; }
@@ -29,15 +29,15 @@ namespace KeplerBI.DB
         //public DbSet<NaturalCelesticalBodies.Planet> Planets { get; set; }
         //public DbSet<NaturalCelesticalBodies.Star> Stars { get; set; }
 
-        public DbSet<SpaceShips.SpaceShip> SpaceShips { get; set; }
-        //public DbSet<SpaceShips.MannedSpacecraft> MannedSpacecrafts { get; set; }
+        //public DbSet<SpaceShips.SpaceShip> SpaceShips { get; set; }
+        ////public DbSet<SpaceShips.MannedSpacecraft> MannedSpacecrafts { get; set; }
 
-        public DbSet<SpaceShips.SpaceshipTask> Tasks { get; set; }
-        public DbSet<SpaceShips.Application> Applications { get; set; }
-        public DbSet<Country> Countries { get; set; }
+        //public DbSet<SpaceShips.SpaceshipTask> Tasks { get; set; }
+        //public DbSet<SpaceShips.Application> Applications { get; set; }
+        //public DbSet<Country> Countries { get; set; }
 
-        public DbSet<Orbit> Orbits { get; set; }
-        public DbSet<CelesticalBodySystem> CelesticalBodySystems { get; set; }
+        public virtual DbSet<Orbit> Orbits { get; set; }
+        public virtual DbSet<CelesticalBodySystem> CelesticalBodySystems { get; set; }
        
     }
 }

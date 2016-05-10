@@ -31,7 +31,7 @@ namespace KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite
             get { return SpaceShipsRepo; }
         }
 
-        public override KeplerBI.NaturalCelesticalBodies.Repositories.MoonsCo Moons
+        public override KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo Moons
         {
             get { return MoonsRepo; }
         }

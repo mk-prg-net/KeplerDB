@@ -30,15 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83bd5627d5f505c, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\Dynamic.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
       <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
@@ -48,8 +46,12 @@
       <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.Ballistik, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Ballistik.1.1.2.0\lib\net45\mko.Ballistik.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.BI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.0.0.0\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -78,6 +80,7 @@
     <Compile Include="CelesticalBodyTypeDescriptor.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="CreateSolarSys2.cs" />
     <Compile Include="CreateSolarSystem.cs" />
     <Compile Include="DBUtil.cs" />
     <Compile Include="KeplerDBContext.cs" />
@@ -91,37 +94,18 @@
     <Compile Include="NaturalCelesticalBodies\Moon.cs" />
     <Compile Include="NaturalCelesticalBodies\NaturalsCelesticalBody.cs" />
     <Compile Include="NaturalCelesticalBodies\Planet.cs" />
-    <Compile Include="NaturalCelesticalBodies\Repositories\AsteroidsCo.cs" />
-    <Compile Include="NaturalCelesticalBodies\Repositories\CometsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\MoonCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\PlanetCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\StarsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Star.cs" />
     <Compile Include="Orbit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CelesticalBodySystemsCo.cs" />
     <Compile Include="SpaceShips\Application.cs" />
     <Compile Include="SpaceShips\MannedSpacecraft.cs" />
-    <Compile Include="SpaceShips\Repositories\SpaceShipsCo.cs" />
     <Compile Include="SpaceShips\SpaceShip.cs" />
     <Compile Include="SpaceShips\SpaceshipTask.cs" />
-    <Compile Include="Workflows\CreateCBSys\CBSysDraft.cs" />
-    <Compile Include="Workflows\CreateCBSys\FinitStateMachine.cs" />
-    <Compile Include="Workflows\CreateCBSys\Save\SaveNewCBSysContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\MoonAsCentralBodyContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\MoonAsCentralBodySTF.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\PlanetAsCentralBodyContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\PlanetAsCentralBodySTF.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\StarAsCentralBodyContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\StarAsCentralBodySTF.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\ContextCore.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfMoonContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfMoonSTF.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfPlanetContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfPlanetSTF.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfStarContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfStarSTF.cs" />
-    <Compile Include="Workflows\CreateCBSys\Start\StartSTF.cs" />
-    <Compile Include="Workflows\CreateCBSys\StateFactory.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -135,7 +119,13 @@
       <Name>KeplerBI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SpaceShips\Repositories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

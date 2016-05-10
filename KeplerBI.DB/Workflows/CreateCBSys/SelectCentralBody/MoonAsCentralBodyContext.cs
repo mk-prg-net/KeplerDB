@@ -17,7 +17,7 @@ namespace KeplerBI.DB.Workflows.CreateCBSys.SelectCentralBody
             Repo = new NaturalCelesticalBodies.Repositories.MoonCo(ORM);
         }
 
-        public override KeplerBI.NaturalCelesticalBodies.Repositories.MoonsCo Moons
+        public override KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo Moons
         {
             get { return Repo; }
         }

@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83bd5627d5f505c, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\Dynamic.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
       <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
       <Private>True</Private>
@@ -42,8 +38,8 @@
       <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.BI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.0.0.0\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -64,8 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateBasicInformations.cs" />
     <Compile Include="ICelesticalBodySystem.cs" />
     <Compile Include="ICountry.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="NaturalCelesticalBodies\IAsteroid.cs" />
     <Compile Include="NaturalCelesticalBodies\IBigBang.cs" />
     <Compile Include="NaturalCelesticalBodies\IComet.cs" />
@@ -76,38 +74,16 @@
     <Compile Include="NaturalCelesticalBodies\IPlanet.cs" />
     <Compile Include="NaturalCelesticalBodies\IStar.cs" />
     <Compile Include="IOrbit.cs" />
-    <Compile Include="NaturalCelesticalBodies\Repositories\AsteroidsCo.cs" />
-    <Compile Include="NaturalCelesticalBodies\Repositories\CometsCo.cs" />
-    <Compile Include="NaturalCelesticalBodies\Repositories\MoonsCo.cs" />
-    <Compile Include="NaturalCelesticalBodies\Repositories\PlanetsCo.cs" />
-    <Compile Include="SpaceShips\Repositories\SpaceShipsCo.cs" />
-    <Compile Include="NaturalCelesticalBodies\Repositories\StarsCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\IMoonsCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\IPlanetsCo.cs" />
+    <Compile Include="Repositories\ICelesticslBodySystemsCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\IStarsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\SpectralClasses.cs" />
     <Compile Include="SpaceShips\Application.cs" />
     <Compile Include="ICelestialBodyBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpaceShips\IMannedSpacecraft.cs" />
     <Compile Include="SpaceShips\ISpaceShip.cs" />
-    <Compile Include="Workflows\CreateCBSys\Cancel.cs" />
-    <Compile Include="Workflows\CreateCBSys\FSM.cs" />
-    <Compile Include="Workflows\CreateCBSys\Error.cs" />
-    <Compile Include="Workflows\CreateCBSys\Fin.cs" />
-    <Compile Include="Workflows\CreateCBSys\ICBSysDraft.cs" />
-    <Compile Include="Workflows\CreateCBSys\Save\Input.cs" />
-    <Compile Include="Workflows\CreateCBSys\Save\SaveNewCBSys.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\Input.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\MoonAsCentralBody.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\PlanetAsCentralBody.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectCentralBody\StarAsCentralBody.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\ContextCore.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\IContext.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\Input.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfMoon.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfPlanets.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\SatellitesOfStar.cs" />
-    <Compile Include="Workflows\CreateCBSys\SelectSatellite\STFCore.cs" />
-    <Compile Include="Workflows\CreateCBSys\Start\Start.cs" />
-    <Compile Include="Workflows\CreateCBSys\StateFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -118,7 +94,13 @@
     <None Include="KeplerBI.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SpaceShips\Repositories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

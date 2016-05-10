@@ -14,16 +14,18 @@ namespace KeplerBI.DB
         {
             using (var ORM = new KeplerDBContext())
             {
-                if (ORM.Database.CreateIfNotExists())
+                ORM.Database.Delete();
+                ORM.Database.Create();
+                if (true)
                 {
-                    foreach (var app in mko.Algo.ForEachEnumMember<KeplerBI.SpaceShips.Application>.Get())
-                    {
-                        var dbApp = ORM.Applications.Create();
-                        dbApp.ApplicationID = (int)app;
-                        dbApp.Description = app.ToString();
+                    //foreach (var app in mko.Algo.ForEachEnumMember<KeplerBI.SpaceShips.Application>.Get())
+                    //{
+                    //    var dbApp = ORM.Applications.Create();
+                    //    dbApp.ApplicationID = (int)app;
+                    //    dbApp.Description = app.ToString();
 
-                        ORM.Applications.Add(dbApp);
-                    }
+                    //    ORM.Applications.Add(dbApp);
+                    //}
 
                     foreach (var cbTypeId in mko.Algo.ForEachEnumMember<KeplerBI.DB.CelesticalBodyType>.Get())
                     {
@@ -36,7 +38,10 @@ namespace KeplerBI.DB
 
                     ORM.SaveChanges();
 
-                    CreateSolarSystem.DoIt();
+                    var UofW = new UnitOfWork(ORM);
+                    CreateBasicInformations.DoIt(UofW);
+
+                    
                 }
             }
         }

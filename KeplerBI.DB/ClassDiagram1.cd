@@ -224,7 +224,6 @@
       <HashCode>AAAgAAAABAgAAAACAAAAAAAAAAAgAAAAACAAAAAAgAA=</HashCode>
       <FileName>Workflows\CreateCBSys\CBSysDraft.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="KeplerBI.DB.Workflows.CreateCBSys.FinitStateMachine" Collapsed="true">
     <Position X="29.75" Y="1.5" Width="1.5" />

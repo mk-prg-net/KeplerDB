@@ -6,12 +6,12 @@ using System.Linq;
 using NCB = KeplerBI.DB.NaturalCelesticalBodies;
 
 using BI = KeplerBI;
-using BIWf = KeplerBI.Workflows;
-using BIWfCBS = KeplerBI.Workflows.CreateCBSys;
+//using BIWf = KeplerBI.Workflows;
+//using BIWfCBS = KeplerBI.Workflows.CreateCBSys;
 
 using DB = KeplerBI.DB;
-using DBWf = KeplerBI.DB.Workflows;
-using DBWfCBS = KeplerBI.DB.Workflows.CreateCBSys;
+//using DBWf = KeplerBI.DB.Workflows;
+//using DBWfCBS = KeplerBI.DB.Workflows.CreateCBSys;
 
 
 namespace KeplerBI.Test
@@ -69,9 +69,7 @@ namespace KeplerBI.Test
                 var repo = new KeplerBI.DB.NaturalCelesticalBodies.Repositories.PlanetCo(ORM);
 
 
-                var all = repo.GetAllBo();
-
-                var flt1 = repo.GetFilteredListOfBo();
+                
 
                 //repo.MassInEarthmassFlt = new mko.Algo.Interval<double>(10, 100);
                 //var flt2 = repo.GetBoFiltered();
@@ -95,86 +93,86 @@ namespace KeplerBI.Test
         }
 
 
-        [TestMethod]
-        public void KeplerBI_CreateCelesticalBodySystem()
-        {
-            using (var ORM = new KeplerBI.DB.KeplerDBContext())
-            {
-                if (ORM.CelesticalBodySystems.Any(r => r.CentralBody.Name == "Uranus"))
-                {
+        //[TestMethod]
+        //public void KeplerBI_CreateCelesticalBodySystem()
+        //{
+        //    using (var ORM = new KeplerBI.DB.KeplerDBContext())
+        //    {
+        //        if (ORM.CelesticalBodySystems.Any(r => r.CentralBody.Name == "Uranus"))
+        //        {
 
-                    var cbs = ORM.CelesticalBodySystems.Single(r => r.CentralBody.Name == "Uranus");
+        //            var cbs = ORM.CelesticalBodySystems.Single(r => r.CentralBody.Name == "Uranus");
 
-                    // Loschen aller Orbits
-                    foreach (var orbit in cbs.Orbits.ToArray())
-                    {
-                        ORM.Orbits.Remove(orbit);
-                    }
+        //            // Loschen aller Orbits
+        //            foreach (var orbit in cbs.Orbits.ToArray())
+        //            {
+        //                ORM.Orbits.Remove(orbit);
+        //            }
 
-                    ORM.CelesticalBodySystems.Remove(cbs);
+        //            ORM.CelesticalBodySystems.Remove(cbs);
 
-                    ORM.SaveChanges();
-                }
-            }
-
-
-            // Workflow zum erstellen eines Himmelskörpersystems beginnt
-
-            //var FSM = new DBWfCBS.FinitStateMachine();
-
-            //FSM.ActiveState = FSM.StateFactory.CreateStart();
-            //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.Start.Start));
-
-            //FSM.ActiveState = FSM.StateFactory.CreateStartSTF().Transition(FSM.ActiveStateAsStart, BIWfCBS.Start.StartSTF.Inputs.SelectPlanetAsCentralBody);
-            //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectCentralBody.PlanetAsCentralBodyContext));
+        //            ORM.SaveChanges();
+        //        }
+        //    }
 
 
-            //var centralBody = FSM.ActiveStateAsPlanetAsCentralBody.Planets.GetBo("Uranus");
+        //    // Workflow zum erstellen eines Himmelskörpersystems beginnt
 
-            //FSM.ActiveState = FSM.StateFactory.CreatePlanetAsCentralBodySTF().Transition(
-            //    FSM.ActiveStateAsPlanetAsCentralBody,
-            //    new BIWfCBS.SelectCentralBody.PlanetAsCentralBodySTF.InputPlanet(centralBody)); //new DB.NaturalCelesticalBodies.Planet() { Name = "Uranus" }));
+        //    //var FSM = new DBWfCBS.FinitStateMachine();
 
-            //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectSatellite.SatellitesOfPlanetContext));
+        //    //FSM.ActiveState = FSM.StateFactory.CreateStart();
+        //    //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.Start.Start));
 
-            //FSM.ActiveState = FSM.StateFactory.CreateSatellitesOfPlanetSTF().Transition(
-            //    FSM.ActiveStateAsSatellitesOfPlanet,
-            //    new BIWfCBS.SelectSatellite.InputSatelliteOrbit(new DB.Orbit()
-            //        {
-            //            Satellite = (DB.NaturalCelesticalBodies.Moon)FSM.ActiveStateAsSatellitesOfPlanet.Moons.GetBo("Miranda"), // new DB.NaturalCelesticalBodies.Moon() { Name = "Miranda" },
-            //            MeanVelocityOfCirculation = mko.Newton.Velocity.KilometerPerSec(6.68),
-            //            SemiMajorAxis = mko.Newton.Length.Kilometer(129872)
-            //        }
-            //    ));
-            //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectSatellite.SatellitesOfPlanetContext));
-
-            //FSM.ActiveState = FSM.StateFactory.CreateSatellitesOfPlanetSTF().Transition(
-            //    FSM.ActiveStateAsSatellitesOfPlanet,
-            //    new BIWfCBS.SelectSatellite.InputSatelliteOrbit(new DB.Orbit()
-            //    {
-            //        Satellite = new DB.NaturalCelesticalBodies.Moon() { Name = "Titania" },
-            //        MeanVelocityOfCirculation = mko.Newton.Velocity.KilometerPerSec(3.87),
-            //        SemiMajorAxis = mko.Newton.Length.Kilometer(436000)
-            //    }
-            //));
-            //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectSatellite.SatellitesOfPlanetContext));
-
-            //FSM.ActiveState = FSM.StateFactory.CreateSatellitesOfPlanetSTF().Transition(
-            //    FSM.ActiveStateAsSatellitesOfPlanet,
-            //    new BIWfCBS.SelectSatellite.InputFinishSelection());
-            //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.Save.SaveNewCBSysContext));
+        //    //FSM.ActiveState = FSM.StateFactory.CreateStartSTF().Transition(FSM.ActiveStateAsStart, BIWfCBS.Start.StartSTF.Inputs.SelectPlanetAsCentralBody);
+        //    //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectCentralBody.PlanetAsCentralBodyContext));
 
 
-            //FSM.ActiveState = FSM.StateFactory.CreateSaveCBSysSTF().Transition(
-            //    FSM.ActiveStateAsSaveNewCBSys,
-            //        new BIWfCBS.Save.InputSave()
-            //        {
-            //            Name = "Uranussystem"
-            //        }
-            //    );
-            //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.FinContext));
+        //    //var centralBody = FSM.ActiveStateAsPlanetAsCentralBody.Planets.GetBo("Uranus");
 
-        }
+        //    //FSM.ActiveState = FSM.StateFactory.CreatePlanetAsCentralBodySTF().Transition(
+        //    //    FSM.ActiveStateAsPlanetAsCentralBody,
+        //    //    new BIWfCBS.SelectCentralBody.PlanetAsCentralBodySTF.InputPlanet(centralBody)); //new DB.NaturalCelesticalBodies.Planet() { Name = "Uranus" }));
+
+        //    //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectSatellite.SatellitesOfPlanetContext));
+
+        //    //FSM.ActiveState = FSM.StateFactory.CreateSatellitesOfPlanetSTF().Transition(
+        //    //    FSM.ActiveStateAsSatellitesOfPlanet,
+        //    //    new BIWfCBS.SelectSatellite.InputSatelliteOrbit(new DB.Orbit()
+        //    //        {
+        //    //            Satellite = (DB.NaturalCelesticalBodies.Moon)FSM.ActiveStateAsSatellitesOfPlanet.Moons.GetBo("Miranda"), // new DB.NaturalCelesticalBodies.Moon() { Name = "Miranda" },
+        //    //            MeanVelocityOfCirculation = mko.Newton.Velocity.KilometerPerSec(6.68),
+        //    //            SemiMajorAxis = mko.Newton.Length.Kilometer(129872)
+        //    //        }
+        //    //    ));
+        //    //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectSatellite.SatellitesOfPlanetContext));
+
+        //    //FSM.ActiveState = FSM.StateFactory.CreateSatellitesOfPlanetSTF().Transition(
+        //    //    FSM.ActiveStateAsSatellitesOfPlanet,
+        //    //    new BIWfCBS.SelectSatellite.InputSatelliteOrbit(new DB.Orbit()
+        //    //    {
+        //    //        Satellite = new DB.NaturalCelesticalBodies.Moon() { Name = "Titania" },
+        //    //        MeanVelocityOfCirculation = mko.Newton.Velocity.KilometerPerSec(3.87),
+        //    //        SemiMajorAxis = mko.Newton.Length.Kilometer(436000)
+        //    //    }
+        //    //));
+        //    //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.SelectSatellite.SatellitesOfPlanetContext));
+
+        //    //FSM.ActiveState = FSM.StateFactory.CreateSatellitesOfPlanetSTF().Transition(
+        //    //    FSM.ActiveStateAsSatellitesOfPlanet,
+        //    //    new BIWfCBS.SelectSatellite.InputFinishSelection());
+        //    //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.Save.SaveNewCBSysContext));
+
+
+        //    //FSM.ActiveState = FSM.StateFactory.CreateSaveCBSysSTF().Transition(
+        //    //    FSM.ActiveStateAsSaveNewCBSys,
+        //    //        new BIWfCBS.Save.InputSave()
+        //    //        {
+        //    //            Name = "Uranussystem"
+        //    //        }
+        //    //    );
+        //    //Assert.IsInstanceOfType(FSM.ActiveState, typeof(BIWfCBS.FinContext));
+
+        //}
 
 
 

@@ -11,5 +11,12 @@ namespace KeplerBI.DB.NaturalCelesticalBodies
         public Star() { Type = CelesticalBodyType.Star; SpectralClass = KeplerBI.NaturalCelesticalBodies.SpectralClasses.O; }  
 
         public virtual KeplerBI.NaturalCelesticalBodies.SpectralClasses SpectralClass{ get; set; }
+
+
+        public double LuminosityInMulitiplesOfSun
+        {
+            get;
+            set;
+        }
     }
 }

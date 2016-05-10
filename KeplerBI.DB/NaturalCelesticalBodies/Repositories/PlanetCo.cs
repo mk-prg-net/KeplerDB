@@ -4,60 +4,82 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NCB = KeplerBI.DB.NaturalCelesticalBodies;
+
 namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 {
-    public class PlanetCo : KeplerBI.NaturalCelesticalBodies.Repositories.PlanetsCo // mko.BI.Repositories.BoCoBase<Planet, string>
+    public class PlanetCo : KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo
     {
-        KeplerDBContext ORM;        
+        KeplerDBContext _ctx;
 
-
-        public PlanetCo(KeplerDBContext ORM)
+        public PlanetCo(KeplerDBContext ctx)
         {
-            this.ORM = ORM; 
-        }  
-
-        public override void RemoveAll()
-        {
-            throw new NotImplementedException();
+            _ctx = ctx;
         }
 
-        public override void SubmitChanges()
+        public bool ExistsBo(string id)
         {
-            ORM.SaveChanges();
+            return _ctx.CelesticalBodies.OfType<NCB.Planet>().Any(r => r.Name == id);
+
         }
 
-        public override IQueryable<KeplerBI.NaturalCelesticalBodies.IPlanet> BoCollection
+        public KeplerBI.NaturalCelesticalBodies.IPlanet GetBo(string id)
         {
-            get { return ORM.CelesticalBodies.OfType<Planet>(); }
+            return _ctx.CelesticalBodies.OfType<NCB.Planet>().First(r => r.Name == id);
         }
 
-        public override KeplerBI.NaturalCelesticalBodies.IPlanet CreateBo()
+        public KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder createFiltertedSortedSetBuilder()
         {
-            return ORM.CelesticalBodies.Create<Planet>();
+            return new FilteredSortedSetBuilder(_ctx);
         }
 
-        public override void AddToCollection(KeplerBI.NaturalCelesticalBodies.IPlanet entity)
+        public class FilteredSortedSetBuilder : KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder
         {
-            ORM.CelesticalBodies.Add((Planet)entity);
+
+            IQueryable<Planet> query;
+            List<mko.BI.Repositories.DefSortOrder<Planet>> SortOrders = new List<mko.BI.Repositories.DefSortOrder<Planet>>();
+
+            internal FilteredSortedSetBuilder(KeplerDBContext ctx)
+            {
+                query = ctx.CelesticalBodies.OfType<Planet>();
+            }
+
+            public void defAequatorialDiameterRange(mko.Newton.Length minDiammeter, mko.Newton.Length maxDiammeter)
+            {
+                double min = mko.Newton.Length.Kilometer(minDiammeter).Vector[0];
+                double max = mko.Newton.Length.Kilometer(maxDiammeter).Vector[0];
+                query = query.Where(r => min <= r.EquatorialDiameterInKilometer && r.EquatorialDiameterInKilometer <= max);
+            }
+
+            public void defMassRange(mko.Newton.Mass minMass, mko.Newton.Mass maxMass)
+            {
+                double min = mko.Newton.Mass.EarthMasses(minMass).Value;
+                double max = mko.Newton.Mass.EarthMasses(maxMass).Value;
+
+                query = query.Where(r => min <= r.MassInEarthmasses && r.MassInEarthmasses <= max);
+            }
+
+            public void OrderByAequatorialDiameter(bool descending)
+            {
+                SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Planet, double>(r => r.EquatorialDiameterInKilometer, descending));
+            }
+
+            public void OrderByMass(bool descending)
+            {
+                SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Planet, double>(r => r.MassInEarthmasses, descending));
+            }
+
+            public void OrderBySemiMajorAxisLength(bool descending)
+            {
+                throw new NotImplementedException();
+            }
+
+            public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IPlanet> GetSet()
+            {
+                return new mko.BI.Repositories.FilteredSortedSet<Planet>(query, SortOrders);
+            }
         }
 
-        public override void RemoveFromCollection(KeplerBI.NaturalCelesticalBodies.IPlanet entity)
-        {
-            var e = ORM.CelesticalBodies.Single(r => r.Name == entity.Name);
-            ORM.CelesticalBodies.Remove(e);
-        }
-
-        public override Func<KeplerBI.NaturalCelesticalBodies.IPlanet, bool> GetBoIDTest(string id)
-        {
-            return r => r.Name == id;
-        }
-
-        public override KeplerBI.NaturalCelesticalBodies.IPlanet CreateBoAndAddToCollection()
-        {
-            var bo = CreateBo();
-            AddToCollection(bo);
-            return bo;
-        }
 
     }
 }
