@@ -29,6 +29,19 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
         void defMassRange(mko.Newton.Mass minMass, mko.Newton.Mass maxMass);
 
         /// <summary>
+        /// Einschränken auf Sterne, die einer bestimmten Spektralklasse angehären
+        /// </summary>
+        /// <param name="spectralClass"></param>
+        void defSpectralClass(SpectralClasses spectralClass);
+
+        /// <summary>
+        /// Einschränken auf Sterne mit einer Leuchtkraft zwischen min und max
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="bax"></param>
+        void defLuminosityInMulitiplesOfSunBetween(double min, double max);
+
+        /// <summary>
         /// Sortieren nach Durchmesser
         /// </summary>
         /// <param name="descending"></param>
@@ -39,13 +52,6 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
         /// </summary>
         /// <param name="descending"></param>
         void OrderByMass(bool descending);
-
-
-        /// <summary>
-        /// sortieren nach Durchmesser der großen Achse der Umlaufbahn
-        /// </summary>
-        /// <param name="descending"></param>
-        void OrderBySemiMajorAxisLength(bool descending);
 
     }
 

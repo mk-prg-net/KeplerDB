@@ -28,6 +28,13 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
         void defMassRange(mko.Newton.Mass minMass, mko.Newton.Mass maxMass);
 
         /// <summary>
+        /// Filtern bezüglich der Anzahl von Monde
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        void defMoonCountBetween(int min, int max);
+
+        /// <summary>
         /// Sortieren nach Durchmesser
         /// </summary>
         /// <param name="descending"></param>
@@ -39,12 +46,17 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
         /// <param name="descending"></param>
         void OrderByMass(bool descending);
 
-
         /// <summary>
         /// sortieren nach Durchmesser der großen Achse der Umlaufbahn
         /// </summary>
         /// <param name="descending"></param>
         void OrderBySemiMajorAxisLength(bool descending);
+
+        /// <summary>
+        /// Sortiieren nach der Anzahl von Monden
+        /// </summary>
+        /// <param name="descending"></param>
+        void OrderByMoonCount(bool descending);
 
     }
 

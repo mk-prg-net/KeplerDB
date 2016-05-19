@@ -35,12 +35,13 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
         public class FilteredSortedSetBuilder : KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder
         {
-
+            KeplerDBContext ctx;
             IQueryable<Planet> query;
             List<mko.BI.Repositories.DefSortOrder<Planet>> SortOrders = new List<mko.BI.Repositories.DefSortOrder<Planet>>();
 
             internal FilteredSortedSetBuilder(KeplerDBContext ctx)
             {
+                this.ctx = ctx;
                 query = ctx.CelesticalBodies.OfType<Planet>();
             }
 
@@ -58,6 +59,16 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
                 query = query.Where(r => min <= r.MassInEarthmasses && r.MassInEarthmasses <= max);
             }
+
+            public void defMoonCountBetween(int min, int max)
+            {
+                query = ctx.CelesticalBodySystems
+                        .Join(query, cb => cb.CentralBody.Name, r => r.Name, (cb, p) => new { cbSys = cb, planet = p })
+                        .Where(cbp => min <= cbp.cbSys.Orbits.Count() && cbp.cbSys.Orbits.Count() <= max)
+                        .Select(cbp => cbp.planet);
+            }
+
+
 
             public void OrderByAequatorialDiameter(bool descending)
             {
@@ -77,6 +88,12 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
             public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IPlanet> GetSet()
             {
                 return new mko.BI.Repositories.FilteredSortedSet<Planet>(query, SortOrders);
+            }
+
+
+            public void OrderByMoonCount(bool descending)
+            {
+                throw new NotImplementedException();
             }
         }
 

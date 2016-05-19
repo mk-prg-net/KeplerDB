@@ -80,8 +80,6 @@
     <Compile Include="CelesticalBodyTypeDescriptor.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Country.cs" />
-    <Compile Include="CreateSolarSys2.cs" />
-    <Compile Include="CreateSolarSystem.cs" />
     <Compile Include="DBUtil.cs" />
     <Compile Include="KeplerDBContext.cs" />
     <Compile Include="KeplerDBContext.Mapping.cs" />

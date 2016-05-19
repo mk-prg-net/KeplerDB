@@ -55,6 +55,17 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 query = query.Where(r => min <= r.MassInEarthmasses && r.MassInEarthmasses <= max);
             }
 
+            public void defSpectralClass(KeplerBI.NaturalCelesticalBodies.SpectralClasses spectralClass)
+            {
+                query = query.Where(r => r.SpectralClass == spectralClass);
+            }
+
+            public void defLuminosityInMulitiplesOfSunBetween(double min, double max)
+            {
+                query = query.Where(r => min <= r.LuminosityInMulitiplesOfSun && r.LuminosityInMulitiplesOfSun <= max);
+            }
+
+
             public void OrderByAequatorialDiameter(bool descending)
             {
                 SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Star, double>(r => r.EquatorialDiameterInKilometer, descending));
@@ -65,15 +76,13 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Star, double>(r => r.MassInEarthmasses, descending));
             }
 
-            public void OrderBySemiMajorAxisLength(bool descending)
-            {
-                throw new NotImplementedException();
-            }
 
             public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IStar> GetSet()
             {
                 return new mko.BI.Repositories.FilteredSortedSet<Star>(query, SortOrders);
             }
+
+
         }
 
         public KeplerBI.NaturalCelesticalBodies.Repositories.IStarsCo_FilteredAndSortedSetBuilder createNewFilteredSortedSetBuilder()
