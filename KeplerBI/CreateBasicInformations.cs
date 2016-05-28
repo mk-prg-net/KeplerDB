@@ -43,7 +43,7 @@ namespace KeplerBI
 {
     public class CreateBasicInformations
     {
-        public static void DoIt(IUnitOfWork UofW)
+        public static void DoIt(IAstroCatalog UofW)
         {
 
             mko.Newton.Init.Do();
@@ -202,6 +202,7 @@ namespace KeplerBI
             UofW.SubmitChanges();
 
             var Jupiter = UofW.Planets.GetBo("Jupiter");
+            Jupiter.HasRings = true;
             Jupiter.EquatorialDiameter = mko.Newton.Length.DiameterJupiter;
             Jupiter.PolarDiameter = mko.Newton.Length.DiameterJupiterPolar;
             Jupiter.Gravity = mko.Newton.Acceleration.GravityOnJupiter;
@@ -257,6 +258,7 @@ namespace KeplerBI
             UofW.SubmitChanges();
 
             var Saturn = UofW.Planets.GetBo("Saturn");
+            Saturn.HasRings = true;
             Saturn.EquatorialDiameter = mko.Newton.Length.DiameterSaturn;
             Saturn.PolarDiameter = mko.Newton.Length.DiameterSaturnPolar;
             Saturn.Gravity = mko.Newton.Acceleration.GravityOnSaturn;
@@ -320,6 +322,7 @@ namespace KeplerBI
             UofW.SubmitChanges();
 
             var Uranus = UofW.Planets.GetBo("Uranus");
+            Uranus.HasRings = true;
             Uranus.EquatorialDiameter = mko.Newton.Length.DiameterUranus;
             Uranus.PolarDiameter = mko.Newton.Length.DiameterUranusPolar;
             Uranus.Gravity = mko.Newton.Acceleration.GravityOnUranus;

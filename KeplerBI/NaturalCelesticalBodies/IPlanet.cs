@@ -8,6 +8,9 @@ namespace KeplerBI.NaturalCelesticalBodies
 {
     public interface IPlanet : INaturalCelesticalBody
     {
-        
+        /// <summary>
+        /// True, wenn der Planet Ringe hat
+        /// </summary>
+        bool HasRings { get; set; }
     }
 }

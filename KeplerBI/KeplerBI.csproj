@@ -71,7 +71,7 @@
     <Compile Include="CreateBasicInformations.cs" />
     <Compile Include="ICelesticalBodySystem.cs" />
     <Compile Include="ICountry.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IAstroCatalog.cs" />
     <Compile Include="NaturalCelesticalBodies\IAsteroid.cs" />
     <Compile Include="NaturalCelesticalBodies\IBigBang.cs" />
     <Compile Include="NaturalCelesticalBodies\IComet.cs" />
@@ -87,17 +87,21 @@
     <Compile Include="Repositories\ICelesticslBodySystemsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\IStarsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\SpectralClasses.cs" />
-    <Compile Include="SpaceShips\Application.cs" />
     <Compile Include="ICelestialBodyBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceShips\IMannedSpacecraft.cs" />
-    <Compile Include="SpaceShips\ISpaceShip.cs" />
+    <Compile Include="SpaceShips\Application.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpaceShips\IMannedSpacecraft.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpaceShips\ISpaceShip.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram3.cd" />
     <None Include="ICelesticalBodies.cd" />
     <None Include="KeplerBI.nuspec" />
     <None Include="packages.config" />

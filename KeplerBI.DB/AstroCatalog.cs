@@ -6,15 +6,37 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.DB
 {
-    public class UnitOfWork : KeplerBI.IUnitOfWork
+    public class AstroCatalog : KeplerBI.IAstroCatalog, IDisposable
     {
         KeplerDBContext _ctx;
+        bool _ctxExtern = false;
         NaturalCelesticalBodies.Repositories.MoonCo _Moons;
         NaturalCelesticalBodies.Repositories.PlanetCo _Planets;
         NaturalCelesticalBodies.Repositories.StarsCo _Stars;
         Repositories.CelesticalBodySystemsCo _CelesticalBodySystems;
 
-        public UnitOfWork(KeplerDBContext ctx)
+
+
+        public void Dispose()
+        {
+            if (!_ctxExtern && _ctx != null)
+            {
+                _ctx.Dispose();
+            }
+        }
+
+        public AstroCatalog()
+        {
+            Init(new KeplerDBContext());
+        }
+
+        public AstroCatalog(KeplerDBContext ctx)
+        {
+            _ctxExtern = true;
+            Init(ctx);
+        }
+
+        private void Init(KeplerDBContext ctx)
         {
             _ctx = ctx;
             _Moons = new NaturalCelesticalBodies.Repositories.MoonCo(_ctx);
@@ -62,6 +84,7 @@ namespace KeplerBI.DB
                 // Planet in einem Planetensystem aufnehmen
                 var newOrbit = new Orbit();
                 newOrbit.Satellite = newPlanet;
+                newOrbit.CentralBody = _ctx.CelesticalBodies.First(r => r.Name == Star.Name);
                 newOrbit.SemiMajorAxisInKilometer = mko.Newton.Length.Kilometer(semiMajorAxisLength).Vector.Length;
                 newOrbit.MeanVelocitiOfCirculationInKmPerSec = mko.Newton.Velocity.KilometerPerSec(meanVelocityOfCirculation).Vector.Length;
 
@@ -98,6 +121,7 @@ namespace KeplerBI.DB
                 // Planet in einem Mondsystem aufnehmen
                 var newOrbit = new Orbit();
                 newOrbit.Satellite = newMoon;
+                newOrbit.CentralBody = _ctx.CelesticalBodies.OfType<NaturalCelesticalBodies.Planet>().First(r => r.Name == Planet.Name);
                 newOrbit.SemiMajorAxisInKilometer = mko.Newton.Length.Kilometer(semiMajorAxisLength).Vector.Length;
                 newOrbit.MeanVelocitiOfCirculationInKmPerSec = mko.Newton.Velocity.KilometerPerSec(meanVelocityOfCirculation).Vector.Length;
 
@@ -123,6 +147,7 @@ namespace KeplerBI.DB
         {
             _ctx.SaveChanges();
         }
+
 
 
     }

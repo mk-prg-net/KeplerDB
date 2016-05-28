@@ -11,6 +11,8 @@ namespace KeplerBI
 
         ICelestialBodyBase Satellite { get; }
 
+        ICelestialBodyBase CentralBody { get; }
+
      
         mko.Newton.Length SemiMajorAxis {
             get;

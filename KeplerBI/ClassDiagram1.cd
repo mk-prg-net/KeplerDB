@@ -1,150 +1,137 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.CreateNCB" Collapsed="true">
-    <Position X="5" Y="4.75" Width="1.5" />
+  <Interface Name="KeplerBI.IAstroCatalog">
+    <Position X="10" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AgAgAAgAAQABAAACAAAAAAACAAJAAQAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\CreateNCB.cs</FileName>
+      <HashCode>AEAgAgAAAAABAAACAAAAAAAAABAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>IAstroCatalog.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.CreateSpaceShip" Collapsed="true">
-    <Position X="11.75" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.ICelestialBodyBase">
+    <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAIAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\CreateSpaceShip.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>ICelestialBodyBase.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeAsteroid" Collapsed="true">
-    <Position X="18.5" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.ICelesticalBodySystem">
+    <Position X="1.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAABAAAABAACAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeAsteroid.cs</FileName>
+      <HashCode>AAAAAAAABAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICelesticalBodySystem.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeBigBang" Collapsed="true">
-    <Position X="23" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.IOrbit">
+    <Position X="4.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>CgAAAAAAAAAAAAAAAAAAAAAAAABAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeBigBang.cs</FileName>
+      <HashCode>AAQAAAAAAAAAAAACAAAAAAAAgABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IOrbit.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeComet" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IAsteroid">
+    <Position X="0.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeComet.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IAsteroid.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeGalaxy" Collapsed="true">
-    <Position X="7.25" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IComet">
+    <Position X="5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAQAAABAAAAAAAAAAACAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeGalaxy.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IComet.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeGalaxyCore" Collapsed="true">
-    <Position X="14" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IGalaxy">
+    <Position X="9.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAACAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeGalaxyCore.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IGalaxy.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeMannedSpacecraft" Collapsed="true">
-    <Position X="20.75" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IMoon">
+    <Position X="11.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAEAAAAAAACABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeMannedSpacecraft.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IMoon.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeMoon" Collapsed="true">
-    <Position X="25.25" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.INaturalCelesticalBody">
+    <Position X="7.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAEAAAAAAAAAAAAAAABAAAAAAAAIAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeMoon.cs</FileName>
+      <HashCode>AAgAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAIAgAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\INaturalsCelesticalBody.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribePlanet" Collapsed="true">
-    <Position X="2.75" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IPlanet">
+    <Position X="2.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAABAAAAAAABAAAAAAAIAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribePlanet.cs</FileName>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IPlanet.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeSatellite" Collapsed="true">
-    <Position X="9.5" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.IStar">
+    <Position X="7.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAIAAAAAAAAAACABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeSatellite.cs</FileName>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\IStar.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.DescribeStar" Collapsed="true">
-    <Position X="16.25" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo">
+    <Position X="11.75" Y="6.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAgAAAAAAAAAAAAABAAAAAgAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\DescribeStar.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\Repositories\IMoonsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.NCBCancel" Collapsed="true">
-    <Position X="34.25" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo_FilteredAndSortedSetBuilder">
+    <Position X="11.75" Y="8" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\NCBCancel.cs</FileName>
+      <HashCode>IAAAAAAAAAAAGAAAAAAAAAAAAAAAACAAAAAIAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\Repositories\IMoonsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.NCBFinal" Collapsed="true">
-    <Position X="36.5" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo">
+    <Position X="2.75" Y="6.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAIAAAAAAAAAAAgBAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\NCBFinal.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\Repositories\IPlanetsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.SPCancel" Collapsed="true">
-    <Position X="27.5" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder">
+    <Position X="2.75" Y="8.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\SPCancel.cs</FileName>
+      <HashCode>IAAAAAIAQAAAGAAAAAAAAAAAAAAAACAAAAAIABAAAQA=</HashCode>
+      <FileName>NaturalCelesticalBodies\Repositories\IPlanetsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.SPFinalMannedSpaceShip" Collapsed="true">
-    <Position X="29.75" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.Repositories.IStarsCo">
+    <Position X="7.25" Y="6.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAACAAAAAAAAAAAAAAAACAABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\SPFinalMannedSpaceShip.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NaturalCelesticalBodies\Repositories\IStarsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.SPFinalSatelitte" Collapsed="true">
-    <Position X="32" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.NaturalCelesticalBodies.Repositories.IStarsCo_FilteredAndSortedSetBuilder">
+    <Position X="7.25" Y="8.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAACCABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\SPFinalSatelitte.cs</FileName>
+      <HashCode>IAAAEAAAAAAAEAAAAAAAAAAAAAAAACAAAAAIAAAAACA=</HashCode>
+      <FileName>NaturalCelesticalBodies\Repositories\IStarsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.Workflows.CreateCelesticalBody.Start" Collapsed="true">
-    <Position X="38.75" Y="4.75" Width="1.5" />
+  </Interface>
+  <Interface Name="KeplerBI.Repositories.ICelesticslBodySystemsCo">
+    <Position X="1.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAIAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCelesticalBody\Start.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\ICelesticslBodySystemsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="mko.Algo.Automaton.StateMachine.State" Collapsed="true">
-    <Position X="19.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="mko.Algo.Automaton.StateMachine.StateWithInputs&lt;TInput&gt;" Collapsed="true">
-    <Position X="19.75" Y="1.75" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="mko.Algo.Automaton.StateMachine.NormalState&lt;TInput&gt;" Collapsed="true">
-    <Position X="13" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="mko.Algo.Automaton.StateMachine.FinalState&lt;TInput&gt;" Collapsed="true">
-    <Position X="32" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="mko.Algo.Automaton.StateMachine.StartState&lt;TInput&gt;" Collapsed="true">
-    <Position X="38.75" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
+  </Interface>
+  <Enum Name="KeplerBI.NaturalCelesticalBodies.SpectralClasses">
+    <Position X="5.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOJ+EIQA=</HashCode>
+      <FileName>NaturalCelesticalBodies\SpectralClasses.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

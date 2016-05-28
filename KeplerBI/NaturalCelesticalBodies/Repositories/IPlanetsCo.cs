@@ -16,6 +16,19 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
     public interface IPlanetsCo_FilteredSortedSetBuilder : IRepo.IFilteredSortedSetBuilder<IPlanet>
     {
         /// <summary>
+        /// Einschränken auf Planeten eines Planetensystems um einen Stern.
+        /// </summary>
+        /// <param name="NameOfStar">Name des Sterns, den die Pleneten umkreisen</param>
+        void defPlanetSys(string NameOfStar);
+
+        /// <summary>
+        /// Einschränken auf Planeten, die den Zentralstern in einem Abstand von- bis umkreisen
+        /// </summary>
+        /// <param name="min">Kleinster Bahnradius</param>
+        /// <param name="max">Größter Bahnradius</param>
+        void defSemiMajorAxisLengthRange(mko.Newton.Length min, mko.Newton.Length max);
+
+        /// <summary>
         /// Einschränken auf Planeten, deren äquatorialdurchmesser im def. Intervall liegt
         /// </summary>
         /// <param name="diammeterRange"></param>

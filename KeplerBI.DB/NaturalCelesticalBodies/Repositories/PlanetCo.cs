@@ -93,7 +93,30 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
             public void OrderByMoonCount(bool descending)
             {
-                throw new NotImplementedException();
+                var sortOrder = new mko.BI.Repositories.DefSortOrderCol<Planet, int>(r => r.)
+                SortOrders.Add()
+            }
+
+            public void defPlanetSys(string NameOfStar)
+            {
+                var star = ctx.CelesticalBodies.OfType<Star>().First(r => r.Name == NameOfStar);
+                query = query.Join<Planet, int, int, Planet>(
+                    inner: ctx.Orbits.Where(r => r.CentralBodyId == star.ID).Select(r => r.SatelliteId),
+                    innerKeySelector: r => r,
+                    outerKeySelector: r => r.ID,
+                    resultSelector: (p, cb) => p);
+            }
+
+            public void defSemiMajorAxisLengthRange(mko.Newton.Length min, mko.Newton.Length max)
+            {
+                var minKm = mko.Newton.Length.Kilometer(min).Vector[0];
+                var maxKm = mko.Newton.Length.Kilometer(max).Vector[0];
+
+                query = query.Join<Planet, int, int, Planet>(
+                 inner: ctx.Orbits.Where(r => minKm <= r.SemiMajorAxisInKilometer && r.SemiMajorAxisInKilometer <= maxKm).Select(r => r.SatelliteId),
+                 innerKeySelector: r => r,
+                 outerKeySelector: r => r.ID,
+                 resultSelector: (p, cb) => p);
             }
         }
 

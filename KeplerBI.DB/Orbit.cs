@@ -10,7 +10,21 @@ namespace KeplerBI.DB
     {
         public virtual int ID { get; set; }
 
+        public virtual int SatelliteId { get; set; }
         public virtual CelestialBodyBase Satellite { get; set; }
+        ICelestialBodyBase IOrbit.Satellite
+        {
+            get { return Satellite; }
+        }
+
+
+        public virtual int CentralBodyId { get; set; }
+        public virtual CelestialBodyBase CentralBody { get; set; }
+        ICelestialBodyBase IOrbit.CentralBody
+        {
+            get { return CentralBody; }
+        }
+
 
         public  virtual double SemiMajorAxisInKilometer { get; set; }
         public mko.Newton.Length SemiMajorAxis {
@@ -36,10 +50,5 @@ namespace KeplerBI.DB
             }
         }
 
-
-        ICelestialBodyBase IOrbit.Satellite
-        {
-            get {return Satellite; }
-        }
     }
 }

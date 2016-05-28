@@ -11,11 +11,8 @@ namespace KeplerBI.Test
         [TestMethod]
         public void Sterne_filtern_und_sortieren()
         {
-            using (var orm = new KeplerBI.DB.KeplerDBContext())
+            using (var UofW = new KeplerBI.DB.AstroCatalog())
             {
-                var UofW = new KeplerBI.DB.UnitOfWork(orm);
-
-
                 var fltBld = UofW.Stars.createNewFilteredSortedSetBuilder();
 
                 fltBld.defLuminosityInMulitiplesOfSunBetween(1, 100000);
@@ -35,10 +32,8 @@ namespace KeplerBI.Test
        [TestMethod]
         public void Planeten_filtern_und_sortieren()
         {
-            using (var orm = new KeplerBI.DB.KeplerDBContext())
+            using (var UofW = new KeplerBI.DB.AstroCatalog())
             {
-                var UofW = new KeplerBI.DB.UnitOfWork(orm);
-
                 var fltBld = UofW.Planets.createFiltertedSortedSetBuilder();
 
                 fltBld.defMoonCountBetween(3, 10);

@@ -9,5 +9,11 @@ namespace KeplerBI.DB.NaturalCelesticalBodies
     public class Planet : NaturalCelesticalBody, KeplerBI.NaturalCelesticalBodies.IPlanet
     {
         public Planet() { Type = CelesticalBodyType.Planet; }
+
+        public virtual bool HasRings
+        {
+            get;
+            set;
+        }
     }
 }

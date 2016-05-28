@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.SpaceShips
 {
-    public interface ISpaceShip : ICelestialBodyBase
+    public interface ISpaceShip
     {
         double MassInKg { get; set; }       
 

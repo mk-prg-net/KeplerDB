@@ -10,6 +10,8 @@ namespace KeplerBI.DB
     {
         public virtual int ID {get; set;}
 
+        public virtual int CentralBodyId { get; set; }
+
         public virtual CelestialBodyBase CentralBody { get; set; }
 
         public virtual ICollection<Orbit> Orbits { get; set; }

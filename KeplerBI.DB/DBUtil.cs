@@ -38,7 +38,7 @@ namespace KeplerBI.DB
 
                     ORM.SaveChanges();
 
-                    var UofW = new UnitOfWork(ORM);
+                    var UofW = new AstroCatalog(ORM);
                     CreateBasicInformations.DoIt(UofW);
 
                     

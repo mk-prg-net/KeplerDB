@@ -18,7 +18,8 @@ namespace KeplerBI.DB
         public virtual DbSet<CelesticalBodyTypeDescriptor> CelesticalBodyTypes { get; set; }
 
         public virtual DbSet<CelestialBodyBase> CelesticalBodies { get; set; }
-        public virtual DbSet<NaturalCelesticalBodies.NaturalCelesticalBody> NCBs { get; set; }
+
+        //public virtual DbSet<NaturalCelesticalBodies.NaturalCelesticalBody> NCBs { get; set; }
 
         //public DbSet<NaturalCelesticalBodies.Asteroid> Asteroids { get; set; }
         //public DbSet<NaturalCelesticalBodies.BigBang> BigBangs { get; set; }
