@@ -22,7 +22,22 @@ namespace KeplerBI.DB
 
         //public virtual  AdditionalInformation { get; set; }
 
-        public abstract mko.Newton.Mass Mass { get; set; }        
+        public abstract mko.Newton.Mass Mass { get; set; }
 
+
+        //public virtual int OrbitId { get; set; }
+        public virtual Orbit Orbit { get; set; }
+
+        IOrbit ICelestialBodyBase.Orbit
+        {
+            get
+            {
+                return Orbit;
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

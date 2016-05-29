@@ -17,7 +17,11 @@ namespace KeplerBI
         //public virtual  AdditionalInformation { get; set; }
 
         mko.Newton.Mass Mass { get; set; }
-        
+
+        /// <summary>
+        ///  Umlaufbahn des Himmelskörpers
+        /// </summary>
+        IOrbit Orbit { get; set; }
 
     }
 }

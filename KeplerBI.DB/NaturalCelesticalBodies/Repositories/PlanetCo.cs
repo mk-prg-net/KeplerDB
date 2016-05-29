@@ -1,4 +1,39 @@
-﻿using System;
+﻿//<unit_header>
+//----------------------------------------------------------------
+//
+// Martin Korneffel: IT Beratung/Softwareentwicklung
+// Stuttgart, den 28.5.2016
+//
+//  Projekt.......: KebplerBI.DB
+//  Name..........: PlanetsCo.cs
+//  Aufgabe/Fkt...: Implementierung des IPlanetsCo Repositories auf SQL- Server mittels CodeFirst
+//                  
+//
+//
+//
+//
+//<unit_environment>
+//------------------------------------------------------------------
+//  Zielmaschine..: PC 
+//  Betriebssystem: Windows 7 mit .NET 4.5
+//  Werkzeuge.....: Visual Studio 2013
+//  Autor.........: Martin Korneffel (mko)
+//  Version 1.0...: 
+//
+// </unit_environment>
+//
+//<unit_history>
+//------------------------------------------------------------------
+//
+//  Version.......: 1.1
+//  Autor.........: Martin Korneffel (mko)
+//  Datum.........: 
+//  Änderungen....: 
+//
+//</unit_history>
+//</unit_header>        
+        
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +70,7 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
         public class FilteredSortedSetBuilder : KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder
         {
+
             KeplerDBContext ctx;
             IQueryable<Planet> query;
             List<mko.BI.Repositories.DefSortOrder<Planet>> SortOrders = new List<mko.BI.Repositories.DefSortOrder<Planet>>();
@@ -63,12 +99,11 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
             public void defMoonCountBetween(int min, int max)
             {
                 query = ctx.CelesticalBodySystems
-                        .Join(query, cb => cb.CentralBody.Name, r => r.Name, (cb, p) => new { cbSys = cb, planet = p })
+                        .Join(query, cb => cb.CentralBodyId, r => r.ID, (cb, p) => new { cbSys = cb, planet = p })
                         .Where(cbp => min <= cbp.cbSys.Orbits.Count() && cbp.cbSys.Orbits.Count() <= max)
-                        .Select(cbp => cbp.planet);
+                        .Select(cbp => cbp.planet);                
+
             }
-
-
 
             public void OrderByAequatorialDiameter(bool descending)
             {
@@ -82,19 +117,20 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
             public void OrderBySemiMajorAxisLength(bool descending)
             {
-                throw new NotImplementedException();
+                SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Planet, double>(r => r.Orbit.SemiMajorAxisInKilometer, descending));
             }
 
             public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IPlanet> GetSet()
             {
-                return new mko.BI.Repositories.FilteredSortedSet<Planet>(query, SortOrders);
+                return new mko.BI.Repositories.FilteredSortedSet<Planet>(query.ToArray().AsQueryable(), SortOrders);
             }
-
 
             public void OrderByMoonCount(bool descending)
             {
-                var sortOrder = new mko.BI.Repositories.DefSortOrderCol<Planet, int>(r => r.)
-                SortOrders.Add()
+
+                throw new NotImplementedException();
+                //var sortOrder = new mko.BI.Repositories.DefSortOrderCol<Planet, int>(r => r.)
+                //SortOrders.Add()
             }
 
             public void defPlanetSys(string NameOfStar)
@@ -112,11 +148,13 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 var minKm = mko.Newton.Length.Kilometer(min).Vector[0];
                 var maxKm = mko.Newton.Length.Kilometer(max).Vector[0];
 
-                query = query.Join<Planet, int, int, Planet>(
-                 inner: ctx.Orbits.Where(r => minKm <= r.SemiMajorAxisInKilometer && r.SemiMajorAxisInKilometer <= maxKm).Select(r => r.SatelliteId),
-                 innerKeySelector: r => r,
-                 outerKeySelector: r => r.ID,
-                 resultSelector: (p, cb) => p);
+                query = query.Where(r => minKm <= r.Orbit.SemiMajorAxisInKilometer && r.Orbit.SemiMajorAxisInKilometer <= maxKm);
+
+                //query = query.Join<Planet, int, int, Planet>(
+                // inner: ctx.Orbits.Where(r => minKm <= r.SemiMajorAxisInKilometer && r.SemiMajorAxisInKilometer <= maxKm).Select(r => r.SatelliteId),
+                // innerKeySelector: r => r,
+                // outerKeySelector: r => r.ID,
+                // resultSelector: (p, cb) => p);
             }
         }
 

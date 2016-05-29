@@ -83,6 +83,7 @@ namespace KeplerBI.DB
 
                 // Planet in einem Planetensystem aufnehmen
                 var newOrbit = new Orbit();
+                newPlanet.Orbit = newOrbit;
                 newOrbit.Satellite = newPlanet;
                 newOrbit.CentralBody = _ctx.CelesticalBodies.First(r => r.Name == Star.Name);
                 newOrbit.SemiMajorAxisInKilometer = mko.Newton.Length.Kilometer(semiMajorAxisLength).Vector.Length;
@@ -120,6 +121,7 @@ namespace KeplerBI.DB
 
                 // Planet in einem Mondsystem aufnehmen
                 var newOrbit = new Orbit();
+                newMoon.Orbit = newOrbit;
                 newOrbit.Satellite = newMoon;
                 newOrbit.CentralBody = _ctx.CelesticalBodies.OfType<NaturalCelesticalBodies.Planet>().First(r => r.Name == Planet.Name);
                 newOrbit.SemiMajorAxisInKilometer = mko.Newton.Length.Kilometer(semiMajorAxisLength).Vector.Length;

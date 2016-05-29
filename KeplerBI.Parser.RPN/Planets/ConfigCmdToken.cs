@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KeplerBI.Parser.RPN
+namespace KeplerBI.Parser.RPN.Planets
 {
-    public class ExecToken : mko.RPN.IToken
+    public abstract class ConfigCmdToken : mko.RPN.IToken
     {
         public bool IsFunctionName
         {
@@ -32,5 +32,14 @@ namespace KeplerBI.Parser.RPN
         {
             get { return GetType().Name; }
         }
+
+        public abstract void ConfigBld(KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder bld);
+
+        /// <summary>
+        /// Stellt das Konfigurationskommando als RPN- String dar.
+        /// </summary>
+        /// <returns></returns>
+        public abstract string ToRPNString();
+
     }
 }

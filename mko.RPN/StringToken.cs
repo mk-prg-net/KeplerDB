@@ -20,7 +20,7 @@ namespace mko.RPN
 
         public bool IsInteger
         {
-            get { return true; }
+            get { return false; }
         }
 
         public bool IsBoolean
@@ -30,7 +30,7 @@ namespace mko.RPN
 
         public bool IsNummeric
         {
-            get { return true; }
+            get { return false; }
         }
 
         public string Value

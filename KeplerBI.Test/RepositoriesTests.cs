@@ -46,6 +46,12 @@ namespace KeplerBI.Test
                 var result = P3_10.Get().ToArray();
 
 
+                fltBld = UofW.Planets.createFiltertedSortedSetBuilder();
+                fltBld.OrderBySemiMajorAxisLength(true);
+
+                var reverse_order = fltBld.GetSet();
+
+
             }
         }
     }

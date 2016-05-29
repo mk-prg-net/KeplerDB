@@ -8,8 +8,6 @@ namespace KeplerBI.DB
 {
     public class CelesticalBodySystem : ICelesticalBodySystem
     {
-        public virtual int ID {get; set;}
-
         public virtual int CentralBodyId { get; set; }
 
         public virtual CelestialBodyBase CentralBody { get; set; }

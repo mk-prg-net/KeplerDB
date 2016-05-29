@@ -54,7 +54,10 @@ namespace KeplerBI.Parser.RPN.Planets
             var max = PopNummeric(stack);
             var min = PopNummeric(stack);
 
-            stack.Push(new MassRngExecToken(min, max));            
+            var minEM = mko.Newton.Mass.EarthMasses(mko.Newton.Mass.Kilogram(min)).Value;
+            var maxEM = mko.Newton.Mass.EarthMasses(mko.Newton.Mass.Kilogram(max)).Value; 
+
+            stack.Push(new MassRngConfigCmd(minEM, maxEM));            
         }
     }
 }

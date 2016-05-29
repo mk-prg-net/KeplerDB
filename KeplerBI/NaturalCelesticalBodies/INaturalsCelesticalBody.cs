@@ -13,6 +13,9 @@ namespace KeplerBI.NaturalCelesticalBodies
         /// </summary>
         double MassInEarthmasses { get; set; }
 
+        /// <summary>
+        /// Mittlere Temperatur der Oberfläche
+        /// </summary>
         double MeanSurfaceTemp { get; set; }
 
         /// <summary>

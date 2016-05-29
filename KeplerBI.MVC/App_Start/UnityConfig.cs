@@ -2,6 +2,14 @@ using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
+using KeplerBI.MVC.Models;
+using KeplerBI.MVC.Controllers;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+
+
 namespace KeplerBI.MVC.App_Start
 {
     /// <summary>
@@ -37,6 +45,13 @@ namespace KeplerBI.MVC.App_Start
 
             // TODO: Register your types here
             container.RegisterType<KeplerBI.IAstroCatalog, KeplerBI.DB.AstroCatalog>();
+
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            //container.RegisterType<RolesAdminController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
+            //container.RegisterType<UsersAdminController>(new InjectionConstructor());
+
+            //container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
         }
     }
 }

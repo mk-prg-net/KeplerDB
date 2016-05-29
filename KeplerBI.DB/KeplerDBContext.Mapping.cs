@@ -38,18 +38,29 @@ namespace KeplerBI.DB
             //modelBuilder.Entity<CelestialBodyBase>().Map<NCB.NaturalCelesticalBody>(cfg => cfg.ToTable("NCBs"));
 
 
+            modelBuilder.Entity<CelestialBodyBase>()
+                .HasOptional<Orbit>(r => r.Orbit).WithRequired();
+
+
             //modelBuilder.Entity<SpaceShips.SpaceShip>().HasEntitySetName("AreasOfApplication").HasMany<SpaceShips.AreaOfApplication>(e => e.AreasOfApplication);
 
             modelBuilder.Entity<Orbit>()
+                        .HasKey(r => r.SatelliteId)
                         .Ignore<mko.Newton.Length>(e => e.SemiMajorAxis)
                         .Ignore<mko.Newton.Velocity>(e => e.MeanVelocityOfCirculation);
 
-            // Beziehungen definieren
-            modelBuilder.Entity<Orbit>()
-                        .HasRequired<CelestialBodyBase>(r => r.Satellite).WithMany().HasForeignKey(r => r.SatelliteId).WillCascadeOnDelete(false);
-                        
+            // 1:n Beziehung zwischen Orbit und CelesticalBodyBase: Orbit.CentralBodyId == CelesticalBodyBase.ID
             modelBuilder.Entity<Orbit>()
                         .HasRequired<CelestialBodyBase>(r => r.CentralBody).WithMany().HasForeignKey(r => r.CentralBodyId).WillCascadeOnDelete(false);
+                       
+            // 1:1 Beziehung zwischen Orbit und CelesticalBodyBase: Orbit.SatelitId == CelesticalBodyBase.ID
+            modelBuilder.Entity<Orbit>()
+                        .HasRequired<CelestialBodyBase>(r => r.Satellite).WithOptional(r => r.Orbit).WillCascadeOnDelete(false);
+
+            
+            modelBuilder.Entity<CelesticalBodySystem>()
+                        .HasKey(r => r.CentralBodyId)
+                        .HasRequired<CelestialBodyBase>(r => r.CentralBody).WithOptional().WillCascadeOnDelete(false);
             
 
             //modelBuilder.Entity<SpaceShips.AreaOfApplication>().ToTable("AreasOfApplication");

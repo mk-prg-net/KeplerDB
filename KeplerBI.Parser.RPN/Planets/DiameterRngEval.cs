@@ -55,7 +55,7 @@ namespace KeplerBI.Parser.RPN.Planets
             var max = PopNummeric(stack);
             var min = PopNummeric(stack);
 
-            stack.Push(new DiameterRngExecToken(min, max));
+            stack.Push(new DiameterRngConfigCmd(min, max));
         }
     }
 }

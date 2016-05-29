@@ -8,7 +8,7 @@ namespace KeplerBI.DB
 {
     public class Orbit : KeplerBI.IOrbit
     {
-        public virtual int ID { get; set; }
+        //public virtual int ID { get; set; }
 
         public virtual int SatelliteId { get; set; }
         public virtual CelestialBodyBase Satellite { get; set; }

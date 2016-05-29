@@ -7,19 +7,17 @@ using System.Threading.Tasks;
 namespace KeplerBI.Parser.RPN
 {
     /// <summary>
-    /// Rechnet  Stack:...[Masse in Erdmassen][EM] in Stack:...[Masse in Kilogramm] um
+    /// Rechnet  Stack:...[Abstand in Kilometer][KM] in Stack:...[Abstand in Meter] um
     /// </summary>
-    public class EMEval : mko.RPN.BasicEvaluator
+    public class KMEval : mko.RPN.BasicEvaluator
     {
-        public EMEval() : base(1) { }
-
+        public KMEval() : base(1) { }
 
         public override void ReadParametersAndEvaluate(Stack<mko.RPN.IToken> stack)
         {
             var val = PopNummeric(stack);
 
-            stack.Push(new mko.RPN.DoubleToken(mko.Newton.Mass.Kilogram(mko.Newton.Mass.EarthMasses(val)).Value));
-
+            stack.Push(new mko.RPN.DoubleToken(val * 1000.0));
         }
     }
 }

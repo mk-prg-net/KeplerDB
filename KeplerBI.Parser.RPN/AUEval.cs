@@ -7,38 +7,18 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class AUEval : mko.RPN.IEval
+    /// <summary>
+    /// Rechnet  Stack:...[Abstand in astronomischen Einheiten][AU] in Stack:...[Abstand in Meter] um
+    /// </summary>
+    public class AUEval: mko.RPN.BasicEvaluator 
     {
-        public void Eval(Stack<mko.RPN.IToken> stack)
+        public AUEval() : base(1) { }
+
+        public override void ReadParametersAndEvaluate(Stack<mko.RPN.IToken> stack)
         {
+            var val = PopNummeric(stack);
 
-            if (stack.Count >= 1)
-            {
-                if (stack.Peek().IsNummeric)
-                {
-                    double val = mko.RPN.BasicEvaluator.PopNummeric(stack);
-                    stack.Push(new mko.RPN.DoubleToken(mko.Newton.Length.Meter(mko.Newton.Length.AU(val)).Vector[0]));
-                    _successful = true;
-                }
-                else
-                {
-                    _successful = false;
-                    _ex = new ArgumentException("AU (Astronomical Units) Funktion benötigt einen nummerischen Parameter");
-                }
-            }
-
+            stack.Push(new mko.RPN.DoubleToken(mko.Newton.Length.Meter(mko.Newton.Length.AU(val)).Vector[0]));
         }
-
-        public bool Succesful
-        {
-            get { return _successful; }
-        }
-        bool _successful;
-
-        public Exception EvalException
-        {
-            get { return _ex; }
-        }
-        Exception _ex;
     }
 }

@@ -60,13 +60,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AUEval.cs" />
+    <Compile Include="BasicOrderByEval.cs" />
+    <Compile Include="KMEval.cs" />
+    <Compile Include="Planets\FltBldConfigurator.cs" />
     <Compile Include="Planets\DiameterRngEval.cs" />
-    <Compile Include="Planets\DiameterRngExecToken.cs" />
+    <Compile Include="Planets\DiameterRngConfigCmd.cs" />
     <Compile Include="EMEval.cs" />
-    <Compile Include="ExecToken.cs" />
+    <Compile Include="Planets\ConfigCmdToken.cs" />
     <Compile Include="Planets\MassRngEval.cs" />
-    <Compile Include="Planets\MassRngExecToken.cs" />
+    <Compile Include="Planets\MassRngConfigCmd.cs" />
+    <Compile Include="Planets\OrderByMassEval.cs" />
+    <Compile Include="Planets\OrderByMassConfigCmd.cs" />
+    <Compile Include="Planets\OrderBySemiMajorAxisLengthEval.cs" />
+    <Compile Include="Planets\OrderBySemiMajorAxisLengthConfigCmd.cs" />
+    <Compile Include="Planets\SemiMajorAxisLengthRngEval.cs" />
+    <Compile Include="Planets\SemiMajorAxisLengthRngConfigCmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMEval.cs" />
     <Compile Include="Tokenizer.cs" />
   </ItemGroup>
   <ItemGroup>

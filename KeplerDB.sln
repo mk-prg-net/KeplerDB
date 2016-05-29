@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mko.RPN.Arithmetik.Test", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.Parser.RPN", "KeplerBI.Parser.RPN\KeplerBI.Parser.RPN.csproj", "{814F7830-5CA5-4262-8337-09A4BE16E421}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.Parser.RPN.Test", "KeplerBI.Parser.RPN.Test\KeplerBI.Parser.RPN.Test.csproj", "{078AE6DD-D143-43BE-A469-2D8A356A4012}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{814F7830-5CA5-4262-8337-09A4BE16E421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{814F7830-5CA5-4262-8337-09A4BE16E421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{814F7830-5CA5-4262-8337-09A4BE16E421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{078AE6DD-D143-43BE-A469-2D8A356A4012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078AE6DD-D143-43BE-A469-2D8A356A4012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078AE6DD-D143-43BE-A469-2D8A356A4012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078AE6DD-D143-43BE-A469-2D8A356A4012}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

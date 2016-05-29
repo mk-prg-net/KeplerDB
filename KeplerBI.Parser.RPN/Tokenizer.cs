@@ -8,8 +8,65 @@ using mko.RPN;
 
 namespace KeplerBI.Parser.RPN
 {
-    class Tokenizer: mko.RPN.BasicTokenizer
+    public class Tokenizer: mko.RPN.BasicTokenizer
     {
+        // Alle Funktionsbezeichner als statische Konstanten definieren        
+
+        /// <summary>
+        /// Erdmassen
+        /// </summary>
+        public const string EM = "EM";  
+
+        /// <summary>
+        /// Sonnenmassen
+        /// </summary>
+        public const string SM = "SM";        
+
+        /// <summary>
+        /// Massebereichsfilter
+        /// </summary>
+        public const string MassRng = "MassRng";
+
+        /// <summary>
+        /// Kilometer
+        /// </summary>
+        public const string KM = "KM";  
+
+        /// <summary>
+        /// Astronomische Einheiten
+        /// </summary>
+        public const string AU = "AU";
+
+        /// <summary>
+        /// Durchmesserbereichsfilter
+        /// </summary>
+        public const string DiameterRng = "DiameterRng";
+
+        /// <summary>
+        /// Bahnradiusbereichsfilter
+        /// </summary>
+        public const string SemiMajorAxisLengthRng = "SemiMajorAxisLengthRng";
+
+        /// <summary>
+        /// Sortieren nach Masse
+        /// </summary>
+        public const string OrderByMass = "OrderByMass";
+
+        /// <summary>
+        /// Sortieren nach Bahnradius
+        /// </summary>
+        public const string OrderBySemiMajorAxisLength = "OrderBySemiMajorAxisLength";
+
+        public static Dictionary<string, mko.RPN.IEval> EvalFunctions = new Dictionary<string, mko.RPN.IEval>{
+            {AU, new AUEval()},
+            {EM, new EMEval()},
+            {DiameterRng, new Planets.DiameterRngEval()},
+            {MassRng, new Planets.MassRngEval()},            
+            {SemiMajorAxisLengthRng, new Planets.SemiMajorAxisLengthRngEval()},
+            {OrderByMass, new Planets.OrderByMassEval()},
+            {OrderBySemiMajorAxisLength, new Planets.OrderBySemiMajorAxisLengthEval()}            
+        };
+
         public Tokenizer(System.IO.StreamReader reader) : base(reader) { }
 
         public Tokenizer(string term) : base(term) { }
@@ -19,10 +76,15 @@ namespace KeplerBI.Parser.RPN
 
             switch (rawToken)
             {
-                case "EM":
-                case "MassRng":
-                case "AU":
-                case "DiameterRng":
+                case EM:
+                case SM:
+                case MassRng:
+                case AU:
+                case KM:
+                case DiameterRng:
+                case SemiMajorAxisLengthRng:
+                case OrderByMass:
+                case OrderBySemiMajorAxisLength:
                     token = new FunctionNameToken(rawToken);
                     return true;                    
                 default:
