@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.Parser.RPN", "Kepl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.Parser.RPN.Test", "KeplerBI.Parser.RPN.Test\KeplerBI.Parser.RPN.Test.csproj", "{078AE6DD-D143-43BE-A469-2D8A356A4012}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Kepler.EF60.Queries.Test", "DB.Kepler.EF60.Queries.Test\DB.Kepler.EF60.Queries.Test.csproj", "{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{078AE6DD-D143-43BE-A469-2D8A356A4012}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{078AE6DD-D143-43BE-A469-2D8A356A4012}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{078AE6DD-D143-43BE-A469-2D8A356A4012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

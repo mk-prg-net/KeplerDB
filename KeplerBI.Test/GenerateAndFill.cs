@@ -10,6 +10,7 @@ using BI = KeplerBI;
 //using BIWfCBS = KeplerBI.Workflows.CreateCBSys;
 
 using DB = KeplerBI.DB;
+using System.Diagnostics;
 //using DBWf = KeplerBI.DB.Workflows;
 //using DBWfCBS = KeplerBI.DB.Workflows.CreateCBSys;
 
@@ -63,29 +64,29 @@ namespace KeplerBI.Test
         public void KeplerBI_Repositories()
         {
             // Vorbereitung: Aktuelles Uranussystem löschen
-            using (var ORM = new KeplerBI.DB.KeplerDBContext())
+            using (var orm = new KeplerBI.DB.KeplerDBContext())
             {
+                KeplerBI.IAstroCatalog katalog = new KeplerBI.DB.AstroCatalog(orm);
 
-                var repo = new KeplerBI.DB.NaturalCelesticalBodies.Repositories.PlanetCo(ORM);
+                var fltBld = katalog.Planets.createFiltertedSortedSetBuilder();
+
+                // Eingeschränkte Menge definiert
+                fltBld.defMoonCountBetween(3, 10);
+                fltBld.OrderByAequatorialDiameter(true);
+
+                // Eingeschränkte Menge bilden
+                var fltSet = fltBld.GetSet();
 
 
-                
+                Assert.IsTrue(fltSet.Any());
+                var anz = fltSet.Count();
 
-                //repo.MassInEarthmassFlt = new mko.Algo.Interval<double>(10, 100);
-                //var flt2 = repo.GetBoFiltered();
+                foreach(var Planeten in fltSet.Get()){
+                    Debug.WriteLine(Planeten.Name);
+                }
 
-                //repo.MassInEarthmassFilterOn = true;
-                //var flt3 = repo.GetBoFiltered();
 
-                //repo.MassInEarthmassFilterOn = false;
-                //var flt4 = repo.GetBoFiltered();
 
-                //Assert.AreEqual(flt4.Count(), flt2.Count());
-
-                //repo.DiameterFlt = new mko.Algo.Interval<double>(50000, 150000);
-                //repo.DiameterFilterOn = true;
-                //repo.MassInEarthmassFilterOn = true;
-                //var flt5 = repo.GetBoFiltered();
 
 
             }

@@ -8,9 +8,9 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="KeplerBI.ICelestialBodyBase">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Position X="7.25" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>ICelestialBodyBase.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -57,7 +57,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="KeplerBI.NaturalCelesticalBodies.INaturalCelesticalBody">
-    <Position X="7.25" Y="2.5" Width="1.5" />
+    <Position X="7.25" Y="2.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAIAgAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\INaturalsCelesticalBody.cs</FileName>

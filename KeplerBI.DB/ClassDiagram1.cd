@@ -1,81 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="KeplerBI.DB.CelestialBodyBase" Collapsed="true">
-    <Position X="9.5" Y="0.5" Width="1.5" />
+  <Class Name="KeplerBI.DB.AstroCatalog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAQAAAACAAAA=</HashCode>
+      <HashCode>AEAgAgAAACABAAACAAJIAAAAABABgAAgACACAAAABAA=</HashCode>
+      <FileName>AstroCatalog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="KeplerBI.DB.CelestialBodyBase">
+    <Position X="8.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAgAAAAAAAAAQAAAAAAAAAIQAAAACAAAA=</HashCode>
       <FileName>CelestialBodyBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.CelesticalBodySystem" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="26.25" Y="0.5" Width="1.5" />
+    <Position X="20.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAEAgAACAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAEACAACAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CelesticalBodySystem.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="KeplerBI.DB.CelesticalBodyTypeDescriptor" Collapsed="true">
-    <Position X="28" Y="0.5" Width="1.5" />
+    <Position X="24" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>CelesticalBodyTypeDescriptor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeplerBI.DB.Class1" Collapsed="true">
-    <Position X="29.75" Y="0.5" Width="1.5" />
+    <Position X="18.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeplerBI.DB.Country" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.5" Y="1.5" Width="1.5" />
+    <Position X="20.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAggAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Country.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="KeplerBI.DB.CreateSolarSystem" Collapsed="true">
-    <Position X="26.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CreateSolarSystem.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="KeplerBI.DB.DBUtil" Collapsed="true">
-    <Position X="28" Y="1.5" Width="1.5" />
+    <Position X="22.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>DBUtil.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeplerBI.DB.KeplerDBContext" Collapsed="true">
-    <Position X="21" Y="2.5" Width="1.5" />
+    <Position X="24" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAwAABBAAAAAAAAAgAQAAEAAAAAIAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAAAwAABAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>KeplerDBContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeplerBI.DB.KeplerDBException" Collapsed="true">
-    <Position X="22.75" Y="2.5" Width="1.5" />
+    <Position X="18.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>KeplerDBException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeplerBI.DB.Orbit" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="29.75" Y="2.5" Width="1.5" />
+    <Position X="22.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAgAAgAAAAAAAAABAgABAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAgAACAACABAAAABAoABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Orbit.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Asteroid" Collapsed="true">
-    <Position X="7.25" Y="3.25" Width="1.5" />
+    <Position X="2.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Asteroid.cs</FileName>
@@ -83,7 +84,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.BigBang" Collapsed="true">
-    <Position X="11.75" Y="3.25" Width="1.5" />
+    <Position X="7.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\BigBang.cs</FileName>
@@ -91,7 +92,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Comet" Collapsed="true">
-    <Position X="16.25" Y="3.25" Width="1.5" />
+    <Position X="9.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Comet.cs</FileName>
@@ -99,7 +100,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Galaxy" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.5" />
+    <Position X="14" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Galaxy.cs</FileName>
@@ -107,7 +108,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.GalaxyCore" Collapsed="true">
-    <Position X="2.75" Y="3.25" Width="1.5" />
+    <Position X="0.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\GalaxyCore.cs</FileName>
@@ -115,237 +116,71 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Moon" Collapsed="true">
-    <Position X="5" Y="3.25" Width="1.5" />
+    <Position X="5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Moon.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.NaturalCelesticalBody" Collapsed="true">
-    <Position X="8.5" Y="1.75" Width="1.5" />
+  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.NaturalCelesticalBody">
+    <Position X="8.25" Y="3.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AEgAAAAAAAAIAAAEAAAIAAAAAAAAAABAAAAAIAiAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\NaturalsCelesticalBody.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Planet" Collapsed="true">
-    <Position X="9.5" Y="3.25" Width="1.5" />
+  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Planet">
+    <Position X="11.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Planet.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Star" Collapsed="true">
-    <Position X="14" Y="3.25" Width="1.5" />
+    <Position X="16.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Star.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.AsteroidsCo" Collapsed="true">
-    <Position X="22.75" Y="0.5" Width="1.5" />
+  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.MoonCo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAACAAAAAAAAIAAgEAAAIAQAAIAAAAAAAAAA=</HashCode>
-      <FileName>NaturalCelesticalBodies\Repositories\AsteroidsCo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.CometsCo" Collapsed="true">
-    <Position X="21" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAAAAACAAAAAAAAIAAgEAAAIAQAAIAAAAAAAAAA=</HashCode>
-      <FileName>NaturalCelesticalBodies\Repositories\CometsCo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.MoonCo" Collapsed="true">
-    <Position X="28" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>BAAAgAAAAACQAAAAAAAIAAgEAAAIAQAAIAAAAAAAAQA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAIAABAAIAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Repositories\MoonCo.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.PlanetCo" Collapsed="true">
-    <Position X="24.5" Y="3.5" Width="1.5" />
+  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.PlanetCo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAgAAAAACAAAAAAAAIAAgEAAAIAQAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAIAABAAIAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Repositories\PlanetCo.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.StarsCo" Collapsed="true">
-    <Position X="24.5" Y="5.5" Width="1.5" />
+  <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Repositories.StarsCo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAACAAAAAAAAIAAgEAAAIAQAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAIAABAAIAAAAAAAAAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\Repositories\StarsCo.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="KeplerBI.DB.SpaceShips.Application" Collapsed="true">
-    <Position X="21" Y="0.5" Width="1.5" />
+  <Class Name="KeplerBI.DB.Repositories.CelesticalBodySystemsCo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SpaceShips\Application.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAABAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\CelesticalBodySystemsCo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.SpaceShips.MannedSpacecraft" Collapsed="true">
-    <Position X="18.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
-      <FileName>SpaceShips\MannedSpacecraft.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="KeplerBI.DB.SpaceShips.SpaceShip" Collapsed="true">
-    <Position X="18.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAABAAAAAEAAAAAAAAAIAACAACA=</HashCode>
-      <FileName>SpaceShips\SpaceShip.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="KeplerBI.DB.SpaceShips.SpaceshipTask" Collapsed="true">
-    <Position X="29.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>SpaceShips\SpaceshipTask.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.SpaceShips.Repositories.SpaceShipsCo" Collapsed="true">
-    <Position X="28" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAAAAACAAAAAAAAIAAgEAAAIAQAAIAAAAAAAAAA=</HashCode>
-      <FileName>SpaceShips\Repositories\SpaceShipsCo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.CBSysDraft" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAgAAAABAgAAAACAAAAAAAAAAAgAAAAACAAAAAAgAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\CBSysDraft.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.FinitStateMachine" Collapsed="true">
-    <Position X="29.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\FinitStateMachine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SaveNewCBSysContext" Collapsed="true">
-    <Position X="26.25" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\Save\SaveNewCBSysContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.StateFactory" Collapsed="true">
-    <Position X="28" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAIAEAABJAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\StateFactory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectCentralBody.MoonAsCentralBodyContext" Collapsed="true">
-    <Position X="24.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAIAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectCentralBody\MoonAsCentralBodyContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectCentralBody.MoonAsCentralBodySTF" Collapsed="true">
-    <Position X="26.25" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectCentralBody\MoonAsCentralBodySTF.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectCentralBody.PlanetAsCentralBodyContext" Collapsed="true">
-    <Position X="21" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABABAIAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectCentralBody\PlanetAsCentralBodyContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectCentralBody.PlanetAsCentralBodySTF" Collapsed="true">
-    <Position X="22.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectCentralBody\PlanetAsCentralBodySTF.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectCentralBody.StarAsCentralBodyContext" Collapsed="true">
-    <Position X="21" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAAAAAAAAAABAAAIAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectCentralBody\StarAsCentralBodyContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectCentralBody.StarAsCentralBodySTF" Collapsed="true">
-    <Position X="22.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectCentralBody\StarAsCentralBodySTF.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite.ContextCore" Collapsed="true">
-    <Position X="22.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectSatellite\ContextCore.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite.SatellitesOfMoonContext" Collapsed="true">
-    <Position X="26.25" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAgAAABAAAIAAAAAAAAAAAAACA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectSatellite\SatellitesOfMoonContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite.SatellitesOfMoonSTF" Collapsed="true">
-    <Position X="28" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectSatellite\SatellitesOfMoonSTF.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite.SatellitesOfPlanetContext" Collapsed="true">
-    <Position X="29.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAABAABAAAAAAAAAAAAgAAAAAAAIAAAgAAAAAAAAACA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectSatellite\SatellitesOfPlanetContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite.SatellitesOfPlanetSTF" Collapsed="true">
-    <Position X="21" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectSatellite\SatellitesOfPlanetSTF.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite.SatellitesOfStarContext" Collapsed="true">
-    <Position X="22.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEABAABAAAAAAAAAAAAgAIAAABAIAAABAAAAACAgACA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectSatellite\SatellitesOfStarContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.SelectSatellite.SatellitesOfStarSTF" Collapsed="true">
-    <Position X="24.5" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\SelectSatellite\SatellitesOfStarSTF.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Workflows.CreateCBSys.Start.StartSTF" Collapsed="true">
-    <Position X="26.25" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>Workflows\CreateCBSys\Start\StartSTF.cs</FileName>
-    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Enum Name="KeplerBI.DB.CelesticalBodyType" Collapsed="true">
-    <Position X="21" Y="6.75" Width="1.5" />
+    <Position X="18.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAgAAABEAAAAAAAAAAIAAAAAAAAABgAIABACAAAA=</HashCode>
       <FileName>CelesticalBodyType.cs</FileName>

@@ -1,0 +1,42 @@
+﻿@using mko.Newton
+
+@model IQueryable<DB.Kepler.EF60.Sterne_Planeten_Monde>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Alle Planeten des Sonnensystems</h2>
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Bahnradius in AU
+        </th>
+        <th>
+            Anzahl der Monde
+        </th>
+    </tr>
+
+    @foreach(var planet in Model)
+    {
+        <tr>
+            <td>
+                @planet.Himmelskoerper.Name
+            </td>
+            <td>
+                @Length.AU(Length.Kilometer(planet.Himmelskoerper.Umlaufbahn.Laenge_grosse_Halbachse_in_km)).Vector[0]
+            </td>
+            <td>
+                @planet.Himmelskoerper.TrabantenUmlaufbahnen.Count
+            </td>
+        </tr>        
+    }
+
+
+</table>
+

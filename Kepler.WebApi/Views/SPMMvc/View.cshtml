@@ -1,0 +1,22 @@
+﻿@model Kepler.WebApi.Models.SPMMvc.PlanetUndMonde
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Monde von @Model.Planet.Himmelskoerper.Name</h2>
+
+<ol>
+    @foreach (var Mond in Model.Monde)
+    {
+        <li>
+            @Mond.Himmelskoerper.Name
+        </li>
+    }
+    
+</ol>
+
+
+
+
+

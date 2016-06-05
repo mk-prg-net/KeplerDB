@@ -12,31 +12,35 @@ namespace KeplerBI.Parser.RPN.Planets
     /// </summary>
     public class FltBldConfigurator
     {
-
-        Stack<mko.RPN.IToken> stack;       
+        List<ConfigCmdToken> configCmds = new List<ConfigCmdToken>();
 
         public FltBldConfigurator(Stack<mko.RPN.IToken> stack)
         {
-            this.stack = stack;            
+            // Umkopieren, um richtige Ausführungsreihenfolge zu erhalten
+            while (stack.Any())
+            {
+                configCmds.Insert(0,(ConfigCmdToken)stack.Pop());
+            }
         }
 
         public void Apply(KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder bld)
         {
-            // Umkopieren, um richtige Ausführungsreihenfolge zu erhalten
-            var stack2 = new Stack<ConfigCmdToken>();
-            while (stack.Any())
-            {
-                stack2.Push((ConfigCmdToken)stack.Pop());
-            }
-
             // FilteredSortedSetBuilder über Kommandos konfigurieren
 
-            while (stack2.Any())
-            {
-                var configCmd = stack2.Pop();
-                configCmd.ConfigBld(bld);
+            foreach(var cmd in configCmds)
+            {                
+                cmd.ConfigBld(bld);
             }
-        }     
+        }
+
+
+        public IEnumerable<ConfigCmdToken> ConfigCmds
+        {
+            get
+            {
+                return configCmds.ToArray();
+            }
+        }
 
     }
 }

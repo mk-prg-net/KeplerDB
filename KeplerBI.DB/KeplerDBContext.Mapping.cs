@@ -23,6 +23,10 @@ namespace KeplerBI.DB
                 .Map(cfg => cfg.Requires<CelesticalBodyType>(e => e.Type));
 
 
+            modelBuilder.Entity<CelestialBodyBase>()
+                .HasRequired<CelesticalBodyTypeDescriptor>(r => r.Type).WithOptional().WillCascadeOnDelete(false);
+
+
 
             //modelBuilder.Entity<CelestialBodyBase>().Map<SpaceShips.MannedSpacecraft>(cfg => cfg.ToTable("MannedSpacecraft"));
             modelBuilder.Entity<CelestialBodyBase>()

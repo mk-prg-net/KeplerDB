@@ -77,6 +77,14 @@
       <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Euklid.1.1.1.0\lib\net45\mko.Euklid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.Newton, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.Newton.1.1.2.0\lib\net45\mko.Newton.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -188,17 +196,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\HimmelskoerperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MoonsController.cs" />
-    <Compile Include="Controllers\PlanetsController.cs" />
-    <Compile Include="Controllers\PlanetsOdataController.cs" />
-    <Compile Include="Controllers\PlanetSysController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\SPMMvcController.cs" />
+    <Compile Include="Controllers\Sterne_Planeten_MondeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\PlanetSys\MondFix.cs" />
-    <Compile Include="Models\PlanetSys\PlanetFix.cs" />
+    <Compile Include="Models\SPMMvc\PlanetUndMonde.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,24 +258,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DB.Kepler.EF60\DB.Kepler.EF60.csproj">
-      <Project>{5435103b-0dfa-4767-af62-f37d580b1f6d}</Project>
-      <Name>DB.Kepler.EF60</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KeplerBI.DB\KeplerBI.DB.csproj">
-      <Project>{753e5ce9-1008-475a-a688-777e86924fff}</Project>
-      <Name>KeplerBI.DB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KeplerBI\KeplerBI.csproj">
-      <Project>{83b0d84a-6a8e-4e6f-8e66-c3e33e8e3a2b}</Project>
-      <Name>KeplerBI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kepler\Kepler.csproj">
-      <Project>{312d3165-25db-428c-97b8-3e7c20b9dc5c}</Project>
-      <Name>Kepler</Name>
-    </ProjectReference>
+    <Content Include="Views\SPMMvc\Index.cshtml" />
+    <Content Include="Views\SPMMvc\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -278,6 +267,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DB.Kepler.EF60\DB.Kepler.EF60.csproj">
+      <Project>{5435103b-0dfa-4767-af62-f37d580b1f6d}</Project>
+      <Name>DB.Kepler.EF60</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kepler\Kepler.csproj">
+      <Project>{312d3165-25db-428c-97b8-3e7c20b9dc5c}</Project>
+      <Name>Kepler</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

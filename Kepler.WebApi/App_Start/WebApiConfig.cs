@@ -12,7 +12,7 @@ using System.Web.OData.Batch;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
 
-using KeplerBI.DB.NaturalCelesticalBodies;
+using DB.Kepler.EF60;
 
 
 namespace Kepler.WebApi
@@ -22,20 +22,51 @@ namespace Kepler.WebApi
 
         public static void Register(HttpConfiguration config)
         {
-            config.MapODataServiceRoute("odata", null, GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
-            config.EnsureInitialized();
-           
-        }
-        private static IEdmModel GetEdmModel()
-        {
+            //config.MapODataServiceRoute("odata", null, GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
+            //config.EnsureInitialized();
+
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Planet>("PlanetsOdata");
-            builder.EntitySet<Moon>("Moons");
+            builder.EntitySet<Himmelskoerper>("Himmelskoerper");
 
-            return builder.GetEdmModel();
+            builder.EntitySet<Raumschiff>("RaumschiffeTab").EntityType.HasKey(r => r.HimmelskoerperID);
+            builder.EntitySet<Sterne_Planeten_Monde>("Sterne_Planeten_Monde").EntityType.HasKey(r => r.HimmelskoerperID);
+            //builder.ComplexType<Raumschiff>();
+            //builder.ComplexType<Sterne_Planeten_Monde>();
+            
+            builder.EntitySet<HimmelskoerperTyp>("HimmelskoerperTypenTab");
+            builder.EntitySet<UrlSammlung>("UrlSammlungenTab").EntityType.HasKey(r => r.ID);
 
+            builder.EntitySet<Umlaufbahn>("UmlaufbahnenTab").EntityType.HasKey(r => r.TrabantID);
+            builder.EntitySet<Bild>("BildTab").EntityType.HasKey(r => r.HimmelskoerperID);
+            //builder.ComplexType<Umlaufbahn>();
+            //builder.ComplexType<Bild>();
+
+
+            builder.EntitySet<Spektralklasse>("SpektralklasseTab").EntityType.HasKey(r => r.ID);
+            config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
+
+           
         }
+        //private static IEdmModel GetEdmModel()
+        //{
+
+
+        //    ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+        //    builder.EntitySet<Planet>("PlanetsOdata")
+        //        .EntityType.HasOptional<Orbit>(r => r.Orbit);
+
+        //    builder.EntitySet<Planet>("PlanetsOdata")
+        //        .EntityType.
+                
+        //    builder.EntitySet<Orbit>("Orbits");
+        //    //builder.EntitySet<Moon>("Moons");
+
+        //    builder.EntitySet<KeplerBI.DB.CelestialBodyBase>("CB");
+
+        //    return builder.GetEdmModel();
+
+        //}
         //public static void Register(HttpConfiguration config)
         //{
         //    // Web API configuration and services     

@@ -1,5 +1,5 @@
-﻿
-@model mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IPlanet>
+﻿@model KeplerBI.MVC.Models.Planets.PlanetsVM
+
 @{
     ViewBag.Title = "Planeten";
 }
@@ -7,14 +7,45 @@
 <h2>Katalog der Planeten</h2>
 
 <div class="btn-toolbar">
-    <div class="btn-group">
-        <a class="btn btn-default" href="@Url.Action("Index", new{rpn="desc OrderByMass"})">Massen <span class="glyphicon glyphicon-arrow-down"></span> </a>
-        <a class="btn btn-default" href="@Url.Action("Index", new{rpn="asc OrderByMass"})"><span class="glyphicon glyphicon-arrow-up"></span> </a>
-    </div>
 
     <div class="btn-group">
-        <a class="btn btn-default" href="@Url.Action("Index", new { rpn = "desc OrderBySemiMajorAxisLength" })">Abstände <span class="glyphicon glyphicon-arrow-down"></span> </a>
-        <a class="btn btn-default" href="@Url.Action("Index", new { rpn = "asc OrderBySemiMajorAxisLength" })"><span class="glyphicon glyphicon-arrow-up"></span> </a>
+        <a class="btn btn-default" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span> </a>
+    </div>
+    <div class="btn-group">
+        @if (Model.QueryOptions.Contains("OrderByMass"))
+        {            
+            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = System.Text.RegularExpressions.Regex.Replace(Model.QueryOptions, @"asc\s+OrderByMass", "desc OrderByMass")})">Massen <span class="glyphicon glyphicon-arrow-down"></span> </a>
+            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = System.Text.RegularExpressions.Regex.Replace(Model.QueryOptions, @"desc\s+OrderByMass", "asc OrderByMass") })"><span class="glyphicon glyphicon-arrow-up"></span> </a>
+        }
+        else
+        {
+            <a class="btn btn-default" href="@Url.Action("Index", new{rpn=@Model.QueryOptions + " desc OrderByMass"})">Massen <span class="glyphicon glyphicon-arrow-down"></span> </a>
+            <a class="btn btn-default" href="@Url.Action("Index", new{rpn=@Model.QueryOptions + "asc OrderByMass"})"><span class="glyphicon glyphicon-arrow-up"></span> </a>
+        }
+    </div>
+
+    @if (Model.QueryOptions.Contains("OrderBySemiMajorAxisLength"))
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = System.Text.RegularExpressions.Regex.Replace(Model.QueryOptions, @"asc\s+OrderBySemiMajorAxisLength", " desc OrderBySemiMajorAxisLength") })">Abstände <span class="glyphicon glyphicon-arrow-down"></span> </a>
+            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = System.Text.RegularExpressions.Regex.Replace(Model.QueryOptions, @"desc\s+OrderBySemiMajorAxisLength", "asc OrderBySemiMajorAxisLength") })"><span class="glyphicon glyphicon-arrow-up"></span> </a>
+        </div>
+
+    }
+    else
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = @Model.QueryOptions + "desc OrderBySemiMajorAxisLength" })">Abstände <span class="glyphicon glyphicon-arrow-down"></span> </a>
+            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = @Model.QueryOptions + "asc OrderBySemiMajorAxisLength" })"><span class="glyphicon glyphicon-arrow-up"></span> </a>
+        </div>
+    }
+
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button id="btnDefSemiMajorAxisRng" class="btn btn-default" type="button">Bahnradien einschränken auf</button>
+        </span>
+        <input id="DefSemiMajorAxisRngBegin" type="text" class="form-control" placeholder="von (z.B 2 AU)" value="@Model.MinBahnRadiusAU AU">
+        <input id="DefSemiMajorAxisRngEnd" type="text" class="form-control" placeholder="bis (z.B. 4 AU)" value="@Model.MaxBahnRadiusAU AU">
     </div>
 </div>
 <table class="table table-striped">
@@ -26,7 +57,7 @@
         <th># Monde</th>
     </tr>
 
-    @foreach (var planet in Model.Get())
+    @foreach (var planet in Model.Planets.Get())
     {
         <tr>
             <td>
@@ -42,9 +73,9 @@
                 }
                 else
                 {
-                    @planet.MassInEarthmasses.ToString("N4");    
-                }                
-            </td>           
+                    @planet.MassInEarthmasses.ToString("N4");
+                }
+            </td>
             <td>
                 ?
             </td>
@@ -52,3 +83,9 @@
     }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/Planets/Index")
+}
+
+
