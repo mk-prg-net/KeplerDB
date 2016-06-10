@@ -16,6 +16,11 @@ namespace KeplerBI.DB
         public virtual CelesticalBodyType Type { get; set; }
 
         /// <summary>
+        /// Naviugationseigenschaft zum Type- Deskriptor
+        /// </summary>
+        public virtual CelesticalBodyTypeDescriptor TypeDescriptor { get; set; }
+
+        /// <summary>
         /// Name des Himmelskörpers
         /// </summary>
         public virtual string Name { get; set; }

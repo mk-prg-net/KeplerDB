@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AstroCatalogConfig.cs" />
     <Compile Include="CelestialBodyBase.cs" />
     <Compile Include="CelesticalBodySystem.cs" />
     <Compile Include="CelesticalBodyType.cs">
@@ -79,11 +80,22 @@
     </Compile>
     <Compile Include="CelesticalBodyTypeDescriptor.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Config\ConfigString.cs" />
+    <Compile Include="Config\Repositories\ConfigStringsCo.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DBUtil.cs" />
     <Compile Include="KeplerDBContext.cs" />
     <Compile Include="KeplerDBContext.Mapping.cs" />
     <Compile Include="KeplerDBException.cs" />
+    <Compile Include="Migrations\201606052156469_InitialCreate.cs" />
+    <Compile Include="Migrations\201606052156469_InitialCreate.Designer.cs">
+      <DependentUpon>201606052156469_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606062300219_Config.cs" />
+    <Compile Include="Migrations\201606062300219_Config.Designer.cs">
+      <DependentUpon>201606062300219_Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NaturalCelesticalBodies\Asteroid.cs" />
     <Compile Include="NaturalCelesticalBodies\BigBang.cs" />
     <Compile Include="NaturalCelesticalBodies\Comet.cs" />
@@ -92,6 +104,7 @@
     <Compile Include="NaturalCelesticalBodies\Moon.cs" />
     <Compile Include="NaturalCelesticalBodies\NaturalsCelesticalBody.cs" />
     <Compile Include="NaturalCelesticalBodies\Planet.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\AsteroidsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\MoonCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\PlanetCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\StarsCo.cs" />
@@ -117,7 +130,14 @@
     <Content Include="LICENSE.txt" />
     <Content Include="Readme.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606052156469_InitialCreate.resx">
+      <DependentUpon>201606052156469_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606062300219_Config.resx">
+      <DependentUpon>201606062300219_Config.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

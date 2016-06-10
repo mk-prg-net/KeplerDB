@@ -47,6 +47,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.Parser.RPN.Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Kepler.EF60.Queries.Test", "DB.Kepler.EF60.Queries.Test\DB.Kepler.EF60.Queries.Test.csproj", "{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KeplerDB_Import_Export", "KeplerDB_Import_Export\KeplerDB_Import_Export.sqlproj", "{DECE52FC-D94C-41B2-8C33-6BDA1F1CB609}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KeplerDB_SQL", "KeplerDB_SQL\KeplerDB_SQL.sqlproj", "{BEB1938B-BED2-4D19-A543-60E5D6A3390B}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KeplerBI_SQL", "KeplerBI_SQL\KeplerBI_SQL.sqlproj", "{84EF75FB-EA69-4446-924F-C306ED4F5ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.tools.cmd", "KeplerBI.tools.cmd\KeplerBI.tools.cmd.csproj", "{D960EC6B-BEDE-4B78-8173-458077ADBFA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +149,28 @@ Global
 		{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F08D532-0105-4E03-B99B-1A0EE9E83EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DECE52FC-D94C-41B2-8C33-6BDA1F1CB609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DECE52FC-D94C-41B2-8C33-6BDA1F1CB609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DECE52FC-D94C-41B2-8C33-6BDA1F1CB609}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DECE52FC-D94C-41B2-8C33-6BDA1F1CB609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DECE52FC-D94C-41B2-8C33-6BDA1F1CB609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DECE52FC-D94C-41B2-8C33-6BDA1F1CB609}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BEB1938B-BED2-4D19-A543-60E5D6A3390B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB1938B-BED2-4D19-A543-60E5D6A3390B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEB1938B-BED2-4D19-A543-60E5D6A3390B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BEB1938B-BED2-4D19-A543-60E5D6A3390B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEB1938B-BED2-4D19-A543-60E5D6A3390B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEB1938B-BED2-4D19-A543-60E5D6A3390B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{84EF75FB-EA69-4446-924F-C306ED4F5ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84EF75FB-EA69-4446-924F-C306ED4F5ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84EF75FB-EA69-4446-924F-C306ED4F5ABC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{84EF75FB-EA69-4446-924F-C306ED4F5ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84EF75FB-EA69-4446-924F-C306ED4F5ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84EF75FB-EA69-4446-924F-C306ED4F5ABC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D960EC6B-BEDE-4B78-8173-458077ADBFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D960EC6B-BEDE-4B78-8173-458077ADBFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D960EC6B-BEDE-4B78-8173-458077ADBFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D960EC6B-BEDE-4B78-8173-458077ADBFA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

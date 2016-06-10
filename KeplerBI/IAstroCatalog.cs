@@ -85,6 +85,21 @@ namespace KeplerBI
         /// <param name="semiMajorAxisLength"></param>
         /// <param name="meanVelocityOfCirculation"></param>
         void CreateMoon(string Name, NaturalCelesticalBodies.IPlanet Planet, mko.Newton.Length semiMajorAxisLength, mko.Newton.Velocity meanVelocityOfCirculation);
+        
+        /// <summary>
+        /// Liste der Asteroiden
+        /// </summary>
+        NaturalCelesticalBodies.Repositories.IAsteroidsCo Asteroids { get; }
+
+        /// <summary>
+        /// Erzeugt einen neuen Asteroidendatensatz und fügt ihn der Liste der Himmelskörper zu
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="CentralBody"></param>
+        /// <param name="semiMajorAxisLength"></param>
+        /// <param name="meanVelocityOfCirculation"></param>
+        void CreateAsteroid(string Name, NaturalCelesticalBodies.IStar CentralBody, mko.Newton.Length semiMajorAxisLength, mko.Newton.Velocity meanVelocityOfCirculation);
+
 
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace KeplerBI.DB
                     foreach (var cbTypeId in mko.Algo.ForEachEnumMember<KeplerBI.DB.CelesticalBodyType>.Get())
                     {
                         var cbTypeDescr = ORM.CelesticalBodyTypes.Create();
-                        cbTypeDescr.TypeID = (int)cbTypeId;
+                        cbTypeDescr.Type = cbTypeId;
                         cbTypeDescr.Name = cbTypeId.ToString();
 
                         ORM.CelesticalBodyTypes.Add(cbTypeDescr);
@@ -39,9 +39,8 @@ namespace KeplerBI.DB
                     ORM.SaveChanges();
 
                     var UofW = new AstroCatalog(ORM);
-                    CreateBasicInformations.DoIt(UofW);
+                    Dataimport.CreateBasicInformations.DoIt(UofW);
 
-                    
                 }
             }
         }

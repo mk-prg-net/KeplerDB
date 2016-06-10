@@ -11,10 +11,10 @@ namespace KeplerBI.DB
         /// <summary>
         /// ID des Himmelskörpertyps
         /// </summary>
-        public virtual int TypeID { get; set; }
+        public virtual CelesticalBodyType Type { get; set; }
 
         /// <summary>
-        /// NAme des Himmelskörpertyps, z.B. Planet
+        /// Name des Himmelskörpertyps, z.B. Planet
         /// </summary>
         public virtual string Name { get; set; }
     }

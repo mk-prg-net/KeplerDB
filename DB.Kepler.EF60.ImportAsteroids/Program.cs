@@ -28,8 +28,9 @@ namespace DB.Kepler.EF60.ImportAsteroids
                     var Sonne = ctx.HimmelskoerperTab.Single(e => e.Name == "Sonne");
                     Debug.Assert(Sonne != null);
 
-                    int i = 0;
-                    // Kopfzeile überspringen
+                    int i = 0, lines = 0;
+                    // Kopfzeilen (2x) überspringen
+                    reader.ReadLine();
                     reader.ReadLine();
                     System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
@@ -37,6 +38,13 @@ namespace DB.Kepler.EF60.ImportAsteroids
                     while (!reader.EndOfStream)
                     {
                         string line = reader.ReadLine();
+                        lines++;
+
+                        if (lines % 100 == 0)
+                        {
+                            Console.Write("" + lines + " Zeilen eingelesen\r");
+                        }
+
                         string[] cols = line.Split(',');
 
                         if (cols.Length != 8)
@@ -69,37 +77,42 @@ namespace DB.Kepler.EF60.ImportAsteroids
                             GM = 0;
                         double Mass_in_Kg = GM / 6.67259e-20;
 
-                        var Asteroid = ctx.HimmelskoerperTab.Create();
-
-                        Asteroid.HimmelskoerperTyp = AsteroidTyp;
-                        Asteroid.Name = AsteroidName;
-
-                        Asteroid.Masse_in_kg = Mass_in_Kg;
-
-                        Asteroid.Umlaufbahn = ctx.UmlaufbahnenTab.Create();
-                        Asteroid.Umlaufbahn.Laenge_grosse_Halbachse_in_km = mko.Newton.Length.Kilometer(mko.Newton.Length.AU(a) * 2.0).Vector[0];
-                        Asteroid.Umlaufbahn.Mittlere_Umlaufgeschwindigkeit_in_km_pro_sec = mko.Newton.Velocity.KilometerPerSec(mko.Newton.Length.AU(a) * Math.PI * 2, mko.Newton.Time.Days(365.0 * rot_per_year)).Vector[0];
-                        Asteroid.Umlaufbahn.Exzentritzitaet = e;
-                        Asteroid.Umlaufbahn.Umlaufdauer_in_Tagen = rot_per_year == 0.0 ? 0.0 : rot_per_year * 365.0;
-                        Asteroid.Umlaufbahn.Zentralobjekt = Sonne;
-                        Asteroid.Sterne_Planeten_MondeTab = ctx.Sterne_Planeten_MondeTab.Create();
-                        Asteroid.Sterne_Planeten_MondeTab.Aequatordurchmesser_in_km = diameterInKm;
-                        Asteroid.Sterne_Planeten_MondeTab.Rotationsperiode_in_Stunden = rot_per_day == 0.0 ? 0.0 : rot_per_day;
-
-                        ctx.HimmelskoerperTab.Add(Asteroid);
+                        // Nur Asteroiden mit vollständigen Bahn und Massedaten importieren
+                        if (a > 0 && e > 0 && rot_per_year > 0)
+                        {
 
 
-                        if (i % 100 == 0)
-                            try
-                            {
-                                Console.Write("" + i + " Asteroiden eingelesen\r");
-                                ctx.SaveChanges();
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine("" + i + " Asteroiden eingelesen und eine Ausnahme aufgetreten");
-                            }
-                        i++;
+                            var Asteroid = ctx.HimmelskoerperTab.Create();
+
+                            Asteroid.HimmelskoerperTyp = AsteroidTyp;
+                            Asteroid.Name = AsteroidName;
+
+                            Asteroid.Masse_in_kg = Mass_in_Kg;
+
+                            Asteroid.Umlaufbahn = ctx.UmlaufbahnenTab.Create();
+                            Asteroid.Umlaufbahn.Laenge_grosse_Halbachse_in_km = mko.Newton.Length.Kilometer(mko.Newton.Length.AU(a) * 2.0).Vector[0];
+                            Asteroid.Umlaufbahn.Mittlere_Umlaufgeschwindigkeit_in_km_pro_sec = mko.Newton.Velocity.KilometerPerSec(mko.Newton.Length.AU(a) * Math.PI * 2, mko.Newton.Time.Days(365.0 * rot_per_year)).Vector[0];
+                            Asteroid.Umlaufbahn.Exzentritzitaet = e;
+                            Asteroid.Umlaufbahn.Umlaufdauer_in_Tagen = rot_per_year == 0.0 ? 0.0 : rot_per_year * 365.0;
+                            Asteroid.Umlaufbahn.Zentralobjekt = Sonne;
+                            Asteroid.Sterne_Planeten_MondeTab = ctx.Sterne_Planeten_MondeTab.Create();
+                            Asteroid.Sterne_Planeten_MondeTab.Aequatordurchmesser_in_km = diameterInKm;
+                            Asteroid.Sterne_Planeten_MondeTab.Rotationsperiode_in_Stunden = rot_per_day == 0.0 ? 0.0 : rot_per_day;
+
+                            ctx.HimmelskoerperTab.Add(Asteroid);
+
+                            if (i % 100 == 0)
+                                try
+                                {
+                                    Console.Write("" + i + " Asteroiden eingelesen\r");
+                                    ctx.SaveChanges();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("" + i + " Asteroiden eingelesen und eine Ausnahme aufgetreten");
+                                }
+                            i++;
+                        }
                     }
 
                     try

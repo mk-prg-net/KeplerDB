@@ -13,6 +13,7 @@ namespace KeplerBI.DB
         NaturalCelesticalBodies.Repositories.MoonCo _Moons;
         NaturalCelesticalBodies.Repositories.PlanetCo _Planets;
         NaturalCelesticalBodies.Repositories.StarsCo _Stars;
+        NaturalCelesticalBodies.Repositories.AsteroidsCo _Asteroids;
         Repositories.CelesticalBodySystemsCo _CelesticalBodySystems;
 
 
@@ -42,6 +43,7 @@ namespace KeplerBI.DB
             _Moons = new NaturalCelesticalBodies.Repositories.MoonCo(_ctx);
             _Planets = new NaturalCelesticalBodies.Repositories.PlanetCo(_ctx);
             _Stars = new NaturalCelesticalBodies.Repositories.StarsCo(_ctx);
+            _Asteroids = new NaturalCelesticalBodies.Repositories.AsteroidsCo(_ctx);
             _CelesticalBodySystems = new Repositories.CelesticalBodySystemsCo(_ctx);
         }
 
@@ -136,6 +138,41 @@ namespace KeplerBI.DB
             }
         }
 
+
+        public KeplerBI.NaturalCelesticalBodies.Repositories.IAsteroidsCo Asteroids
+        {
+            get { return _Asteroids; }
+        }
+
+        public void CreateAsteroid(string Name, KeplerBI.NaturalCelesticalBodies.IStar Star, mko.Newton.Length semiMajorAxisLength, mko.Newton.Velocity meanVelocityOfCirculation)
+        {
+            if (_ctx.CelesticalBodySystems.Any(r => r.CentralBody.Name == Star.Name))
+            {
+                // Planet anlegen und in die Himmelskörperliste eintragen
+                var newAsteroid = new NaturalCelesticalBodies.Asteroid();
+                newAsteroid.Name = Name;
+                _ctx.CelesticalBodies.Add(newAsteroid);
+
+                // Planet in einem Planetensystem aufnehmen
+                var newOrbit = new Orbit();
+                newAsteroid.Orbit = newOrbit;
+                newOrbit.Satellite = newAsteroid;
+                newOrbit.CentralBody = _ctx.CelesticalBodies.First(r => r.Name == Star.Name);
+                newOrbit.SemiMajorAxisInKilometer = mko.Newton.Length.Kilometer(semiMajorAxisLength).Vector.Length;
+                newOrbit.MeanVelocitiOfCirculationInKmPerSec = mko.Newton.Velocity.KilometerPerSec(meanVelocityOfCirculation).Vector.Length;
+
+                var cbSys = _ctx.CelesticalBodySystems.First(r => r.CentralBody.Name == Star.Name);
+                cbSys.Orbits.Add(newOrbit);
+            }
+            else
+            {
+                throw new Exception(mko.TraceHlp.FormatErrMsg(this, "CreatePlanet"));
+            }
+         
+
+        }
+
+
         public KeplerBI.Repositories.ICelesticslBodySystemsCo CelesticalBodySystems
         {
             get { return _CelesticalBodySystems; }
@@ -149,8 +186,6 @@ namespace KeplerBI.DB
         {
             _ctx.SaveChanges();
         }
-
-
 
     }
 }

@@ -19,26 +19,15 @@ namespace KeplerBI.DB
 
         public virtual DbSet<CelestialBodyBase> CelesticalBodies { get; set; }
 
-        //public virtual DbSet<NaturalCelesticalBodies.NaturalCelesticalBody> NCBs { get; set; }
-
-        //public DbSet<NaturalCelesticalBodies.Asteroid> Asteroids { get; set; }
-        //public DbSet<NaturalCelesticalBodies.BigBang> BigBangs { get; set; }
-        //public DbSet<NaturalCelesticalBodies.Comet> Comets { get; set; }
-        //public DbSet<NaturalCelesticalBodies.Galaxy> Galaxies { get; set; }
-        //public DbSet<NaturalCelesticalBodies.GalaxyCore> GalaxyCores { get; set; }
-        //public DbSet<NaturalCelesticalBodies.Moon> Moons { get; set; }
-        //public DbSet<NaturalCelesticalBodies.Planet> Planets { get; set; }
-        //public DbSet<NaturalCelesticalBodies.Star> Stars { get; set; }
-
-        //public DbSet<SpaceShips.SpaceShip> SpaceShips { get; set; }
-        ////public DbSet<SpaceShips.MannedSpacecraft> MannedSpacecrafts { get; set; }
-
-        //public DbSet<SpaceShips.SpaceshipTask> Tasks { get; set; }
-        //public DbSet<SpaceShips.Application> Applications { get; set; }
-        //public DbSet<Country> Countries { get; set; }
-
         public virtual DbSet<Orbit> Orbits { get; set; }
+
         public virtual DbSet<CelesticalBodySystem> CelesticalBodySystems { get; set; }
+
+
+        /// <summary>
+        /// Liste der Konfigurationsstrings
+        /// </summary>
+        public virtual DbSet<Config.ConfigString> ConfigStrings { get; set; }
        
     }
 }

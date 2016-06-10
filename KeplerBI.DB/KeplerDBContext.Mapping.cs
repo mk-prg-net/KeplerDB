@@ -14,7 +14,7 @@ namespace KeplerBI.DB
         protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<CelesticalBodyTypeDescriptor>().HasKey(e => e.TypeID);
+            modelBuilder.Entity<CelesticalBodyTypeDescriptor>().HasKey(e => e.Type);
 
             modelBuilder.Entity<CelestialBodyBase>()
                 .Ignore<mko.Newton.Mass>(e => e.Mass)
@@ -24,7 +24,7 @@ namespace KeplerBI.DB
 
 
             modelBuilder.Entity<CelestialBodyBase>()
-                .HasRequired<CelesticalBodyTypeDescriptor>(r => r.Type).WithOptional().WillCascadeOnDelete(false);
+                .HasRequired<CelesticalBodyTypeDescriptor>(r => r.TypeDescriptor).WithMany().WillCascadeOnDelete(false);
 
 
 
@@ -68,6 +68,8 @@ namespace KeplerBI.DB
             
 
             //modelBuilder.Entity<SpaceShips.AreaOfApplication>().ToTable("AreasOfApplication");
+
+            modelBuilder.Entity<Config.ConfigString>().HasKey(r => r.Name);
 
             base.OnModelCreating(modelBuilder);
         }

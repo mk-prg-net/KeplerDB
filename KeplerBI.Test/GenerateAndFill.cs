@@ -26,12 +26,25 @@ namespace KeplerBI.Test
             mko.Newton.Init.Do();
         }
 
+
+
         [TestMethod]
         public void KeplerBI_CreateKeplerBI()
         {
             try
             {
                 KeplerBI.DB.DBUtil.CreateDB();
+
+                using (var catalog = new KeplerBI.DB.AstroCatalog())
+                {
+                    var aimport = new KeplerBI.Dataimport.AsteroidImport(catalog);
+                    aimport.ProgressInfo += (int lines, int asteroids) =>
+                    {
+                        Debug.WriteLine("Asteriedenimport: " + lines + " Zeilen verarbeitet. " + asteroids + " Asteroiden importiert");
+                    };
+
+                    aimport.Import(@"C:\Users\marti_000\Documents\prj\KeplerDB\KeplerBI\Dataimport\Asteroids.csv");
+                }
             }
             catch (Exception ex)
             {
@@ -64,9 +77,8 @@ namespace KeplerBI.Test
         public void KeplerBI_Repositories()
         {
             // Vorbereitung: Aktuelles Uranussystem löschen
-            using (var orm = new KeplerBI.DB.KeplerDBContext())
+            using (var katalog = new KeplerBI.DB.AstroCatalog())
             {
-                KeplerBI.IAstroCatalog katalog = new KeplerBI.DB.AstroCatalog(orm);
 
                 var fltBld = katalog.Planets.createFiltertedSortedSetBuilder();
 
@@ -81,7 +93,8 @@ namespace KeplerBI.Test
                 Assert.IsTrue(fltSet.Any());
                 var anz = fltSet.Count();
 
-                foreach(var Planeten in fltSet.Get()){
+                foreach (var Planeten in fltSet.Get())
+                {
                     Debug.WriteLine(Planeten.Name);
                 }
 
