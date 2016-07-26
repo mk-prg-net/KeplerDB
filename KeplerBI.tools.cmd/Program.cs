@@ -56,7 +56,7 @@ namespace KeplerBI.tools.cmd
         /// <summary>
         /// Befehl zum Erzeugen der Basis- Informationen
         /// </summary>
-        const string createBsicInf = "createBesicInf";
+        const string createBasicInf = "createBasicInf";
 
 
         public static void Main(string[] args)
@@ -79,7 +79,7 @@ namespace KeplerBI.tools.cmd
 
                 }
 
-                if (args.Contains(createBsicInf))
+                if (args.Contains(createBasicInf))
                 {
                     KeplerBI.Dataimport.CreateBasicInformations.DoIt(astroCatalog);
                 }

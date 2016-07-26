@@ -10,7 +10,7 @@ namespace KeplerBI.Parser.RPN.Planets
     {
         bool descending;
 
-        public OrderBySemiMajorAxisLengthConfigCmd(bool descending)
+        public OrderBySemiMajorAxisLengthConfigCmd(bool descending,  int CountOfEvaluatedTokens) : base(CountOfEvaluatedTokens)        
         {
             this.descending = descending;
         }

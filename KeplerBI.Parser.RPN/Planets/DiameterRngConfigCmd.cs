@@ -11,7 +11,7 @@ namespace KeplerBI.Parser.RPN.Planets
         double min;
         double max;
 
-        public DiameterRngConfigCmd(double min, double max)
+        public DiameterRngConfigCmd(double min, double max, int CountOfEvaluatedTokens) : base(CountOfEvaluatedTokens)
         {
             this.min = min;
             this.max = max;
@@ -31,5 +31,6 @@ namespace KeplerBI.Parser.RPN.Planets
             return minKm.ToString("N0") + " " + Tokenizer.KM + maxKm.ToString("N0") + " " + Tokenizer.KM + " " + Tokenizer.DiameterRng;
 
         }
+
     }
 }

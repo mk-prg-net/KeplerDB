@@ -6,36 +6,12 @@ using System.Threading.Tasks;
 
 namespace mko.RPN
 {
-    public class BoolToken : IToken
+    public class BoolToken : NoFunctionToken
     {
-        public BoolToken(bool Value)
+        public BoolToken(bool Value, int CountOfEvaluatedTokens = 1)
+            : base(CountOfEvaluatedTokens)
         {
             _Value = Value;
-        }
-
-        public bool IsFunctionName
-        {
-            get { return false; }
-        }
-
-        public bool IsInteger
-        {
-            get { return false; }
-        }
-
-        public bool IsBoolean
-        {
-            get { return true; }
-        }
-
-        public bool IsNummeric
-        {
-            get { return false; }
-        }
-
-        public string Value
-        {
-            get { return _Value.ToString(); }
         }
 
         bool _Value;
@@ -48,5 +24,24 @@ namespace mko.RPN
             }
         }
 
+        protected override string ValueToString
+        {
+            get { return _Value.ToString(); }
+        }
+
+        public override bool IsInteger
+        {
+            get { return false; }
+        }
+
+        public override bool IsBoolean
+        {
+            get { return true; }
+        }
+
+        public override bool IsNummeric
+        {
+            get { return false; }
+        }
     }
 }

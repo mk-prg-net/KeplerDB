@@ -3,7 +3,7 @@
 CREATE FUNCTION [dbo].[Earthmass]
 (	
 )
-RETURNS INT
+RETURNS float
 AS
 BEGIN
 	RETURN 5.972e24

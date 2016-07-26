@@ -8,6 +8,11 @@ namespace KeplerBI.Parser.RPN.Planets
 {
     public abstract class ConfigCmdToken : mko.RPN.IToken
     {
+        public ConfigCmdToken(int CountOfEvaluatedTokens)
+        {
+            _CountOfEvaluatedTokens = CountOfEvaluatedTokens;
+        }
+
         public bool IsFunctionName
         {
             get { return false; }
@@ -41,5 +46,13 @@ namespace KeplerBI.Parser.RPN.Planets
         /// <returns></returns>
         public abstract string ToRPNString();
 
+        public int CountOfEvaluatedTokens
+        {
+            get
+            {
+                return _CountOfEvaluatedTokens;
+            }
+        }
+        int _CountOfEvaluatedTokens;
     }
 }

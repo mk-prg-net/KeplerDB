@@ -10,7 +10,7 @@ namespace KeplerBI.Parser.RPN.Planets
     {
         bool descending;
 
-        public OrderByMassConfigCmd(bool descending)
+        public OrderByMassConfigCmd(bool descending, int CountOfEvaluatedTokens) : base(CountOfEvaluatedTokens)        
         {
             this.descending = descending;
         }

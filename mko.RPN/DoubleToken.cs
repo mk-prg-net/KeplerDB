@@ -6,36 +6,12 @@ using System.Threading.Tasks;
 
 namespace mko.RPN
 {
-    public class DoubleToken : IToken
+    public class DoubleToken : NoFunctionToken
     {
-        public DoubleToken(double Value)
+        public DoubleToken(double Value, int CountOfEvaluatedTokens = 1)
+            : base(CountOfEvaluatedTokens)
         {
             _Value = Value;
-        }
-
-        public bool IsFunctionName
-        {
-            get { return false; }
-        }
-
-        public bool IsInteger
-        {
-            get { return false; }
-        }
-
-        public bool IsBoolean
-        {
-            get { return false; }
-        }
-
-        public bool IsNummeric
-        {
-            get { return true; }
-        }
-
-        public string Value
-        {
-            get { return _Value.ToString(); }
         }
 
         double _Value;
@@ -48,5 +24,24 @@ namespace mko.RPN
             }
         }
 
+        protected override string ValueToString
+        {
+            get { return _Value.ToString(); }
+        }
+
+        public override bool IsInteger
+        {
+            get { return false; }
+        }
+
+        public override bool IsBoolean
+        {
+            get { return false; }
+        }
+
+        public override bool IsNummeric
+        {
+            get { return true; }
+        }
     }
 }

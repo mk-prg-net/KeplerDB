@@ -8,9 +8,9 @@ namespace KeplerBI.Parser.RPN.Planets
 {
     public class OrderBySemiMajorAxisLengthEval : BasicOrderByEval
     {
-        protected override void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending)
+        protected override void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens)
         {
-            stack.Push(new OrderBySemiMajorAxisLengthConfigCmd(descending));
+            stack.Push(new OrderBySemiMajorAxisLengthConfigCmd(descending, CountOfEvaluatedTokens + 1));
         }
     }
 }

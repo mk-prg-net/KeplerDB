@@ -8,9 +8,9 @@ namespace KeplerBI.Parser.RPN.Planets
 {
     public class OrderByMassEval : BasicOrderByEval
     {
-        protected override void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending)
+        protected override void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens)
         {
-            stack.Push(new OrderByMassConfigCmd(descending));
+            stack.Push(new OrderByMassConfigCmd(descending, CountOfEvaluatedTokens));
         }
     }
 }

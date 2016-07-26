@@ -8,9 +8,10 @@ namespace mko.RPN
 {
     public class FunctionNameToken : IToken
     {
-        public FunctionNameToken(string functionName)
+        public FunctionNameToken(string functionName, int CountOfEvaluatedTokens = 1)
         {
             FunctionName = functionName;
+            _CountOfEvaluatedTokens = CountOfEvaluatedTokens;
         }
 
         public bool IsFunctionName
@@ -38,5 +39,13 @@ namespace mko.RPN
             get { return FunctionName; }
         }
         string FunctionName;
+
+
+        public int CountOfEvaluatedTokens
+        {
+            get { return _CountOfEvaluatedTokens; }
+        }
+
+        int _CountOfEvaluatedTokens;
     }
 }

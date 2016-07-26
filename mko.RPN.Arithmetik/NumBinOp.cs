@@ -8,60 +8,12 @@ namespace mko.RPN.Arithmetik
 {
     public abstract class NumBinOp : BasicEvaluator
     {
-        public NumBinOp() : base(2) { }
-        //protected void PopOperand(Stack<IToken> stack, out double op)
-        //{
-        //    if (stack.Peek().IsNummeric)
-        //    {
-        //        if (stack.Peek().IsInteger)
-        //        {
-        //            var token = stack.Pop() as IntToken;
-        //            op = token.ValueAsInt;
-        //        }
-        //        else
-        //        {
-        //            var token = stack.Pop() as DoubleToken;
-        //            op = token.ValueAsDouble;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        op = 0;
-        //        _ex = new ArgumentException("NumBinOp benötigt nummerische Parameter");
-        //    }
-        //}
+        BufferedTokenizer TokenBuffer;
 
-        //public bool Succesful
-        //{
-        //    get { return _Succesful; }
-        //}
-        //protected bool _Succesful;
-
-        //public Exception EvalException
-        //{
-        //    get { return _ex; }
-        //}
-        //protected Exception _ex;
-
-        //public void Eval(Stack<IToken> stack)
-        //{
-        //    if (stack.Count >= 2 && stack.Peek().IsNummeric)
-        //    {
-        //        double a = 0;
-        //        PopOperand(stack, out a);
-
-        //        double b = 0;
-        //        PopOperand(stack, out b);
-
-        //        stack.Push(new DoubleToken(Func(a, b)));
-        //        _Succesful = true;
-        //    }
-        //    else
-        //    {
-        //        _Succesful = false;
-        //        _ex = new ArgumentException("ADD benötigt midestens zwei nummerische Parameter");
-        //    }
-        //}
+        public NumBinOp(BufferedTokenizer TokenBuffer) : base(2) 
+        {
+            this.TokenBuffer = TokenBuffer;
+        }
 
         protected abstract double Func(double a, double b);
 
@@ -70,7 +22,13 @@ namespace mko.RPN.Arithmetik
             var a = PopNummeric(stack);
             var b = PopNummeric(stack);
 
-            stack.Push(new DoubleToken(Func(a, b)));
+            var res = new DoubleToken(Func(a.Item1, b.Item1), a.Item2.CountOfEvaluatedTokens + b.Item2.CountOfEvaluatedTokens + 1);
+            stack.Push(res);
+
+            // Nur Parameter einer Funktion aufzeichnen, die nicht durch Evaluierung entstanden sind
+            if(b.Item2.CountOfEvaluatedTokens == 1) TokenBuffer.Add(b.Item2);
+            if(a.Item2.CountOfEvaluatedTokens == 1) TokenBuffer.Add(a.Item2);
+            TokenBuffer.Add(new FunctionNameToken(this.GetType().Name, res.CountOfEvaluatedTokens));
         }
     }
 }

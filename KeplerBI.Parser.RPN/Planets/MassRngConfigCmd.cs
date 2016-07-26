@@ -14,7 +14,7 @@ namespace KeplerBI.Parser.RPN.Planets
         double minEM;
         double maxEM;
 
-        public MassRngConfigCmd(double minEM, double maxEM)
+        public MassRngConfigCmd(double minEM, double maxEM, int CountOfEvaluatedTokens) : base(CountOfEvaluatedTokens)
         {
             this.minEM = minEM;
             this.maxEM = maxEM;

@@ -28,7 +28,7 @@ namespace KeplerBI.Parser.RPN.Planets
         }
         double max;
 
-        public SemiMajorAxisLengthRngConfigCmd(double min, double max)
+        public SemiMajorAxisLengthRngConfigCmd(double min, double max,  int CountOfEvaluatedTokens) : base(CountOfEvaluatedTokens)        
         {
             this.min = min;
             this.max = max;

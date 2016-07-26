@@ -18,13 +18,13 @@ namespace KeplerBI.Parser.RPN
                 arg = stack.Pop();
                 bool descending = arg.Value == "desc";
 
-                BindArgOrderBy(stack, descending);
+                BindArgOrderBy(stack, descending, arg.CountOfEvaluatedTokens);
             }
             else
             {
                 throw new ArgumentException(mko.TraceHlp.FormatErrMsg(this, "ReadParametersAndEvaluate", arg.Value));
             }
         }
-        protected abstract void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending);
+        protected abstract void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens);
     }
 }

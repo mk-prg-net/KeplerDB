@@ -36,6 +36,8 @@ namespace KeplerBI.MVC.Controllers
                 RPNParser.Parse(tokenizer, KeplerBI.Parser.RPN.Tokenizer.EvalFunctions);
                 if (RPNParser.Succsessful)
                 {
+                    viewModel.Tokens = RPNParser.TokenBuffer.Tokens;
+
                     var configurator = new KeplerBI.Parser.RPN.Planets.FltBldConfigurator(RPNParser.Stack);
 
                     if (!configurator.ConfigCmds.Any(r => r.Value.StartsWith("OrderBy")))

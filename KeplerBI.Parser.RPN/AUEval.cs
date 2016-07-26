@@ -18,7 +18,7 @@ namespace KeplerBI.Parser.RPN
         {
             var val = PopNummeric(stack);
 
-            stack.Push(new mko.RPN.DoubleToken(mko.Newton.Length.Meter(mko.Newton.Length.AU(val)).Vector[0]));
+            stack.Push(new mko.RPN.DoubleToken(mko.Newton.Length.Meter(mko.Newton.Length.AU(val.Item1)).Vector[0], val.Item2.CountOfEvaluatedTokens + 1));
         }
     }
 }

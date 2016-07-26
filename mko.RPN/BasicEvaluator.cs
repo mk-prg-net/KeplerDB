@@ -73,23 +73,23 @@ namespace mko.RPN
         Exception _ex;
 
         /// <summary>
-        /// Helper zur entnahme eines nummerischen Tokens (int oder double) vom Stapel
+        /// Helper zur Entnahme eines nummerischen Tokens (int oder double) vom Stapel
         /// </summary>
         /// <param name="stack"></param>
         /// <returns></returns>
-        public static double PopNummeric(Stack<IToken> stack)
+        public static Tuple<double, IToken> PopNummeric(Stack<IToken> stack)
         {
             if (stack.Peek().IsNummeric)
             {
                 if (stack.Peek().IsInteger)
                 {
                     var token = stack.Pop() as IntToken;
-                    return token.ValueAsInt;
+                    return Tuple.Create((double)token.ValueAsInt, (IToken)token);
                 }
                 else
                 {
                     var token = stack.Pop() as DoubleToken;
-                    return token.ValueAsDouble;
+                    return Tuple.Create(token.ValueAsDouble, (IToken)token);
                 }
             }
             else

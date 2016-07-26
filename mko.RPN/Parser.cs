@@ -56,8 +56,26 @@ namespace mko.RPN
 {
     public class Parser
     {
-
+        // Stack der Tokens
         Stack<IToken> stack = new Stack<IToken>();
+
+        // Stack der Parameterzahlen
+        Stack<int> paramCountStack = new Stack<int>();
+
+        /// <summary>
+        /// Hier werden alle korrekt geparsten Tokens der Reihenfolge nach gespeichert. Für 
+        /// Token, die Funktionen entsprechen, widerspiegelt der CountOfEvaluatedTokens die 
+        /// Gesamte Anzahl von Token links vom Funktionstoken, welche die Parameter der Funktion bilden, 
+        /// inklusive dem Funktionsnamen- Token selbst.
+        /// </summary>
+        public BufferedTokenizer TokenBuffer
+        {
+            get
+            {
+                return _TokenBuffer;
+            }
+        }
+        BufferedTokenizer _TokenBuffer = new BufferedTokenizer();
 
         /// <summary>
         /// Staplspeicher, in den die Tokens eingelesen und über den Funktionen evaluiert werden.
@@ -124,12 +142,24 @@ namespace mko.RPN
                             if (FuncEvaluators.ContainsKey(funcname))
                             {
                                 var fe = FuncEvaluators[funcname];
-                                fe.Eval(stack);
 
+                                int paramCount = stack.Count;
+                                fe.Eval(stack);
                                 if (!fe.Succesful)
                                 {
                                     throw new Exception("Evaluierung von " + funcname + " fehlgeschlagen", fe.EvalException);
                                 }
+
+                                // Anzahl verarbeiteter Parameter pro Prozedur bestimmen und protokollieren
+                                paramCount -= stack.Count;
+                                paramCount++; // Korrektur, da stack nun das Ergebnis enthält
+                                int CountOfEvaluatedTokens = 0;
+                                for (int i = 0; i < paramCount; i++)
+                                {
+                                    CountOfEvaluatedTokens += paramCountStack.Pop();
+                                }
+                                paramCountStack.Push(CountOfEvaluatedTokens + 1);
+                                _TokenBuffer.Add(new FunctionNameToken(token.Value, CountOfEvaluatedTokens + 1));
                             }
                             else
                             {
@@ -139,6 +169,8 @@ namespace mko.RPN
                         else
                         {
                             stack.Push(token);
+                            _TokenBuffer.Add(token);
+                            paramCountStack.Push(1);
                         }
                     }
                 } while (!RpnTokenizer.EOF);

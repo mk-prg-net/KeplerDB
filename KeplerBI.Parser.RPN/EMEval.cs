@@ -18,7 +18,7 @@ namespace KeplerBI.Parser.RPN
         {
             var val = PopNummeric(stack);
 
-            stack.Push(new mko.RPN.DoubleToken(mko.Newton.Mass.Kilogram(mko.Newton.Mass.EarthMasses(val)).Value));
+            stack.Push(new mko.RPN.DoubleToken(mko.Newton.Mass.Kilogram(mko.Newton.Mass.EarthMasses(val.Item1)).Value, val.Item2.CountOfEvaluatedTokens + 1));
 
         }
     }

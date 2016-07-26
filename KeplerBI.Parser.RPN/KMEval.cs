@@ -17,7 +17,7 @@ namespace KeplerBI.Parser.RPN
         {
             var val = PopNummeric(stack);
 
-            stack.Push(new mko.RPN.DoubleToken(val * 1000.0));
+            stack.Push(new mko.RPN.DoubleToken(val.Item1 * 1000.0, val.Item2.CountOfEvaluatedTokens +1));
         }
     }
 }

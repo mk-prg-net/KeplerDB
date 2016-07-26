@@ -8,6 +8,7 @@ namespace mko.RPN.Arithmetik
 {
     public class Add : NumBinOp
     {
+        public Add(BufferedTokenizer TokenBuffer) : base(TokenBuffer) { }
 
         protected override double Func(double a, double b)
         {
@@ -17,6 +18,7 @@ namespace mko.RPN.Arithmetik
 
     public class Sub : NumBinOp
     {
+        public Sub(BufferedTokenizer TokenBuffer) : base(TokenBuffer) { }
 
         protected override double Func(double a, double b)
         {
@@ -27,6 +29,7 @@ namespace mko.RPN.Arithmetik
 
     public class Mul : NumBinOp
     {
+        public Mul(BufferedTokenizer TokenBuffer) : base(TokenBuffer) { }
 
         protected override double Func(double a, double b)
         {
@@ -36,6 +39,7 @@ namespace mko.RPN.Arithmetik
 
     public class Div : NumBinOp
     {
+        public Div(BufferedTokenizer TokenBuffer) : base(TokenBuffer) { }
 
         protected override double Func(double a, double b)
         {

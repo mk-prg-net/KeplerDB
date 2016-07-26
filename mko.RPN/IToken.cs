@@ -71,5 +71,10 @@ namespace mko.RPN
         /// </summary>
         string Value { get; }
 
+        /// <summary>
+        /// Anzahl der Tokens, die von einem Evaluator verarbeitet wurden, um dieses Token zu berechnen
+        /// </summary>
+        int CountOfEvaluatedTokens { get; }
+
     }
 }
