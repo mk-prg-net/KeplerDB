@@ -79,7 +79,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CelesticalBodyTypeDescriptor.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Config\ConfigString.cs" />
     <Compile Include="Config\Repositories\ConfigStringsCo.cs" />
     <Compile Include="Country.cs" />

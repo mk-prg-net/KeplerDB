@@ -700,7 +700,7 @@ namespace DB.Kepler.EF60
                     // Reha	Mond	Saturn	527040	km 	1532	2,317E+21
                     global::Kepler.IMond Reha = Monde.CreateBoAndAddToCollection();                    
 
-                    Reha.Name = "Reha";
+                    Reha.Name = "Rhea";
                     Reha.Masse_in_kg = 2.317E+21;
                     Reha.Aequatordurchmesser_in_km = 1532;
                     Reha.Umlaufbahn.Zentralobjekt = Saturn;

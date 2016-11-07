@@ -10,39 +10,30 @@ namespace KeplerBI.DB
     {
 
 
-        public static void CreateDB()
+        public static void CreateDB(KeplerDBContext ORM)
         {
-            using (var ORM = new KeplerDBContext())
+
+            ORM.Database.Delete();
+            ORM.Database.Create();
+            //foreach (var app in mko.Algo.ForEachEnumMember<KeplerBI.SpaceShips.Application>.Get())
+            //{
+            //    var dbApp = ORM.Applications.Create();
+            //    dbApp.ApplicationID = (int)app;
+            //    dbApp.Description = app.ToString();
+
+            //    ORM.Applications.Add(dbApp);
+            //}
+
+            foreach (var cbTypeId in mko.Algo.ForEachEnumMember<KeplerBI.DB.CelesticalBodyType>.Get())
             {
-                ORM.Database.Delete();
-                ORM.Database.Create();
-                if (true)
-                {
-                    //foreach (var app in mko.Algo.ForEachEnumMember<KeplerBI.SpaceShips.Application>.Get())
-                    //{
-                    //    var dbApp = ORM.Applications.Create();
-                    //    dbApp.ApplicationID = (int)app;
-                    //    dbApp.Description = app.ToString();
+                var cbTypeDescr = ORM.CelesticalBodyTypes.Create();
+                cbTypeDescr.Type = cbTypeId;
+                cbTypeDescr.Name = cbTypeId.ToString();
 
-                    //    ORM.Applications.Add(dbApp);
-                    //}
-
-                    foreach (var cbTypeId in mko.Algo.ForEachEnumMember<KeplerBI.DB.CelesticalBodyType>.Get())
-                    {
-                        var cbTypeDescr = ORM.CelesticalBodyTypes.Create();
-                        cbTypeDescr.Type = cbTypeId;
-                        cbTypeDescr.Name = cbTypeId.ToString();
-
-                        ORM.CelesticalBodyTypes.Add(cbTypeDescr);
-                    }
-
-                    ORM.SaveChanges();
-
-                    var UofW = new AstroCatalog(ORM);
-                    Dataimport.CreateBasicInformations.DoIt(UofW);
-
-                }
+                ORM.CelesticalBodyTypes.Add(cbTypeDescr);
             }
+
+            ORM.SaveChanges();
         }
     }
 }

@@ -315,6 +315,14 @@ namespace KeplerBI.Dataimport
             UofW.SubmitChanges();
 
 
+            UofW.CreateMoon("Rhea", Saturn, mko.Newton.Length.Kilometer(527040), mko.Newton.Velocity.KilometerPerSec(8.48));
+            UofW.SubmitChanges();
+
+            var Rhea = UofW.Moons.GetBo("Rhea");
+            Rhea.Mass = mko.Newton.Mass.Kilogram(2.317E+21);
+            Rhea.EquatorialDiameter = mko.Newton.Length.Kilometer(1532);
+            UofW.SubmitChanges();
+
             ////-----------------------------------------------------------------------------------------------
             //// Uranussystem
 

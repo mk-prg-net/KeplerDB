@@ -13,51 +13,72 @@ namespace KeplerBI.MVC.Models.Planets
 
         public mko.RPN.IToken[] Tokens { get; set; }
 
-        public string RPNOrderBySemiMajorAxisDesc
+        public int IndexOfFunctionNameToken(string FunctionName, out int CountOfParams)
         {
-            get
+            if (Tokens.Any(t => t.IsFunctionName && t.Value == FunctionName))
             {
-                var TOrder = typeof(KeplerBI.Parser.RPN.Planets.OrderBySemiMajorAxisLengthConfigCmd);
-                if (Tokens.Any(t => t.GetType() == TOrder))
-                {
-                    var token = Tokens.First(t => t.GetType() == TOrder);
-                    int ix = Array.IndexOf(Tokens, token);
-
-                    var bld = new System.Text.StringBuilder();
-                    for (int i = 0; i < ix - token.CountOfEvaluatedTokens; i++)
-                    {
-                        bld.Append(Tokens[i].Value);
-                        bld.Append(" ");
-                    }
-
-                    bld.Append("desc " + TOrder.Name);
-
-                    for (int i = ix + 1; i < Tokens.Length; i++)
-                    {
-                        bld.Append(Tokens[i].Value);
-                        bld.Append(" ");
-                    }
-
-                    return bld.ToString();
-                }
-                else
-                {
-                    var bld = new System.Text.StringBuilder();
-                    for (int i = 0; i < Tokens.Length; i++)
-                    {
-                        bld.Append(Tokens[i].Value);
-                        bld.Append(" ");
-                    }
-                    bld.Append("desc " + TOrder.Name);
-                    return bld.ToString();
-                }
+                var tok = Tokens.First(t => t.IsFunctionName && t.Value == FunctionName);
+                CountOfParams = tok.CountOfEvaluatedTokens;
+                return Array.IndexOf(Tokens, tok);
+            }
+            else
+            {
+                CountOfParams = -1;
+                return -1;
             }
         }
 
+        public string TokensToString(int begin, int end)
+        {
+            if (begin < Tokens.Length)
+            {
+                end = Math.Min(end, Tokens.Length - 1);
+                var bld = new System.Text.StringBuilder();
+                for (int i = begin; i <= end; i++)
+                {
+                    bld.Append(Tokens[i].Value);
+                    bld.Append(" ");
+                }
+                return bld.ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
 
-        public string QueryOptions = "";
+        public string OrderBySemiMajorAxisRPN(bool desc)
+        {
+            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokenizer.OrderBySemiMajorAxisLength + " ";
 
-        public double MinBahnRadiusAU { get; set; }
-        public double MaxBahnRadiusAU { get; set; }
+            int CountOfParams;
+            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokenizer.OrderBySemiMajorAxisLength, out CountOfParams);
+            return CreateRPNString(sortOrder, ix, CountOfParams);
+        }
+
+        private string CreateRPNString(string sortOrder, int ix, int CountOfParams)
+        {
+            if (ix != -1)
+            {
+                return TokensToString(0, ix - CountOfParams) + sortOrder + TokensToString(ix + 1, Tokens.Length - 1);
+            }
+            else
+            {
+                return TokensToString(0, Tokens.Length) + sortOrder;
+            }
+        }
+
+        public string OrderByMassRPN(bool desc)
+        {
+            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokenizer.OrderByMass + " ";
+
+            int CountOfParams;
+            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokenizer.OrderByMass, out CountOfParams);
+            return CreateRPNString(sortOrder, ix, CountOfParams);
+        }
+
+
+
+
     }
 }

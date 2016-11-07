@@ -49,6 +49,11 @@ namespace KeplerBI.tools.cmd
     public class Program
     {
         /// <summary>
+        /// Befehl zum neu Anlegen der KeplerBiDB
+        /// </summary>
+        const string createDb = "createDb";
+
+        /// <summary>
         /// Speicherort der Asteroiden.csv- Datei
         /// </summary>
         const string asteroidsCsv = "asteroidsCsv";
@@ -67,6 +72,12 @@ namespace KeplerBI.tools.cmd
                 var astroCatalog = new KeplerBI.DB.AstroCatalog(ctx);
                 var astroCatalogConfig = new KeplerBI.DB.AstroCatalogConfig(ctx);
 
+                if (args.Contains(createDb))
+                {
+                    // Datenbank neu anlegen. 
+                    KeplerBI.DB.DBUtil.CreateDB(ctx);
+                }
+
                 if (args.Contains(KeplerBI.Config.Parameters.defLocationOfPics))
                 {
                     var filenameEtc = args.SkipWhile(r => r != KeplerBI.Config.Parameters.defLocationOfPics).Skip(1);
@@ -76,7 +87,6 @@ namespace KeplerBI.tools.cmd
                         var locPics = filenameEtc.First();
                         astroCfg.defLocationOfPics(locPics);
                     }
-
                 }
 
                 if (args.Contains(createBasicInf))

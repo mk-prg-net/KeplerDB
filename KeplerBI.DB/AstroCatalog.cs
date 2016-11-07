@@ -8,6 +8,17 @@ namespace KeplerBI.DB
 {
     public class AstroCatalog : KeplerBI.IAstroCatalog, IDisposable
     {
+        /// <summary>
+        /// Aktuell gültiger Datenbankkontext
+        /// </summary>
+        public KeplerDBContext Ctx
+        {
+            get
+            {
+                return _ctx;
+            }
+        }
+
         KeplerDBContext _ctx;
         bool _ctxExtern = false;
         NaturalCelesticalBodies.Repositories.MoonCo _Moons;
@@ -47,7 +58,7 @@ namespace KeplerBI.DB
             _CelesticalBodySystems = new Repositories.CelesticalBodySystemsCo(_ctx);
         }
 
-        
+
 
         public KeplerBI.NaturalCelesticalBodies.Repositories.IStarsCo Stars
         {
@@ -104,7 +115,7 @@ namespace KeplerBI.DB
             {
                 throw new Exception(mko.TraceHlp.FormatErrMsg(this, "CreatePlanet"));
             }
-         
+
         }
 
         public KeplerBI.NaturalCelesticalBodies.Repositories.IMoonsCo Moons
@@ -168,7 +179,7 @@ namespace KeplerBI.DB
             {
                 throw new Exception(mko.TraceHlp.FormatErrMsg(this, "CreatePlanet"));
             }
-         
+
 
         }
 

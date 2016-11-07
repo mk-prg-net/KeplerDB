@@ -61,7 +61,16 @@
   <ItemGroup>
     <Compile Include="AUEval.cs" />
     <Compile Include="BasicOrderByEval.cs" />
+    <Compile Include="ConfigDataToken.cs" />
+    <Compile Include="DiameterRngData.cs" />
+    <Compile Include="DiameterRngEval.cs" />
     <Compile Include="KMEval.cs" />
+    <Compile Include="MassRngData.cs" />
+    <Compile Include="MassRngEval.cs" />
+    <Compile Include="OrderByMassData.cs" />
+    <Compile Include="OrderByMassEval.cs" />
+    <Compile Include="OrderBySemiMajorAxisLengthData.cs" />
+    <Compile Include="OrderBySemiMajorAxisLengthEval.cs" />
     <Compile Include="Planets\FltBldConfigurator.cs" />
     <Compile Include="Planets\DiameterRngEval.cs" />
     <Compile Include="Planets\DiameterRngConfigCmd.cs" />
@@ -76,6 +85,8 @@
     <Compile Include="Planets\SemiMajorAxisLengthRngEval.cs" />
     <Compile Include="Planets\SemiMajorAxisLengthRngConfigCmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SemiMajorAxisLengthRngData.cs" />
+    <Compile Include="SemiMajorAxisLengthRngEval.cs" />
     <Compile Include="SMEval.cs" />
     <Compile Include="Tokenizer.cs" />
   </ItemGroup>

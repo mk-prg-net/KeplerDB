@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="KeplerBI.DB.AstroCatalog" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="18.75" Y="0.5" Width="1.5" />
+  <Class Name="KeplerBI.DB.AstroCatalog" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AEAgAgAAACABAAACAAJIAAAAABABgAAgACACAAAABAA=</HashCode>
+      <HashCode>AEAgAgAAACABAAAGAAJIAAAAABABgQAhACACAAAABAA=</HashCode>
       <FileName>AstroCatalog.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -11,7 +11,7 @@
   <Class Name="KeplerBI.DB.CelestialBodyBase">
     <Position X="8.25" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAgAAAAAAAAAQAAAAAAAAAIQAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAgAAAAAAAAAQAAAAEAAAAIQAAAACAAAA=</HashCode>
       <FileName>CelestialBodyBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -27,15 +27,8 @@
   <Class Name="KeplerBI.DB.CelesticalBodyTypeDescriptor" Collapsed="true">
     <Position X="24" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>CelesticalBodyTypeDescriptor.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeplerBI.DB.Class1" Collapsed="true">
-    <Position X="18.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeplerBI.DB.Country" Collapsed="true" BaseTypeListCollapsed="true">
@@ -56,7 +49,7 @@
   <Class Name="KeplerBI.DB.KeplerDBContext" Collapsed="true">
     <Position X="24" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAwAABAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAwAABAAAAAAAAAAAAAAAEAAAAAIAAAAAAEAAAAA=</HashCode>
       <FileName>KeplerDBContext.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -12,35 +12,47 @@ namespace KeplerBI.Parser.RPN.Planets
     /// </summary>
     public class FltBldConfigurator
     {
-        List<ConfigCmdToken> configCmds = new List<ConfigCmdToken>();
+        ConfigDataToken[] configDatas;
 
         public FltBldConfigurator(Stack<mko.RPN.IToken> stack)
         {
             // Umkopieren, um richtige Ausführungsreihenfolge zu erhalten
-            while (stack.Any())
-            {
-                configCmds.Insert(0,(ConfigCmdToken)stack.Pop());
-            }
+            configDatas = stack.ToArray().Select(t => (ConfigDataToken)t).ToArray();
+            Array.Reverse(configDatas);
         }
 
         public void Apply(KeplerBI.NaturalCelesticalBodies.Repositories.IPlanetsCo_FilteredSortedSetBuilder bld)
         {
             // FilteredSortedSetBuilder über Kommandos konfigurieren
 
-            foreach(var cmd in configCmds)
-            {                
-                cmd.ConfigBld(bld);
-            }
-        }
-
-
-        public IEnumerable<ConfigCmdToken> ConfigCmds
-        {
-            get
+            foreach(var data in configDatas)
             {
-                return configCmds.ToArray();
+                if (data is DiameterRngData)
+                {
+                    var tdata = (DiameterRngData)data;
+                    bld.defAequatorialDiameterRange(mko.Newton.Length.Meter(tdata.min), mko.Newton.Length.Meter(tdata.max));
+                }
+                else if (data is MassRngData)
+                {
+                    var tdata = (MassRngData)data;
+                    bld.defMassRange(mko.Newton.Mass.EarthMasses(tdata.minEM), mko.Newton.Mass.EarthMasses(tdata.maxEM));
+                }
+                else if (data is OrderByMassData)
+                {
+                    var tdata = (OrderByMassData)data;
+                    bld.OrderByMass(tdata.descending);
+                }
+                else if (data is OrderBySemiMajorAxisLengthData)
+                {
+                    var tdata = (OrderBySemiMajorAxisLengthData)data;
+                    bld.OrderBySemiMajorAxisLength(tdata.descending);
+                }
+                else if (data is SemiMajorAxisLengthRngData)
+                {
+                    var tdata = (SemiMajorAxisLengthRngData)data;
+                    bld.defSemiMajorAxisLengthRange(mko.Newton.Length.Meter(tdata.Min), mko.Newton.Length.Meter(tdata.Max));
+                }                
             }
         }
-
     }
 }

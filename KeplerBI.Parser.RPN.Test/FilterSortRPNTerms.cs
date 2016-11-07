@@ -39,10 +39,11 @@ namespace KeplerBI.Parser.RPN.Test
                 Parser.Parse(tokenizer, Tokenizer.EvalFunctions);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(1, Parser.Stack.Count);
-                Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(Planets.SemiMajorAxisLengthRngConfigCmd));
+                Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(SemiMajorAxisLengthRngData));
 
                 var fltBld = Universum.Planets.createFiltertedSortedSetBuilder();
-                (Parser.Stack.Peek() as Planets.ConfigCmdToken).ConfigBld(fltBld);
+                var fltBldConfig1 = new Planets.FltBldConfigurator(Parser.Stack);
+                fltBldConfig1.Apply(fltBld);                
 
                 var fltSet = fltBld.GetSet();
                 Assert.IsTrue(fltSet.Any());
@@ -50,6 +51,7 @@ namespace KeplerBI.Parser.RPN.Test
 
                 tokenizer = new Tokenizer("2 AU 10 AU " + Tokenizer.SemiMajorAxisLengthRng + " desc " + Tokenizer.OrderBySemiMajorAxisLength);
 
+                Parser.TokenBuffer.Reset();
                 Parser.Parse(tokenizer, Tokenizer.EvalFunctions);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(2, Parser.Stack.Count);
@@ -58,8 +60,8 @@ namespace KeplerBI.Parser.RPN.Test
                 // Konfigurieren des FilteredSortedSetBuilders mittels der geparsten Konfigurationskommandos
                 fltBld = Universum.Planets.createFiltertedSortedSetBuilder();
 
-                var configurator = new KeplerBI.Parser.RPN.Planets.FltBldConfigurator(Parser.Stack);
-                configurator.Apply(fltBld);
+                var fltBldConfig2 = new Planets.FltBldConfigurator(Parser.Stack);
+                fltBldConfig2.Apply(fltBld);
                 
                 fltSet = fltBld.GetSet();
                 Assert.IsTrue(fltSet.Any());
@@ -77,10 +79,11 @@ namespace KeplerBI.Parser.RPN.Test
                 Parser.Parse(tokenizer, Tokenizer.EvalFunctions);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(1, Parser.Stack.Count);
-                Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(Planets.MassRngConfigCmd));
+                Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(MassRngData));
 
                 var fltBld = Universum.Planets.createFiltertedSortedSetBuilder();
-                (Parser.Stack.Peek() as Planets.ConfigCmdToken).ConfigBld(fltBld);
+                var fltBldConfig1 = new Planets.FltBldConfigurator(Parser.Stack);
+                fltBldConfig1.Apply(fltBld);                
 
                 var fltSet = fltBld.GetSet();
                 Assert.IsTrue(fltSet.Any());
@@ -93,21 +96,8 @@ namespace KeplerBI.Parser.RPN.Test
                 Assert.AreEqual(2, Parser.Stack.Count);
 
                 fltBld = Universum.Planets.createFiltertedSortedSetBuilder();
-
-                // Umkopieren, um richtige Ausführungsreihenfolge zu erhalten
-                var stack2 = new Stack<Planets.ConfigCmdToken>();
-                while (Parser.Stack.Any())
-                {
-                    stack2.Push((Planets.ConfigCmdToken)Parser.Stack.Pop());
-                }
-
-                // FilteredSortedSetBuilder über Kommandos konfigurieren
-
-                while (stack2.Any())
-                {
-                    var configCmd = stack2.Pop();
-                    configCmd.ConfigBld(fltBld);
-                }
+                var fltBldConfig2 = new Planets.FltBldConfigurator(Parser.Stack);
+                fltBldConfig2.Apply(fltBld);                
 
                 fltSet = fltBld.GetSet();
                 Assert.IsTrue(fltSet.Any());

@@ -24,14 +24,21 @@ namespace KeplerBI.MVC.Controllers
         // GET: Planets
         public ActionResult Index(string rpn = "")
         {
-            var fltBld = catalog.Planets.createFiltertedSortedSetBuilder();   
-         
+            var fltBld = catalog.Planets.createFiltertedSortedSetBuilder();
+
             var viewModel = new Models.Planets.PlanetsVM();
 
-            if (!String.IsNullOrEmpty(rpn))
+            if (String.IsNullOrEmpty(rpn))
             {
+                //rpn = "asc " + KeplerBI.Parser.RPN.Tokenizer.OrderBySemiMajorAxisLength;
+                fltBld.OrderBySemiMajorAxisLength(false);
+                viewModel.Tokens = new mko.RPN.IToken[]{};
+            }
+            else
+            {
+
                 rpn = rpn.Trim();
-                var tokenizer = new KeplerBI.Parser.RPN.Tokenizer(rpn);                
+                var tokenizer = new KeplerBI.Parser.RPN.Tokenizer(rpn);
 
                 RPNParser.Parse(tokenizer, KeplerBI.Parser.RPN.Tokenizer.EvalFunctions);
                 if (RPNParser.Succsessful)
@@ -40,37 +47,18 @@ namespace KeplerBI.MVC.Controllers
 
                     var configurator = new KeplerBI.Parser.RPN.Planets.FltBldConfigurator(RPNParser.Stack);
 
-                    if (!configurator.ConfigCmds.Any(r => r.Value.StartsWith("OrderBy")))
+                    if (!viewModel.Tokens.Any(r => r.Value.StartsWith("OrderBy")))
                     {
-                        fltBld.OrderBySemiMajorAxisLength(false); 
+                        fltBld.OrderBySemiMajorAxisLength(false);
                     }
                     configurator.Apply(fltBld);
 
-                    var strBld = new System.Text.StringBuilder();
-                    foreach(var cfg in configurator.ConfigCmds){
-                        strBld.Append(cfg.ToRPNString());
-                        strBld.Append(" ");
-                    }
-
-                    viewModel.QueryOptions = strBld.ToString();
-
-                    if (configurator.ConfigCmds.Any(r => r.Value == typeof(KeplerBI.Parser.RPN.Planets.SemiMajorAxisLengthRngConfigCmd).Name))
-                    {
-                        var cmd = configurator.ConfigCmds.First(r => r.Value == typeof(KeplerBI.Parser.RPN.Planets.SemiMajorAxisLengthRngConfigCmd).Name) as KeplerBI.Parser.RPN.Planets.SemiMajorAxisLengthRngConfigCmd;
-                        viewModel.MinBahnRadiusAU = mko.Newton.Length.AU(mko.Newton.Length.Kilometer(cmd.Min)).Vector[0];
-                        viewModel.MaxBahnRadiusAU = mko.Newton.Length.AU(mko.Newton.Length.Kilometer(cmd.Max)).Vector[0];
-                    }
                 }
                 else
                 {
                     throw new Exception("RPN- Term in URL konnte nicht korrekt geparst werden:" + mko.ExceptionHelper.FlattenExceptionMessages(RPNParser.LastException));
                 }
             }
-            else
-            {
-                // Standardsortierreihenfolge definieren
-                fltBld.OrderBySemiMajorAxisLength(false);
-            }            
 
             viewModel.Planets = fltBld.GetSet();
             return View(viewModel);

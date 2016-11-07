@@ -33,10 +33,12 @@ namespace KeplerBI.Test
         {
             try
             {
-                KeplerBI.DB.DBUtil.CreateDB();
-
                 using (var catalog = new KeplerBI.DB.AstroCatalog())
                 {
+                    KeplerBI.DB.DBUtil.CreateDB(catalog.Ctx);
+
+                    KeplerBI.Dataimport.CreateBasicInformations.DoIt(catalog);
+
                     var aimport = new KeplerBI.Dataimport.AsteroidImport(catalog);
                     aimport.ProgressInfo += (int lines, int asteroids) =>
                     {
