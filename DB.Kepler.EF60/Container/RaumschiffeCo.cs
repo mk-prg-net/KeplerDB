@@ -126,5 +126,10 @@ namespace DB.Kepler.EF60.Container
         }
 
 
+
+        public override bool Any(int id)
+        {
+            return ctx.HimmelskoerperTypenTab.Single(r => r.ID == (int)global::Kepler.Bo.HimmelskoerperTypen.Raumschiff).Himmelskoerper.Any();
+        }
     }
 }

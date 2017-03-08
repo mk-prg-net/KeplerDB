@@ -5,6 +5,12 @@
 }
 
 <h2>Katalog der Planeten</h2>
+<p>
+    @if (Model.Tokens.Any())
+    {
+        <text>Gefiltert durch:</text><code>@Model.TokensToString(0, Model.Tokens.Count() - 1)</code>
+    }
+</p>
 
 <div class="btn-toolbar">
 
@@ -33,16 +39,22 @@
 
     <tr>
         <th>Name</th>
-        <th>Abstand ZK</th>
-        <th>Masse in EM</th>
+        <th>Bild</th>
+        <th>Abstand [AU] </th>
+        <th>Masse [EM]</th>
+        <th>&empty; [KM]</th>
         <th># Monde</th>
+        <th>&nbsp;</th>
     </tr>
 
-    @foreach (var planet in Model.Planets.Get())
+    @foreach (var planet in Model.Planets)
     {
         <tr>
             <td>
-                @planet.Name
+                <b>@planet.Name.ToUpper()</b>
+            </td>
+            <td>
+                <img src="~/Content/pics/@planet.Name-small.jpg" class="img-circle" style="width:50px"/>
             </td>
             <td>
                 @mko.Newton.Length.AU(planet.Orbit.SemiMajorAxis).Vector[0]
@@ -58,7 +70,16 @@
                 }
             </td>
             <td>
-                ?
+                @mko.Newton.Length.Kilometer(planet.EquatorialDiameter).Vector[0]
+            </td>
+            <td>
+                @planet.Moons.Count()
+            </td>
+            <td>
+                @foreach (var moon in planet.Moons)
+                {
+                    <img src="~/Content/pics/@moon.Name-small.jpg" class="img-circle" style="width:50px" />
+                }
             </td>
         </tr>
     }

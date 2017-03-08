@@ -9,7 +9,7 @@ namespace KeplerBI.MVC.Models.Planets
 {
     public class PlanetsVM
     {
-        public IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IPlanet> Planets { get; set; }
+        public IEnumerable<PlanetDeco> Planets { get; set; }
 
         public mko.RPN.IToken[] Tokens { get; set; }
 

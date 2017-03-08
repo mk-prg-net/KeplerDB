@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83bd5627d5f505c, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\Dynamic.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -50,8 +46,8 @@
       <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.2.0.1.0\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.BI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.0.0.0\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -169,6 +165,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KeplerDB.edmx.sql" />
+    <Content Include="LICENSE.txt" />
+    <Content Include="Readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kepler\Kepler.csproj">

@@ -24,6 +24,11 @@ namespace KeplerBI.DB
             //    ORM.Applications.Add(dbApp);
             //}
 
+            ORM.SaveChanges();
+        }
+
+        public static void InitCelesticalBodyTypes(KeplerDBContext ORM)
+        {
             foreach (var cbTypeId in mko.Algo.ForEachEnumMember<KeplerBI.DB.CelesticalBodyType>.Get())
             {
                 var cbTypeDescr = ORM.CelesticalBodyTypes.Create();
@@ -34,6 +39,9 @@ namespace KeplerBI.DB
             }
 
             ORM.SaveChanges();
+
         }
+
+
     }
 }

@@ -83,5 +83,9 @@ namespace DB.Kepler.EF60.Container
         }
 
 
+        public override bool Any(int id)
+        {
+            return ctx.SpektralklasseTab.Any();
+        }
     }
 }

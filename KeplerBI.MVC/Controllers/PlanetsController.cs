@@ -1,4 +1,39 @@
-﻿using System;
+﻿//<unit_header>
+//----------------------------------------------------------------
+//
+// Martin Korneffel: IT Beratung/Softwareentwicklung
+// Stuttgart, den 7.2016
+//
+//  Projekt.......: KeplerBI.MVC
+//  Name..........: PlanetsController.cs
+//  Aufgabe/Fkt...: Planetenliste wird mittels RPN- Ausdrücken gefiltert.
+//                  
+//
+//
+//
+//
+//<unit_environment>
+//------------------------------------------------------------------
+//  Zielmaschine..: PC 
+//  Betriebssystem: Windows 7 mit .NET 4.5
+//  Werkzeuge.....: Visual Studio 2013
+//  Autor.........: Martin Korneffel (mko)
+//  Version 1.0...: 
+//
+// </unit_environment>
+//
+//<unit_history>
+//------------------------------------------------------------------
+//
+//  Version.......: 1.1
+//  Autor.........: Martin Korneffel (mko)
+//  Datum.........: 
+//  Änderungen....: 
+//
+//</unit_history>
+//</unit_header>        
+        
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +57,11 @@ namespace KeplerBI.MVC.Controllers
         }
 
         // GET: Planets
+        /// <summary>
+        /// Demo: Filterung über RPN- Ausdrücke
+        /// </summary>
+        /// <param name="rpn"></param>
+        /// <returns></returns>
         public ActionResult Index(string rpn = "")
         {
             var fltBld = catalog.Planets.createFiltertedSortedSetBuilder();
@@ -45,7 +85,7 @@ namespace KeplerBI.MVC.Controllers
                 {
                     viewModel.Tokens = RPNParser.TokenBuffer.Tokens;
 
-                    var configurator = new KeplerBI.Parser.RPN.Planets.FltBldConfigurator(RPNParser.Stack);
+                    var configurator = new KeplerBI.Parser.RPN.FltBldConfigurator(RPNParser.Stack);
 
                     if (!viewModel.Tokens.Any(r => r.Value.StartsWith("OrderBy")))
                     {
@@ -60,7 +100,25 @@ namespace KeplerBI.MVC.Controllers
                 }
             }
 
-            viewModel.Planets = fltBld.GetSet();
+            List<Models.Planets.PlanetDeco> PlanetsWithMoons = new List<Models.Planets.PlanetDeco>();
+            var planetSet = fltBld.GetSet();
+            foreach (var planet in planetSet.Get())
+            {
+                var bld = catalog.Moons.createNewFilteredSortedSetBuilder();
+                bld.defPlanet(planet.Name);
+                var moonSet = bld.GetSet();
+
+                if (moonSet.Any())
+                {
+                    var deco = new Models.Planets.PlanetDeco(planet, moonSet.Get());
+                    PlanetsWithMoons.Add(deco);
+                } else {
+                    var deco = new Models.Planets.PlanetDeco(planet, new KeplerBI.NaturalCelesticalBodies.IMoon[]{});
+                    PlanetsWithMoons.Add(deco);
+                }
+            }
+
+            viewModel.Planets = PlanetsWithMoons;
             return View(viewModel);
         }
     }

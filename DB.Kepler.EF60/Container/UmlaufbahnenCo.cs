@@ -113,5 +113,10 @@ namespace DB.Kepler.EF60.Container
             ctx.SaveChanges();
         }
 
+
+        public override bool Any(int id)
+        {
+            return ctx.UmlaufbahnenTab.Any();
+        }
     }
 }

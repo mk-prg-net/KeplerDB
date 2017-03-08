@@ -26,5 +26,11 @@ namespace KeplerBI.MVC.Controllers
 
             return View();
         }
+
+        public ActionResult help_rpn()
+        {
+            return View();
+        }
+
     }
 }

@@ -48,6 +48,7 @@ namespace KeplerBI.Dataimport
 
             mko.Newton.Init.Do();
 
+
             UofW.CreateStar("Beteigeuze");
             UofW.SubmitChanges();
 

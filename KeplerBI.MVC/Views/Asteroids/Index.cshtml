@@ -1,0 +1,63 @@
+﻿@model mko.BI.Repositories.FilteredSortedSet<KeplerBI.DB.NaturalCelesticalBodies.Asteroid>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Asteroiden</h2>
+
+@{
+    mko.Newton.Init.Do();
+}
+
+Anzahl: @Model.Count()
+
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th style="text-align:right;">D <sub>Sonnen</sub> AU</th>
+        <th style="text-align:right;">V<sub>Bahn</sub> km/sec</th>
+        <th style="text-align:right;">Albedo Num.</th>
+        <th>Albedo</th>
+        <th>D<sub>äquator</sub> Km</th>
+    </tr>
+    @foreach (var cb in Model.Get())
+    {
+        <tr>
+            <td>@cb.Name</td>
+            <td style="text-align:right;">@mko.Newton.Length.AU(cb.Orbit.SemiMajorAxis).Vector.Length.ToString("N4")</td>
+            <td style="text-align:right;">
+                @mko.Newton.Velocity.KilometerPerSec(cb.Orbit.MeanVelocityOfCirculation).Vector.Length.ToString("N3")
+            </td>
+            <td style="text-align:right;">
+                @cb.Albedo
+            </td>
+            <td>
+                @{
+                    string color = "#C0C0FF";
+
+                    if (cb.Albedo < 0.2)
+                    {
+                        color = "#c0c0c0";
+                    }
+
+                    if (cb.Albedo < 0.1)
+                    {
+                        color = "#808080";
+                    }
+
+                    if (cb.Albedo < 0.05)
+                    {
+                        color = "#000000";
+                    }
+                }
+                <svg width="20px" height="20px">
+                    <circle cx="10px" cy="10px" r="9px" fill="@color" />
+                </svg>
+            </td>
+            <td>
+                @cb.EquatorialDiameterInKilometer
+            </td>
+        </tr>
+                    }
+</table>

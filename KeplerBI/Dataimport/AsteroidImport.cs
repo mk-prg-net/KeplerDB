@@ -25,11 +25,10 @@
 //<unit_history>
 //------------------------------------------------------------------
 //
-//  Version.......: 1.1
 //  Autor.........: Martin Korneffel (mko)
-//  Datum.........: 
-//  Änderungen....: 
-//
+//  Datum.........: 7.3.2017
+//  Änderungen....: Berechnung der Bahngeschwindigkeit korrigiert. Vorher wurde 
+//                  konstant durch ein Erdjahr dividiert.    
 //</unit_history>
 //</unit_header>        
 
@@ -70,6 +69,8 @@ namespace KeplerBI.Dataimport
                 var Sonne = _catalog.Stars.GetBo("Sonne");
                 Debug.Assert(Sonne != null);
 
+                var earthyear_in_sec = mko.Newton.Time.Sec(mko.Newton.Time.OrbitalPeriodEarth);
+
                 int i = 0, lines = 0;
                 // Kopfzeilen (2x) überspringen
                 reader.ReadLine();
@@ -105,9 +106,9 @@ namespace KeplerBI.Dataimport
                     double a;
                     if (!double.TryParse(cols[3], out a))
                         a = 0;
-                    double rot_per_year;
-                    if (!double.TryParse(cols[4], out rot_per_year))
-                        rot_per_year = 0;
+                    double orbital_period_in_years;
+                    if (!double.TryParse(cols[4], out orbital_period_in_years))
+                        orbital_period_in_years = 0;
                     double albedo;
                     if (!double.TryParse(cols[5], out albedo))
                         albedo = 0;
@@ -120,9 +121,9 @@ namespace KeplerBI.Dataimport
                     double Mass_in_Kg = GM / 6.67259e-20;
 
                     // Nur Asteroiden mit vollständigen Bahn und Massedaten importieren
-                    if (a > 0 && e > 0 && rot_per_year > 0)
+                    if (a > 0 && e > 0 && orbital_period_in_years > 0)
                     {
-                        _catalog.CreateAsteroid(AsteroidName, Sonne, mko.Newton.Length.AU(a), mko.Newton.Velocity.KilometerPerSec((Math.PI * 2) * mko.Newton.Length.AU(a), mko.Newton.Time.OrbitalPeriodEarth));
+                        _catalog.CreateAsteroid(AsteroidName, Sonne, mko.Newton.Length.AU(a), mko.Newton.Velocity.KilometerPerSec((Math.PI * 2) * mko.Newton.Length.AU(a), orbital_period_in_years*earthyear_in_sec ));
                         _catalog.SubmitChanges();
 
                         var newAsteroid = _catalog.Asteroids.GetBo(AsteroidName);

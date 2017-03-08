@@ -93,8 +93,10 @@ namespace KeplerBI.Parser.RPN
         public const string OrderBySemiMajorAxisLength = "OrderBySemiMajorAxisLength";
 
         public static Dictionary<string, mko.RPN.IEval> EvalFunctions = new Dictionary<string, mko.RPN.IEval>{
+            {KM, new KMEval()},
             {AU, new AUEval()},
             {EM, new EMEval()},
+            {SM, new SMEval()},
             {DiameterRng, new DiameterRngEval()},
             {MassRng, new MassRngEval()},            
             {SemiMajorAxisLengthRng, new SemiMajorAxisLengthRngEval()},

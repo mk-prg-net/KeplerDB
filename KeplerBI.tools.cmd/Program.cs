@@ -51,7 +51,7 @@ namespace KeplerBI.tools.cmd
         /// <summary>
         /// Befehl zum neu Anlegen der KeplerBiDB
         /// </summary>
-        const string createDb = "createDb";
+        const string createDb = "createDB";
 
         /// <summary>
         /// Speicherort der Asteroiden.csv- Datei
@@ -61,62 +61,95 @@ namespace KeplerBI.tools.cmd
         /// <summary>
         /// Befehl zum Erzeugen der Basis- Informationen
         /// </summary>
-        const string createBasicInf = "createBasicInf";
+        const string initDB = "initDB";
 
 
         public static void Main(string[] args)
         {
-
-            using (var ctx = new KeplerBI.DB.KeplerDBContext())
+            try
             {
-                var astroCatalog = new KeplerBI.DB.AstroCatalog(ctx);
-                var astroCatalogConfig = new KeplerBI.DB.AstroCatalogConfig(ctx);
-
-                if (args.Contains(createDb))
+                using (var ctx = new KeplerBI.DB.KeplerDBContext())
                 {
-                    // Datenbank neu anlegen. 
-                    KeplerBI.DB.DBUtil.CreateDB(ctx);
-                }
+                    Console.WriteLine("----------------------------------------------------");
+                    Console.WriteLine("KeplerBI, Tools");
+                    Console.WriteLine("(c) Martin Korneffel, Stuttgart 2016");
+                    Console.WriteLine("----------------------------------------------------");
+                    Console.WriteLine("Kommandozeile: ");
+                    Console.WriteLine(@"\>DB.Kepler.EF60.tools [command [parameter]]");
+                    Console.WriteLine("Kommandos: ");
+                    Console.WriteLine("{0,-22:s} {1:s}", createDb, "Datenbank neu anlegen, falls noch nicht existiert");
+                    Console.WriteLine("{0,-22:s} {1:s}", initDB, "Datenbank mit Basidaten initialisieren");
+                    Console.WriteLine("{0,-22:s} {1:s}", KeplerBI.Config.Parameters.defLocationOfPics, "Dateiverzeichnis mit Bildern von Himmelskoerpern");
+                    Console.WriteLine("{0,-22:s} {1:s}", asteroidsCsv, "Asteroiden aus einer CSV- Datei importieren");
 
-                if (args.Contains(KeplerBI.Config.Parameters.defLocationOfPics))
-                {
-                    var filenameEtc = args.SkipWhile(r => r != KeplerBI.Config.Parameters.defLocationOfPics).Skip(1);
-                    if (filenameEtc.Any())
+                    var astroCatalog = new KeplerBI.DB.AstroCatalog(ctx);
+                    var astroCatalogConfig = new KeplerBI.DB.AstroCatalogConfig(ctx);                    
+
+                    if (args.Contains(createDb))
                     {
-                        var astroCfg = astroCatalogConfig;
-                        var locPics = filenameEtc.First();
-                        astroCfg.defLocationOfPics(locPics);
+                        // Datenbank neu anlegen. 
+                        Console.WriteLine("Neue KeplerBI anlegen unter " + ctx.Database.Connection.ConnectionString);
+
+                        KeplerBI.DB.DBUtil.CreateDB(ctx);
+
+                        Console.WriteLine("Datenbank erfolgreich angelegt");
                     }
-                }
 
-                if (args.Contains(createBasicInf))
-                {
-                    KeplerBI.Dataimport.CreateBasicInformations.DoIt(astroCatalog);
-                }
-
-
-                if (args.Contains(asteroidsCsv))
-                {
-                    var filenameEtc = args.SkipWhile(r => r != asteroidsCsv).Skip(1);
-                    if (filenameEtc.Any())
+                    if (args.Contains(KeplerBI.Config.Parameters.defLocationOfPics))
                     {
-                        string filename = filenameEtc.First();
+                        Console.WriteLine("Definieren des Dateiverzeichnisses mit den Bilddaten");
 
-                        var aimport = new Dataimport.AsteroidImport(astroCatalog);
-                        aimport.ProgressInfo += (lines, asteroids) =>
+                        var filenameEtc = args.SkipWhile(r => r != KeplerBI.Config.Parameters.defLocationOfPics).Skip(1);
+                        if (filenameEtc.Any())
                         {
-                            Console.WriteLine("#Zeilen: " + lines + ", #Importierte Asteroiden: " + asteroids);
-                        };
+                            var astroCfg = astroCatalogConfig;
+                            var locPics = filenameEtc.First();
+                            astroCfg.defLocationOfPics(locPics);
+                        }
 
-                        Console.WriteLine("Asteroidenimpoert beginnt aus " + filename);
-                        aimport.Import(filename);
+                        Console.WriteLine("Dateiverzeichnis mit Bilddaten definiert");
+                    }
+
+                    if (args.Contains(initDB))
+                    {
+                        Console.WriteLine("Neue KeplerBI initialisieren mit Basidaten : " + ctx.Database.Connection.ConnectionString);
+
+                        KeplerBI.DB.DBUtil.InitCelesticalBodyTypes(ctx);
+                        KeplerBI.Dataimport.CreateBasicInformations.DoIt(astroCatalog);
+
+                        Console.WriteLine("Initialisierung erfolgreich");
                     }
 
 
+                    if (args.Contains(asteroidsCsv))
+                    {
+                        mko.Newton.Init.Do();
+                        var filenameEtc = args.SkipWhile(r => r != asteroidsCsv).Skip(1);
+                        if (filenameEtc.Any())
+                        {
+                            string filename = filenameEtc.First();
+
+                            Console.WriteLine("Importieren der Asteroiden aus der CSV- Datei (NASA- Tabelle): " + filename);
+                            Console.WriteLine("Zieldatenbank: " + ctx.Database.Connection.ConnectionString);
+
+
+                            var aimport = new Dataimport.AsteroidImport(astroCatalog);
+                            aimport.ProgressInfo += (lines, asteroids) =>
+                            {
+                                Console.WriteLine("#Zeilen: " + lines + ", #Importierte Asteroiden: " + asteroids);
+                            };
+
+                            Console.WriteLine("Asteroidenimpoert beginnt aus " + filename);
+                            aimport.Import(filename);
+                        }
+                    }
+
                 }
-
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ein Fehler ist aufgetreten: " + mko.ExceptionHelper.FlattenExceptionMessages(ex));
+            }
         }
     }
 }

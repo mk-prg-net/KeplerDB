@@ -95,7 +95,7 @@ namespace DB.Kepler.EF60.Container
         private Himmelskoerper CreateStern()
         {
             var hk = ctx.HimmelskoerperTab.Create();
-            hk.HimmelskoerperTyp = ctx.HimmelskoerperTypenTab.Single(r => r.ID == (int)global::Kepler.Bo.HimmelskoerperTypen.Galaxie);
+            hk.HimmelskoerperTyp = ctx.HimmelskoerperTypenTab.Single(r => r.ID == (int)global::Kepler.Bo.HimmelskoerperTypen.Stern);
             hk.Sterne_Planeten_MondeTab = ctx.Sterne_Planeten_MondeTab.Create();
 
             hk.Umlaufbahn = ctx.UmlaufbahnenTab.Create();
@@ -123,6 +123,11 @@ namespace DB.Kepler.EF60.Container
         public override void RemoveAll()
         {
             throw new NotImplementedException();
+        }
+
+        public override bool Any(int id)
+        {
+            return ctx.HimmelskoerperTypenTab.Single(r => r.ID == (int)global::Kepler.Bo.HimmelskoerperTypen.Stern).Himmelskoerper.Any();
         }
     }
 }

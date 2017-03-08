@@ -54,8 +54,8 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
         public KeplerBI.NaturalCelesticalBodies.Repositories.IAsteroidsCo_FilteredSortedSetBuilder createFiltertedSortedSetBuilder()
         {
-            throw new NotImplementedException();
-        }
+            return new FileredSortedSetBuilder(_ctx);
+        }       
 
         public bool ExistsBo(string id)
         {

@@ -66,6 +66,7 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\StoredProcedures" />
     <Folder Include="TestScripts" />
+    <Folder Include="dbo\InlineFunctons" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\AufgabenTab.sql" />
@@ -80,6 +81,8 @@
     <Build Include="dbo\Tables\UmlaufbahnenTab.sql" />
     <Build Include="dbo\Tables\UrlSammlungenTab.sql" />
     <None Include="TestScripts\Test_sp_Export_Sterne_Planeten_Monde.sql" />
+    <Build Include="dbo\InlineFunctons\EarthMoonMass.sql" />
+    <Build Include="dbo\InlineFunctons\EarthMass.sql" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dbo\StoredProcedures\sp_Export_Sterne_Planeten_Monde.cs" />

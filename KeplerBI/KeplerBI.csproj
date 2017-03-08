@@ -89,6 +89,7 @@
     <Compile Include="IOrbit.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\IAsteroidsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\IMoonsCo.cs" />
+    <Compile Include="NaturalCelesticalBodies\Repositories\INCB_FilteredSortedSetBuilder.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\IPlanetsCo.cs" />
     <Compile Include="Repositories\ICelesticslBodySystemsCo.cs" />
     <Compile Include="NaturalCelesticalBodies\Repositories\IStarsCo.cs" />
@@ -107,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="KeplerBI-Domain-Model.cd" />
     <None Include="Dataimport\Asteroids.csv" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ICelesticalBodies.cd" />

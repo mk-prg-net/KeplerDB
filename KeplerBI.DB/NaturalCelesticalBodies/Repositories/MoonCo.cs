@@ -39,9 +39,11 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
         {
             IQueryable<Moon> query;
             List<mko.BI.Repositories.DefSortOrder<Moon>> SortOrders = new List<mko.BI.Repositories.DefSortOrder<Moon>>();
+            KeplerDBContext _ctx;
 
             internal FilteredAndSortedSetBuilder(KeplerDBContext ctx)
             {
+                _ctx = ctx;
                 query = ctx.CelesticalBodies.OfType<Moon>();
             }
 
@@ -72,12 +74,38 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
             public void OrderBySemiMajorAxisLength(bool descending)
             {
-                throw new NotImplementedException();
+                SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Moon, double>(r => r.Orbit.SemiMajorAxisInKilometer, descending));
             }
 
             public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IMoon> GetSet()
             {
+                if (!SortOrders.Any())
+                {
+                    OrderBySemiMajorAxisLength(false);
+                }
                 return new mko.BI.Repositories.FilteredSortedSet<Moon>(query, SortOrders);
+            }
+
+            public void defPlanet(string PlanetName)
+            {
+                var planet = _ctx.CelesticalBodies.FirstOrDefault(r => r.Name == PlanetName);
+                if (planet != null)
+                {
+                    query = query.Where(r => r.Orbit.CentralBody.ID == planet.ID);
+                }
+                else
+                {
+                    throw new ArgumentException(mko.TraceHlp.FormatErrMsg(this, "defPlanet", "Der Planet " + PlanetName + " existiert nicht"));
+                }                
+            }
+
+            public void defSemiMajorAxisLengthRange(mko.Newton.Length min, mko.Newton.Length max)
+            {
+                var minKm = mko.Newton.Length.Kilometer(min).Vector[0];
+                var maxKm = mko.Newton.Length.Kilometer(max).Vector[0];
+
+                query = query.Where(r => minKm <= r.Orbit.SemiMajorAxisInKilometer && r.Orbit.SemiMajorAxisInKilometer <= maxKm);
+
             }
         }
 

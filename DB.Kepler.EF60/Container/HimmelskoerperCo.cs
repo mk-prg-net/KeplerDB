@@ -81,5 +81,10 @@ namespace DB.Kepler.EF60.Container
         {
             throw new NotImplementedException();
         }
+
+        public override bool Any(int id)
+        {
+            return ctx.HimmelskoerperTab.Any();
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Kepler.EF60", "DB.Kepler.EF60\DB.Kepler.EF60.csproj", "{5435103B-0DFA-4767-AF62-F37D580B1F6D}"
 EndProject
@@ -54,6 +54,8 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KeplerBI_SQL", "KeplerBI_SQL\KeplerBI_SQL.sqlproj", "{84EF75FB-EA69-4446-924F-C306ED4F5ABC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.tools.cmd", "KeplerBI.tools.cmd\KeplerBI.tools.cmd.csproj", "{D960EC6B-BEDE-4B78-8173-458077ADBFA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Kepler.EF60.tools.cmd", "DB.Kepler.EF60.tools.cmd\DB.Kepler.EF60.tools.cmd.csproj", "{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +173,10 @@ Global
 		{D960EC6B-BEDE-4B78-8173-458077ADBFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D960EC6B-BEDE-4B78-8173-458077ADBFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D960EC6B-BEDE-4B78-8173-458077ADBFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
