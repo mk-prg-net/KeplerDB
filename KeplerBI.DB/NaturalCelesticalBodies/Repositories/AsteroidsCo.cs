@@ -52,6 +52,16 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
             _ctx = ctx;
         }
 
+        public void BulkInsertOff()
+        {
+            _ctx.Configuration.AutoDetectChangesEnabled = true;
+        }
+
+        public void BulkInsertOn()
+        {
+            _ctx.Configuration.AutoDetectChangesEnabled = false;
+        }
+
         public KeplerBI.NaturalCelesticalBodies.Repositories.IAsteroidsCo_FilteredSortedSetBuilder createFiltertedSortedSetBuilder()
         {
             return new FileredSortedSetBuilder(_ctx);
@@ -80,7 +90,10 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
             public FileredSortedSetBuilder(KeplerDBContext ctx)
             {
                 this.ctx = ctx;
-                query = ctx.CelesticalBodies.OfType<Asteroid>();
+
+                // Mittels AsNoTracking() wird das ChangeTracking ausgeschaltet. Sinnvoll für ein 
+                // readonly Dataset.
+                query = ctx.CelesticalBodies.OfType<Asteroid>().AsNoTracking();
             }
 
             public void defSkip(int count)
@@ -88,7 +101,7 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 toSkip = count;
             }
 
-            public void defTop(int count)
+            public void defTake(int count)
             {
                 Top = count;
             }
@@ -133,18 +146,23 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
             public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IAsteroid> GetSet()
             {
-                if (toSkip.HasValue)
+                if (!SortOrders.Any())
                 {
-                    query = query.Skip(toSkip.Value);
-                }
+                    OrderBySemiMajorAxisLength(false);
+                }               
 
-                if (Top.HasValue)
-                {
-                    query = query.Take(Top.Value);
-                }
-
-                return new mko.BI.Repositories.FilteredSortedSet<Asteroid>(query, SortOrders);
+                return new mko.BI.Repositories.FilteredSortedSet<Asteroid>(query, SortOrders, toSkip ?? -1, Top ?? -1);
                 
+            }
+
+            public void defAlbedoRange(double begin, double end)
+            {
+                query = query.Where(r => r.Albedo >= begin && r.Albedo <= end);
+            }
+
+            public void OrderByAlbedo(bool descending)
+            {
+                SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Asteroid, double>(r => r.Albedo, descending));
             }
         }
     }   

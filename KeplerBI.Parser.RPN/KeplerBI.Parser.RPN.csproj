@@ -30,16 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
+    <Reference Include="mko, Version=7.2.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.7.2.1\lib\net45\mko.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Algo, Version=1.2.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
       <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.3.0.0.0\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.BI, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.2.1\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbedoRangEval.cs" />
+    <Compile Include="AlbedoRng.cs" />
     <Compile Include="AUEval.cs" />
     <Compile Include="BasicOrderByEval.cs" />
     <Compile Include="ConfigDataToken.cs" />
@@ -68,6 +70,10 @@
     <Compile Include="KMEval.cs" />
     <Compile Include="MassRngData.cs" />
     <Compile Include="MassRngEval.cs" />
+    <Compile Include="OrderByAlbedo.cs" />
+    <Compile Include="OrderByAlbedoEval.cs" />
+    <Compile Include="OrderByDiameter.cs" />
+    <Compile Include="OrderByDiameterEval.cs" />
     <Compile Include="OrderByMassData.cs" />
     <Compile Include="OrderByMassEval.cs" />
     <Compile Include="OrderBySemiMajorAxisLengthData.cs" />
@@ -77,10 +83,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SemiMajorAxisLengthRngData.cs" />
     <Compile Include="SemiMajorAxisLengthRngEval.cs" />
+    <Compile Include="SkipData.cs" />
+    <Compile Include="SkipEval.cs" />
     <Compile Include="SMEval.cs" />
+    <Compile Include="TakeData.cs" />
+    <Compile Include="TakeEval.cs" />
     <Compile Include="Tokenizer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

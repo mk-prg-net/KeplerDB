@@ -78,77 +78,88 @@ namespace KeplerBI.Dataimport
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
                 Console.WriteLine("# eingelesener Asteroiden:");
-                while (!reader.EndOfStream)
+
+                _catalog.Asteroids.BulkInsertOn();
+                try
                 {
-                    string line = reader.ReadLine();
-                    lines++;
-
-                    if (lines % 100 == 0 && ProgressInfo != null)
+                    while (!reader.EndOfStream)
                     {
-                        ProgressInfo(lines, i);
-                    }
+                        string line = reader.ReadLine();
+                        lines++;
 
-                    string[] cols = line.Split(',');
-
-                    if (cols.Length != 8)
-                        throw new Exception("In Zeile " + i + " ist die Anzahl der Spalten # 8");
-
-                    //AsteroidName,DiameterInKm,e,a,rot_per_year,albedo,rot_per_day,GM
-                    string AsteroidName = cols[0].Replace('"', ' ').Trim();
-
-                    AsteroidName = AsteroidName.Substring(AsteroidName.LastIndexOf(' ')).Trim();
-                    double diameterInKm;
-                    if (!double.TryParse(cols[1], out diameterInKm))
-                        diameterInKm = 0;
-                    double e;
-                    if (!double.TryParse(cols[2], out e))
-                        e = 0;
-                    double a;
-                    if (!double.TryParse(cols[3], out a))
-                        a = 0;
-                    double orbital_period_in_years;
-                    if (!double.TryParse(cols[4], out orbital_period_in_years))
-                        orbital_period_in_years = 0;
-                    double albedo;
-                    if (!double.TryParse(cols[5], out albedo))
-                        albedo = 0;
-                    double rot_per_day;
-                    if (!double.TryParse(cols[6], out rot_per_day))
-                        rot_per_day = 0;
-                    double GM;
-                    if (!double.TryParse(cols[7], out GM))
-                        GM = 0;
-                    double Mass_in_Kg = GM / 6.67259e-20;
-
-                    // Nur Asteroiden mit vollständigen Bahn und Massedaten importieren
-                    if (a > 0 && e > 0 && orbital_period_in_years > 0)
-                    {
-                        _catalog.CreateAsteroid(AsteroidName, Sonne, mko.Newton.Length.AU(a), mko.Newton.Velocity.KilometerPerSec((Math.PI * 2) * mko.Newton.Length.AU(a), orbital_period_in_years*earthyear_in_sec ));
-                        _catalog.SubmitChanges();
-
-                        var newAsteroid = _catalog.Asteroids.GetBo(AsteroidName);
-                        newAsteroid.Albedo = albedo;
-                        newAsteroid.EquatorialDiameter = mko.Newton.Length.Kilometer(diameterInKm);
-                        newAsteroid.MassInEarthmasses = mko.Newton.Mass.EarthMasses(mko.Newton.Mass.Kilogram(Mass_in_Kg)).Value;
-
-                        if (i % 100 == 0)
+                        if (lines % 100 == 0 && ProgressInfo != null)
                         {
-                            try
-                            {
-                                if (ProgressInfo != null)
-                                {
-                                    ProgressInfo(lines, i);
-                                }
-                                _catalog.SubmitChanges();
-                            }
-                            catch (Exception ex)
-                            {
-                                throw new Exception("" + i + " Asteroiden eingelesen und eine Ausnahme aufgetreten", ex);
-
-                            }
+                            ProgressInfo(lines, i);
                         }
-                        i++;
+
+                        string[] cols = line.Split(',');
+
+                        if (cols.Length != 8)
+                            throw new Exception("In Zeile " + i + " ist die Anzahl der Spalten # 8");
+
+                        //AsteroidName,DiameterInKm,e,a,rot_per_year,albedo,rot_per_day,GM
+                        string AsteroidName = cols[0].Replace('"', ' ').Trim();
+
+                        AsteroidName = AsteroidName.Substring(AsteroidName.LastIndexOf(' ')).Replace(')', ' ').Trim();
+                        double diameterInKm;
+                        if (!double.TryParse(cols[1], out diameterInKm))
+                            diameterInKm = 0;
+                        double e;
+                        if (!double.TryParse(cols[2], out e))
+                            e = 0;
+                        double a;
+                        if (!double.TryParse(cols[3], out a))
+                            a = 0;
+                        double orbital_period_in_years;
+                        if (!double.TryParse(cols[4], out orbital_period_in_years))
+                            orbital_period_in_years = 0;
+                        double albedo;
+                        if (!double.TryParse(cols[5], out albedo))
+                            albedo = 0;
+                        double rot_per_day;
+                        if (!double.TryParse(cols[6], out rot_per_day))
+                            rot_per_day = 0;
+                        double GM;
+                        if (!double.TryParse(cols[7], out GM))
+                            GM = 0;
+                        double Mass_in_Kg = GM / 6.67259e-20;
+
+                        // Nur Asteroiden mit vollständigen Bahn und Massedaten importieren
+                        if (a > 0 && e > 0 && orbital_period_in_years > 0)
+                        {
+                            _catalog.CreateAsteroid(AsteroidName, Sonne, mko.Newton.Length.AU(a), mko.Newton.Velocity.KilometerPerSec((Math.PI * 2) * mko.Newton.Length.AU(a), orbital_period_in_years * earthyear_in_sec));
+                            _catalog.SubmitChanges();
+
+                            var newAsteroid = _catalog.Asteroids.GetBo(AsteroidName);
+                            newAsteroid.Albedo = albedo;
+                            newAsteroid.EquatorialDiameter = mko.Newton.Length.Kilometer(diameterInKm);
+                            newAsteroid.MassInEarthmasses = mko.Newton.Mass.EarthMasses(mko.Newton.Mass.Kilogram(Mass_in_Kg)).Value;
+
+                            if (i % 100 == 0)
+                            {
+                                try
+                                {
+                                    if (ProgressInfo != null)
+                                    {
+                                        ProgressInfo(lines, i);
+                                    }
+                                    _catalog.Asteroids.BulkInsertOff();
+                                    _catalog.SubmitChanges();
+                                    _catalog.Asteroids.BulkInsertOn();
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw new Exception("" + i + " Asteroiden eingelesen und eine Ausnahme aufgetreten", ex);
+
+                                }
+                            }
+                            i++;
+                        }
                     }
+                }
+                finally
+                {
+                    _catalog.Asteroids.BulkInsertOff();
                 }
 
                 try

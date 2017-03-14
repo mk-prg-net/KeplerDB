@@ -13,6 +13,8 @@ namespace KeplerBI.DB
     {
         protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("kosmos");
+
 
             modelBuilder.Entity<CelesticalBodyTypeDescriptor>().HasKey(e => e.Type);
 
@@ -45,6 +47,9 @@ namespace KeplerBI.DB
             modelBuilder.Entity<CelestialBodyBase>()
                 .HasOptional<Orbit>(r => r.Orbit).WithRequired();
 
+            modelBuilder.Entity<CelestialBodyBase>()
+                .HasOptional<Image>(r => r.ImageDB).WithRequired();
+
 
             //modelBuilder.Entity<SpaceShips.SpaceShip>().HasEntitySetName("AreasOfApplication").HasMany<SpaceShips.AreaOfApplication>(e => e.AreasOfApplication);
 
@@ -65,11 +70,18 @@ namespace KeplerBI.DB
             modelBuilder.Entity<CelesticalBodySystem>()
                         .HasKey(r => r.CentralBodyId)
                         .HasRequired<CelestialBodyBase>(r => r.CentralBody).WithOptional().WillCascadeOnDelete(false);
-            
+
 
             //modelBuilder.Entity<SpaceShips.AreaOfApplication>().ToTable("AreasOfApplication");
 
+            modelBuilder.Entity<Config.ConfigString>().ToTable(tableName: "ConfigStrings", schemaName: "admin");
             modelBuilder.Entity<Config.ConfigString>().HasKey(r => r.Name);
+
+            modelBuilder.Entity<Logging.LogFile>().ToTable(tableName: "Logs", schemaName: "admin");
+
+            modelBuilder.Entity<Image>().ToTable(tableName: "Images", schemaName: "dbo");
+
+
 
             base.OnModelCreating(modelBuilder);
         }

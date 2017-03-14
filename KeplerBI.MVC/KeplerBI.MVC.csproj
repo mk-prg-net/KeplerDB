@@ -70,16 +70,16 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
+    <Reference Include="mko, Version=7.2.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.7.2.1\lib\net45\mko.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Algo, Version=1.2.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
       <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.3.0.0.0\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.BI, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.2.1\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -217,10 +217,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Asteroids\AsteroidVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Planets\PlanetsVM.cs" />
     <Compile Include="Models\Planets\PlanetDeco.cs" />
+    <Compile Include="Models\RPNTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -229,6 +231,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\mk-prg-net.glyphs.css" />
     <Content Include="Content\pics\actions\bearbeiten.gif" />
     <Content Include="Content\pics\actions\bearbeiten.png" />
     <Content Include="Content\pics\actions\delete.gif" />
@@ -268,6 +271,14 @@
     <Content Include="Content\pics\Erde-small.jpg" />
     <Content Include="Content\pics\Erdmond-big.jpg" />
     <Content Include="Content\pics\Erdmond-small.jpg" />
+    <Content Include="Content\pics\etc\cuby-bad.png" />
+    <Content Include="Content\pics\etc\cuby-bad.svg" />
+    <Content Include="Content\pics\etc\cuby-happy.png" />
+    <Content Include="Content\pics\etc\cuby-happy.svg" />
+    <Content Include="Content\pics\etc\cuby-unknown.png" />
+    <Content Include="Content\pics\etc\cuby-unknown.svg" />
+    <Content Include="Content\pics\etc\cuby.png" />
+    <Content Include="Content\pics\etc\cuby.svg" />
     <Content Include="Content\pics\etc\Gondeln.jpg" />
     <Content Include="Content\pics\etc\KubyBoese.gif" />
     <Content Include="Content\pics\etc\KubyLieb.gif" />
@@ -337,6 +348,62 @@
     <Content Include="Content\pics\Miranda-big.jpg" />
     <Content Include="Content\pics\Miranda-med.jpg" />
     <Content Include="Content\pics\Miranda-small.jpg" />
+    <Content Include="Content\pics\mk-prg-net\icons\admin-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\admin-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\architect-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\architect-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-1-active-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-1-active-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-1-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-1-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-2-active-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-2-active-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-2-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-2-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-3-active-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-3-active-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-3-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\col-3-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\consulting-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\consulting-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\crypto-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\crypto-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby-bad.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby-bad.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby-happy.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby-happy.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby-unknown.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby-unknown.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\cuby.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\db-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\db-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\decorator-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\decorator-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\di-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\di-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\domain-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\domain-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\ef6-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\ef6-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\gui-pattern-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\gui-pattern-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\http-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\http-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\interface-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\interface-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\network-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\network-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\Project-Icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\Project-Icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\rocket-45-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\rocket-45-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\softdev-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\softdev-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\solid-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\solid-icon.svg" />
+    <Content Include="Content\pics\mk-prg-net\icons\wissen-icon.png" />
+    <Content Include="Content\pics\mk-prg-net\icons\wissen-icon.svg" />
     <Content Include="Content\pics\Mond-med.jpg" />
     <Content Include="Content\pics\Neptun-big.jpg" />
     <Content Include="Content\pics\Neptun-med.jpg" />
@@ -400,6 +467,8 @@
     <Content Include="Content\pics\space\Raumschiff-Black.png" />
     <Content Include="Content\pics\space\Raumschiff.bmp" />
     <Content Include="Content\pics\space\Raumschiff.png" />
+    <Content Include="Content\pics\space\rocket-45-icon.png" />
+    <Content Include="Content\pics\space\rocket-45-icon.svg" />
     <Content Include="Content\pics\space\Schwarzes-Loch-black.png" />
     <Content Include="Content\pics\space\Schwarzes-Loch.bmp" />
     <Content Include="Content\pics\space\Schwarzes-Loch.png" />
@@ -412,8 +481,11 @@
     <Content Include="Content\pics\Tethys-big.jpg" />
     <Content Include="Content\pics\Tethys-med.jpg" />
     <Content Include="Content\pics\Tethys-small.jpg" />
+    <Content Include="Content\pics\Titan-big.jpg" />
     <Content Include="Content\pics\Titan-big.png" />
+    <Content Include="Content\pics\Titan-med.jpg" />
     <Content Include="Content\pics\Titan-med.png" />
+    <Content Include="Content\pics\Titan-small.jpg" />
     <Content Include="Content\pics\Titan-small.png" />
     <Content Include="Content\pics\Titania-big.jpg" />
     <Content Include="Content\pics\Titania-med.jpg" />
@@ -438,6 +510,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\pics\filetypes\mko-Zip-Icon.odg" />
+    <None Include="Properties\PublishProfiles\DeployToPCC.pubxml" />
     <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

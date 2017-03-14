@@ -122,6 +122,11 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
             public mko.BI.Repositories.Interfaces.IFilteredSortedSet<KeplerBI.NaturalCelesticalBodies.IPlanet> GetSet()
             {
+                if (!SortOrders.Any())
+                {
+                    OrderBySemiMajorAxisLength(false);
+                }
+
                 return new mko.BI.Repositories.FilteredSortedSet<Planet>(query.ToArray().AsQueryable(), SortOrders);
             }
 

@@ -4,13 +4,16 @@
     ViewBag.Title = "Planeten";
 }
 
-<h2>Katalog der Planeten</h2>
+<h2><img src="~/Content/pics/space/Planet-2.png" style="display:inline" /> Katalog der Planeten</h2>
 <p>
     @if (Model.Tokens.Any())
     {
         <text>Gefiltert durch:</text><code>@Model.TokensToString(0, Model.Tokens.Count() - 1)</code>
     }
 </p>
+
+
+<input type="hidden" id="AppFolder" value="@Url.Content("~/")"/>
 
 <div class="btn-toolbar">
 
@@ -35,6 +38,9 @@
         <input id="DefSemiMajorAxisRngEnd" type="text" class="form-control" placeholder="bis (z.B. 4 AU)" value="100 AU">
     </div>
 </div>
+<p id="status">
+
+</p>
 <table class="table table-striped">
 
     <tr>
@@ -45,6 +51,8 @@
         <th>&empty; [KM]</th>
         <th># Monde</th>
         <th>&nbsp;</th>
+        <th>Rank</th>
+        <th>Vote</th>
     </tr>
 
     @foreach (var planet in Model.Planets)
@@ -54,7 +62,7 @@
                 <b>@planet.Name.ToUpper()</b>
             </td>
             <td>
-                <img src="~/Content/pics/@planet.Name-small.jpg" class="img-circle" style="width:50px"/>
+                <img src="~/Content/pics/@planet.Name-small.jpg" class="img-circle" style="width:50px" title="@planet.Name"/>
             </td>
             <td>
                 @mko.Newton.Length.AU(planet.Orbit.SemiMajorAxis).Vector[0]
@@ -78,8 +86,21 @@
             <td>
                 @foreach (var moon in planet.Moons)
                 {
-                    <img src="~/Content/pics/@moon.Name-small.jpg" class="img-circle" style="width:50px" />
+                    <img src="~/Content/pics/@moon.Name-small.jpg" class="img-circle" style="width:50px" title="@moon.Name" />
                 }
+            </td>
+            <td>
+                @* Übergabe der Rank- Werte an JavaScript in den Data- Attributen
+                   JavaScript bestimmt daraus das anzuzeigende Cuby- Icon.  *@
+                <img  style="height: 25px" name="rank" id="imgVote@(planet.Name)" data-Planet="@planet.Name" data-RankCount="@planet.RankCount" data-RankSum="@planet.RankSum" />                                
+            </td>
+            <td>
+                <img src="~/Content/pics/etc/cuby-bad.svg" style="height: 25px" data-Vote="bad" data-Planet="@planet.Name"/>
+                &nbsp;
+                <img src="~/Content/pics/etc/cuby.svg" style="height: 25px" data-Vote="ok" data-Planet="@planet.Name"/>
+                &nbsp;
+                <img src="~/Content/pics/etc/cuby-happy.svg" style="height: 25px" data-Vote="good" data-Planet="@planet.Name"/>
+
             </td>
         </tr>
     }

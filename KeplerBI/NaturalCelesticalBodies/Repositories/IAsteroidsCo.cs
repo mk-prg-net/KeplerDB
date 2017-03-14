@@ -48,6 +48,10 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
     public interface IAsteroidsCo : IRepo.IGet<IAsteroid, string>
     {
         IAsteroidsCo_FilteredSortedSetBuilder createFiltertedSortedSetBuilder();
+
+        void BulkInsertOn();
+
+        void BulkInsertOff();
     }
 
     /// <summary>
@@ -69,7 +73,21 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
         /// der nach Anwenden von Skip übrig bleibt.
         /// </summary>
         /// <param name="count"></param>
-        void defTop(int count);
+        void defTake(int count);
+
+        /// <summary>
+        /// Einschränken auf alle Asteroiden deren Albedo (Helligkeit) im definierten Bereich liegt
+        /// </summary>
+        /// <param name="begin"></param>
+        /// <param name="end"></param>
+        void defAlbedoRange(double begin, double end);
+
+
+        /// <summary>
+        /// Sortieren nach der Helligkeit
+        /// </summary>
+        /// <param name="descending"></param>
+        void OrderByAlbedo(bool descending);
 
     }
 

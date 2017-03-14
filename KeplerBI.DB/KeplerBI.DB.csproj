@@ -38,8 +38,8 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
+    <Reference Include="mko, Version=7.2.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.7.2.1\lib\net45\mko.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Algo, Version=1.2.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -50,8 +50,8 @@
       <HintPath>..\packages\mko.Ballistik.1.1.2.0\lib\net45\mko.Ballistik.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.3.0.0.0\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.BI, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.2.1\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -83,9 +83,13 @@
     <Compile Include="Config\Repositories\ConfigStringsCo.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DBUtil.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="KeplerDBContext.cs" />
     <Compile Include="KeplerDBContext.Mapping.cs" />
     <Compile Include="KeplerDBException.cs" />
+    <Compile Include="Logging\LogFile.cs" />
+    <Compile Include="Logging\Repositories\FSSBld.cs" />
+    <Compile Include="Logging\Repositories\Logs.cs" />
     <Compile Include="Migrations\201606052156469_InitialCreate.cs" />
     <Compile Include="Migrations\201606052156469_InitialCreate.Designer.cs">
       <DependentUpon>201606052156469_InitialCreate.cs</DependentUpon>
@@ -93,6 +97,10 @@
     <Compile Include="Migrations\201606062300219_Config.cs" />
     <Compile Include="Migrations\201606062300219_Config.Designer.cs">
       <DependentUpon>201606062300219_Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703081603222_DifferentSchemas.cs" />
+    <Compile Include="Migrations\201703081603222_DifferentSchemas.Designer.cs">
+      <DependentUpon>201703081603222_DifferentSchemas.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NaturalCelesticalBodies\Asteroid.cs" />
@@ -126,16 +134,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE.txt" />
-    <Content Include="Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201606052156469_InitialCreate.resx">
       <DependentUpon>201606052156469_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606062300219_Config.resx">
       <DependentUpon>201606062300219_Config.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703081603222_DifferentSchemas.resx">
+      <DependentUpon>201703081603222_DifferentSchemas.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
+    <Content Include="Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

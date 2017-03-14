@@ -1,23 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
+    <!-- Der folgende Link erzeugt auf einem Browser- Tab ein Benutzerdefiniertes Icon-->
+    <link href="~/Content/pics/mk-prg-net/icons/rocket-45-icon.png" rel="shortcut icon" />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="~/Content/mk-prg-net.glyphs.css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+        <div class="container">            
+            <div class="navbar-header">                                
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("KeplerBI.MVC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </button>                
+                <a href="@Url.Action("Index", new {controller="Home", area=""})"><img src="~/Content/pics/mk-prg-net/icons/rocket-45-icon.svg" width="40" /></a>                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

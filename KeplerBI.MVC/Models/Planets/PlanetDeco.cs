@@ -168,5 +168,39 @@ namespace KeplerBI.MVC.Models.Planets
                 return _Moons;
             }
         }
+
+        public int RankSum
+        {
+            get
+            {
+                return _Planet.RankSum;
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int RankCount
+        {
+            get
+            {
+                return _Planet.RankCount;
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IImage Image
+        {
+            get
+            {
+                return _Planet.Image;
+            }
+        }
     }
 }

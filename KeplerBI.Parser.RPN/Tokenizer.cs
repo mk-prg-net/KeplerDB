@@ -48,6 +48,16 @@ namespace KeplerBI.Parser.RPN
         // Alle Funktionsbezeichner als statische Konstanten definieren        
 
         /// <summary>
+        /// Überspringen der ersten n Datensätze
+        /// </summary>
+        public const string Skip = "Skip";
+
+        /// <summary>
+        /// Übernehmen der folgenden n Datensätze
+        /// </summary>
+        public const string Take = "Take";
+        
+        /// <summary>
         /// Erdmassen
         /// </summary>
         public const string EM = "EM";  
@@ -78,6 +88,12 @@ namespace KeplerBI.Parser.RPN
         public const string DiameterRng = "DiameterRng";
 
         /// <summary>
+        /// Durchmesserbereichsfilter
+        /// </summary>
+        public const string AlbedoRng = "AlbedoRng";
+
+
+        /// <summary>
         /// Bahnradiusbereichsfilter
         /// </summary>
         public const string SemiMajorAxisLengthRng = "SemiMajorAxisLengthRng";
@@ -88,18 +104,34 @@ namespace KeplerBI.Parser.RPN
         public const string OrderByMass = "OrderByMass";
 
         /// <summary>
+        /// Sortieren nach Durchmesser
+        /// </summary>
+        public const string OrderByDiameter = "OrderByDiameter";
+
+        /// <summary>
+        /// Sortieren nach Albedo
+        /// </summary>
+        public const string OrderByAlbedo = "OrderByAlbedo";
+
+
+        /// <summary>
         /// Sortieren nach Bahnradius
         /// </summary>
         public const string OrderBySemiMajorAxisLength = "OrderBySemiMajorAxisLength";
 
         public static Dictionary<string, mko.RPN.IEval> EvalFunctions = new Dictionary<string, mko.RPN.IEval>{
+            {Skip,  new SkipEval()},
+            {Take,  new TakeEval()},
             {KM, new KMEval()},
             {AU, new AUEval()},
             {EM, new EMEval()},
             {SM, new SMEval()},
+            {AlbedoRng, new AlbedoRngEval() },
             {DiameterRng, new DiameterRngEval()},
             {MassRng, new MassRngEval()},            
             {SemiMajorAxisLengthRng, new SemiMajorAxisLengthRngEval()},
+            {OrderByAlbedo, new OrderByAlbedoEval() },
+            {OrderByDiameter, new OrderByDiameterEval() },
             {OrderByMass, new OrderByMassEval()},
             {OrderBySemiMajorAxisLength, new OrderBySemiMajorAxisLengthEval()}            
         };
@@ -113,14 +145,19 @@ namespace KeplerBI.Parser.RPN
 
             switch (rawToken)
             {
+                case Skip:
+                case Take:
                 case EM:
                 case SM:
-                case MassRng:
                 case AU:
                 case KM:
+                case AlbedoRng:
                 case DiameterRng:
+                case MassRng:
                 case SemiMajorAxisLengthRng:
+                case OrderByAlbedo:
                 case OrderByMass:
+                case OrderByDiameter:
                 case OrderBySemiMajorAxisLength:
                     token = new FunctionNameToken(rawToken);
                     return true;                    

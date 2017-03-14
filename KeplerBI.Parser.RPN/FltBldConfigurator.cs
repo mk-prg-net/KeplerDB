@@ -32,7 +32,7 @@
 //
 //</unit_history>
 //</unit_header>        
-        
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +61,7 @@ namespace KeplerBI.Parser.RPN
         {
             // FilteredSortedSetBuilder über Kommandos konfigurieren
 
-            foreach(var data in configDatas)
+            foreach (var data in configDatas)
             {
                 if (data is DiameterRngData)
                 {
@@ -83,12 +83,50 @@ namespace KeplerBI.Parser.RPN
                     var tdata = (OrderBySemiMajorAxisLengthData)data;
                     bld.OrderBySemiMajorAxisLength(tdata.descending);
                 }
+                else if (data is OrderByDiameter)
+                {
+                    var tdata = (OrderByDiameter)data;
+                    bld.OrderByAequatorialDiameter(tdata.descending);
+                }
                 else if (data is SemiMajorAxisLengthRngData)
                 {
                     var tdata = (SemiMajorAxisLengthRngData)data;
                     bld.defSemiMajorAxisLengthRange(mko.Newton.Length.Meter(tdata.Min), mko.Newton.Length.Meter(tdata.Max));
-                }                
+                }
             }
         }
+
+        public void ApplyAstro(KeplerBI.NaturalCelesticalBodies.Repositories.IAsteroidsCo_FilteredSortedSetBuilder bld)
+        {
+            Apply(bld);
+
+            foreach (var data in configDatas)
+            {
+                if (data is SkipData)
+                {
+                    var tdata = (SkipData)data;
+                    bld.defSkip(tdata.count);
+                }
+                else if (data is TakeData)
+                {
+                    var tdata = (TakeData)data;
+                    bld.defTake(tdata.count);
+                }
+                else if (data is AlbedoRng)
+                {
+                    var tdata = (AlbedoRng)data;
+                    bld.defAlbedoRange(tdata.min, tdata.max);
+                }
+                else if (data is OrderByAlbedo)
+                {
+                    var tdata = (OrderByAlbedo)data;
+                    bld.OrderByAlbedo(tdata.descending);
+                }
+
+            }
+
+        }
+
+
     }
 }

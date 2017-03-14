@@ -41,6 +41,7 @@ using System.Web.Mvc;
 
 namespace KeplerBI.MVC.Controllers
 {
+    //[HandleError(View="~/Views/Shared/Error.cshtml")]
     public class PlanetsController : Controller
     {
         KeplerBI.IAstroCatalog catalog;
@@ -76,7 +77,6 @@ namespace KeplerBI.MVC.Controllers
             }
             else
             {
-
                 rpn = rpn.Trim();
                 var tokenizer = new KeplerBI.Parser.RPN.Tokenizer(rpn);
 
@@ -86,11 +86,6 @@ namespace KeplerBI.MVC.Controllers
                     viewModel.Tokens = RPNParser.TokenBuffer.Tokens;
 
                     var configurator = new KeplerBI.Parser.RPN.FltBldConfigurator(RPNParser.Stack);
-
-                    if (!viewModel.Tokens.Any(r => r.Value.StartsWith("OrderBy")))
-                    {
-                        fltBld.OrderBySemiMajorAxisLength(false);
-                    }
                     configurator.Apply(fltBld);
 
                 }
@@ -102,7 +97,8 @@ namespace KeplerBI.MVC.Controllers
 
             List<Models.Planets.PlanetDeco> PlanetsWithMoons = new List<Models.Planets.PlanetDeco>();
             var planetSet = fltBld.GetSet();
-            foreach (var planet in planetSet.Get())
+            var planets = planetSet.Get();
+            foreach (var planet in planets)
             {
                 var bld = catalog.Moons.createNewFilteredSortedSetBuilder();
                 bld.defPlanet(planet.Name);
@@ -120,6 +116,20 @@ namespace KeplerBI.MVC.Controllers
 
             viewModel.Planets = PlanetsWithMoons;
             return View(viewModel);
+        }
+
+
+        public JsonResult Voting(string Name, int option)
+        {
+            var planet = catalog.Planets.GetBo(Name);
+
+            var vt = new Voting();
+            vt.VoteFor(planet, (KeplerBI.Voting.Options)option);
+
+            catalog.SubmitChanges();
+
+            return Json(new {Planet=Name, Rank = planet.RankSum / planet.RankCount, Sum = planet.RankSum, Count = planet.RankCount }, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

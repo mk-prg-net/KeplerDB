@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.DB
 {
-    public abstract class CelestialBodyBase : KeplerBI.ICelestialBodyBase
+    public abstract class CelestialBodyBase : ICelestialBodyBase
     {
         public virtual int ID { get; set; }
 
@@ -39,10 +39,44 @@ namespace KeplerBI.DB
             {
                 return Orbit;
             }
-            set
+        }
+
+        /// <summary>
+        /// Summe aller abgegebener Bewertungen
+        /// </summary>
+        public int RankSum
+        {
+            get;
+
+            set;
+        }
+
+        /// <summary>
+        /// Anzahl aller abgegebener Bewertungen
+        /// </summary>
+        public int RankCount
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Verweist auf ein Bild, das den Himmeslköprer darstellt
+        /// </summary>
+        public IImage Image
+        {
+            get
             {
-                throw new NotImplementedException();
+                return ImageDB;
             }
+
+        }
+
+
+        internal protected Image ImageDB
+        {
+            get;
+            set;
         }
     }
 }
