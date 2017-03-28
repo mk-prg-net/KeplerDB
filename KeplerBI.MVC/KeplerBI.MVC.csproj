@@ -90,6 +90,10 @@
       <HintPath>..\packages\mko.Newton.1.1.2.0\lib\net45\mko.Newton.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="mko.RPN, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.RPN.1.1.0\lib\net45\mko.RPN.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -224,6 +228,11 @@
     <Compile Include="Models\Planets\PlanetDeco.cs" />
     <Compile Include="Models\RPNTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -568,6 +577,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -589,10 +599,12 @@
       <Project>{83b0d84a-6a8e-4e6f-8e66-c3e33e8e3a2b}</Project>
       <Name>KeplerBI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mko.RPN\mko.RPN.csproj">
-      <Project>{31fa4574-e070-4bbc-af5c-5586b782cc0e}</Project>
-      <Name>mko.RPN</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

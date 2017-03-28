@@ -49,12 +49,6 @@
     <Compile Include="Tokenizer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mko.RPN\mko.RPN.csproj">
-      <Project>{31fa4574-e070-4bbc-af5c-5586b782cc0e}</Project>
-      <Name>mko.RPN</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

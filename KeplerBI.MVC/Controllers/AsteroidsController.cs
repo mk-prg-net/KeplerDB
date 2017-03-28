@@ -10,7 +10,7 @@ namespace KeplerBI.MVC.Controllers
     {
 
         KeplerBI.IAstroCatalog catalog;
-        mko.RPN.Parser RPNParser = new mko.RPN.Parser();
+        mko.RPN.Parser RPNParser = new mko.RPN.Parser(KeplerBI.Parser.RPN.Tokens.EvalFunctions);
 
         /// <summary>
         /// Zugriff auf astronomischen Katalog via Dependency- Injection
@@ -18,6 +18,7 @@ namespace KeplerBI.MVC.Controllers
         /// <param name="catalog"></param>
         public AsteroidsController(KeplerBI.IAstroCatalog catalog)
         {
+            //Properties.Resources.
             this.catalog = catalog;
             mko.Newton.Init.Do();
         }
@@ -42,16 +43,14 @@ namespace KeplerBI.MVC.Controllers
 
             if (String.IsNullOrEmpty(rpn))
             {
+                // Keine Filter- und Sortiereinschränkungen definiert
                 // Begrenzen, damit nicht zu große Ergebnismengen geliefert werden
                 fssbld.defSkip(skip);
                 fssbld.defTake(take);
             }
             else
             {
-                rpn = rpn.Trim();
-                var tokenizer = new KeplerBI.Parser.RPN.Tokenizer(rpn);
-
-                RPNParser.Parse(tokenizer, KeplerBI.Parser.RPN.Tokenizer.EvalFunctions);
+                RPNParser.Parse(rpn);
                 if (RPNParser.Succsessful)
                 {                    
 
@@ -89,7 +88,7 @@ namespace KeplerBI.MVC.Controllers
                 }
             }
             var s = fssbld.GetSet();
-            return View(new Models.Asteroids.AsteroidVM(s, skip, take, (int)countAll, Tokens, rpnNext, rpnPrev));
+            return View(new Models.Asteroids.AsteroidVM(rpn, s, skip, take, (int)countAll, Tokens, rpnNext, rpnPrev));
         }
     }
 }

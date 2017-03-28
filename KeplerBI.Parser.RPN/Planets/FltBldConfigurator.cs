@@ -30,7 +30,7 @@ namespace KeplerBI.Parser.RPN.Planets
                 if (data is DiameterRngData)
                 {
                     var tdata = (DiameterRngData)data;
-                    bld.defAequatorialDiameterRange(mko.Newton.Length.Meter(tdata.min), mko.Newton.Length.Meter(tdata.max));
+                    bld.defAequatorialDiameterRange(mko.Newton.Length.Meter(tdata.Min), mko.Newton.Length.Meter(tdata.Max));
                 }
                 else if (data is MassRngData)
                 {

@@ -2,11 +2,11 @@
 //----------------------------------------------------------------
 //
 // Martin Korneffel: IT Beratung/Softwareentwicklung
-// Stuttgart, den 10.3.2017
+// Stuttgart, den 14.3.2017
 //
 //  Projekt.......: KeplerBI.Parser.RPN
-//  Name..........: Skip.cs
-//  Aufgabe/Fkt...: Token für Skip- funktion
+//  Name..........: NameLikeEval.ca
+//  Aufgabe/Fkt...: Schränkt ein auf alle Datesätze, deren Namen den String enthält
 //                  
 //
 //
@@ -38,16 +38,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mko.RPN;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class SkipData : ConfigDataToken
+    public class NameLikeEval: mko.RPN.BasicEvaluator
     {
-        public int count { get; set; }
+        public NameLikeEval(): base(1) { }
 
-        public SkipData(int count): base(Tokens.Skip)
+        public override void ReadParametersAndEvaluate(Stack<IToken> stack)
         {
-            this.count = count;
+            if (mko.RPN.StringToken.Test(stack.Peek()))
+            {
+                stack.Push(new NameLikeData(((mko.RPN.StringToken)stack.Pop()).Value));
+            } else
+            {
+                throw new Exception("NameLike muss als Parameter einen String haben");
+            }
         }
+
     }
 }

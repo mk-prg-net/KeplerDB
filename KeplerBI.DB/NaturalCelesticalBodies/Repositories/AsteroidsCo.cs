@@ -164,6 +164,11 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
             {
                 SortOrders.Add(new mko.BI.Repositories.DefSortOrderCol<Asteroid, double>(r => r.Albedo, descending));
             }
+
+            public void defNameLike(string Pattern)
+            {
+                query = query.Where(r => r.Name.Contains(Pattern));
+            }
         }
     }   
 

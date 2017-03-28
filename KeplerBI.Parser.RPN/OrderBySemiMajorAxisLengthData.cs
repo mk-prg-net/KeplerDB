@@ -10,7 +10,7 @@ namespace KeplerBI.Parser.RPN
     {
         public bool descending;
 
-        public OrderBySemiMajorAxisLengthData(bool descending) : base(Tokenizer.OrderBySemiMajorAxisLength)        
+        public OrderBySemiMajorAxisLengthData(bool descending) : base(Tokens.OrderBySemiMajorAxisLength)        
         {
             this.descending = descending;
         }

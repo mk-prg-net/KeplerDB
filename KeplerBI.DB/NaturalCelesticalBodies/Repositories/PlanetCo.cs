@@ -161,6 +161,12 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 // outerKeySelector: r => r.ID,
                 // resultSelector: (p, cb) => p);
             }
+
+            public void defNameLike(string Pattern)
+            {
+                query = query.Where(r => r.Name.Contains(Pattern));
+            }
+
         }
 
 

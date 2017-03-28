@@ -49,10 +49,10 @@ namespace KeplerBI.MVC.Models.Planets
 
         public string OrderBySemiMajorAxisRPN(bool desc)
         {
-            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokenizer.OrderBySemiMajorAxisLength + " ";
+            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokens.OrderBySemiMajorAxisLength + " ";
 
             int CountOfParams;
-            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokenizer.OrderBySemiMajorAxisLength, out CountOfParams);
+            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokens.OrderBySemiMajorAxisLength, out CountOfParams);
             return CreateRPNString(sortOrder, ix, CountOfParams);
         }
 
@@ -70,10 +70,10 @@ namespace KeplerBI.MVC.Models.Planets
 
         public string OrderByMassRPN(bool desc)
         {
-            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokenizer.OrderByMass + " ";
+            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokens.OrderByMass + " ";
 
             int CountOfParams;
-            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokenizer.OrderByMass, out CountOfParams);
+            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokens.OrderByMass, out CountOfParams);
             return CreateRPNString(sortOrder, ix, CountOfParams);
         }
 

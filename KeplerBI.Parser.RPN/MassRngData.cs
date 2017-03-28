@@ -11,10 +11,10 @@ namespace KeplerBI.Parser.RPN
     /// </summary>
     public class MassRngData : ConfigDataToken
     {
-        public double minEM;
-        public double maxEM;
+        public double minEM { get; }
+        public double maxEM { get; }
 
-        public MassRngData(double minEM, double maxEM) : base(Tokenizer.MassRng)
+        public MassRngData(double minEM, double maxEM) : base(Tokens.MassRng)
         {
             this.minEM = minEM;
             this.maxEM = maxEM;

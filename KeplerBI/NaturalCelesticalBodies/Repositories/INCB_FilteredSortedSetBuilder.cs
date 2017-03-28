@@ -52,6 +52,12 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
         where TEntity : INaturalCelesticalBody
     {
         /// <summary>
+        /// Einschränken auf alle Himmelskörper, deren Namen das Muster enthält
+        /// </summary>
+        /// <param name="Pattern"></param>
+        void defNameLike(string Pattern);
+
+        /// <summary>
         /// Einschränken auf Planeten, die den Zentralstern in einem Abstand von- bis umkreisen
         /// </summary>
         /// <param name="min">Kleinster Bahnradius</param>

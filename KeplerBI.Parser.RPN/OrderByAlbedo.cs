@@ -45,7 +45,7 @@ namespace KeplerBI.Parser.RPN
     {
         public bool descending;
 
-        public OrderByAlbedo(bool descending) : base(Tokenizer.OrderByAlbedo)
+        public OrderByAlbedo(bool descending) : base(Tokens.OrderByAlbedo)
         {
             this.descending = descending;
         }

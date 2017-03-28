@@ -45,7 +45,7 @@ namespace KeplerBI.Parser.RPN
     {
         public bool descending;
 
-        public OrderByDiameter(bool descending) : base(Tokenizer.OrderByDiameter)        
+        public OrderByDiameter(bool descending) : base(Tokens.OrderByDiameter)        
         {
             this.descending = descending;
         }

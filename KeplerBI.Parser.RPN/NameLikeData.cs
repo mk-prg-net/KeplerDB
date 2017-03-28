@@ -2,11 +2,11 @@
 //----------------------------------------------------------------
 //
 // Martin Korneffel: IT Beratung/Softwareentwicklung
-// Stuttgart, den 10.3.2017
+// Stuttgart, den 14.3.2017
 //
 //  Projekt.......: KeplerBI.Parser.RPN
-//  Name..........: Skip.cs
-//  Aufgabe/Fkt...: Token für Skip- funktion
+//  Name..........: NameLikeData.cs
+//  Aufgabe/Fkt...: Speichert das Wormuster für eine NameLike- Filterung auf dem Stack
 //                  
 //
 //
@@ -41,13 +41,12 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class SkipData : ConfigDataToken
+    public class NameLikeData : ConfigDataToken
     {
-        public int count { get; set; }
-
-        public SkipData(int count): base(Tokens.Skip)
-        {
-            this.count = count;
+        public NameLikeData(string pattern): base("NameLike") {
+            this.Pattern = pattern;
         }
+
+        public string Pattern { get; }
     }
 }

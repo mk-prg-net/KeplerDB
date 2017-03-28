@@ -6,7 +6,7 @@
 //
 //  Projekt.......: Projektkontext
 //  Name..........: Dateiname
-//  Aufgabe/Fkt...: Kurzbeschreibung
+//  Aufgabe/Fkt...: Definiert die Zuordnung von Funktion- Tokens zu Evaluatoren
 //                  
 //
 //
@@ -43,10 +43,20 @@ using mko.RPN;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class Tokenizer: mko.RPN.BasicTokenizer
+    public class Tokens
     {
         // Alle Funktionsbezeichner als statische Konstanten definieren        
 
+        /// <summary>
+        /// Überspringen der ersten n Datensätze
+        /// </summary>
+        public const string Skip = "Skip";
+
+        /// <summary>
+        /// Übernehmen der folgenden n Datensätze
+        /// </summary>
+        public const string Take = "Take";
+        
         /// <summary>
         /// Erdmassen
         /// </summary>
@@ -78,6 +88,14 @@ namespace KeplerBI.Parser.RPN
         public const string DiameterRng = "DiameterRng";
 
         /// <summary>
+        /// Albedobereichsfilter
+        /// </summary>
+        public const string AlbedoRng = "AlbedoRng";
+
+
+        public const string NameLike = "NameLike";
+
+        /// <summary>
         /// Bahnradiusbereichsfilter
         /// </summary>
         public const string SemiMajorAxisLengthRng = "SemiMajorAxisLengthRng";
@@ -88,46 +106,38 @@ namespace KeplerBI.Parser.RPN
         public const string OrderByMass = "OrderByMass";
 
         /// <summary>
+        /// Sortieren nach Durchmesser
+        /// </summary>
+        public const string OrderByDiameter = "OrderByDiameter";
+
+        /// <summary>
+        /// Sortieren nach Albedo
+        /// </summary>
+        public const string OrderByAlbedo = "OrderByAlbedo";
+
+
+        /// <summary>
         /// Sortieren nach Bahnradius
         /// </summary>
         public const string OrderBySemiMajorAxisLength = "OrderBySemiMajorAxisLength";
 
         public static Dictionary<string, mko.RPN.IEval> EvalFunctions = new Dictionary<string, mko.RPN.IEval>{
+            {Skip,  new SkipEval()},
+            {Take,  new TakeEval()},
             {KM, new KMEval()},
             {AU, new AUEval()},
             {EM, new EMEval()},
             {SM, new SMEval()},
+            {AlbedoRng, new AlbedoRngEval() },
             {DiameterRng, new DiameterRngEval()},
-            {MassRng, new MassRngEval()},            
+            {MassRng, new MassRngEval()},
+            {NameLike, new NameLikeEval() },
             {SemiMajorAxisLengthRng, new SemiMajorAxisLengthRngEval()},
+            {OrderByAlbedo, new OrderByAlbedoEval() },
+            {OrderByDiameter, new OrderByDiameterEval() },
             {OrderByMass, new OrderByMassEval()},
             {OrderBySemiMajorAxisLength, new OrderBySemiMajorAxisLengthEval()}            
         };
 
-        public Tokenizer(System.IO.StreamReader reader) : base(reader) { }
-
-        public Tokenizer(string term) : base(term) { }
-
-        protected override bool TryParseUserdefinedType(string rawToken, out IToken token)
-        {
-
-            switch (rawToken)
-            {
-                case EM:
-                case SM:
-                case MassRng:
-                case AU:
-                case KM:
-                case DiameterRng:
-                case SemiMajorAxisLengthRng:
-                case OrderByMass:
-                case OrderBySemiMajorAxisLength:
-                    token = new FunctionNameToken(rawToken);
-                    return true;                    
-                default:
-                    token = null;
-                    return false;
-            }
-        }
     }
 }

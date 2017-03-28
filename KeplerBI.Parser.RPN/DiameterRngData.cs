@@ -8,14 +8,14 @@ namespace KeplerBI.Parser.RPN
 {
     public class DiameterRngData : ConfigDataToken
     {
-        public double min;
-        public double max;
+        public double Min { get; }
+        public double Max { get; }
 
         public DiameterRngData(double min, double max)
-            : base(Tokenizer.DiameterRng)
+            : base(Tokens.DiameterRng)
         {
-            this.min = min;
-            this.max = max;
+            this.Min = min;
+            this.Max = max;
         }    
 
     }

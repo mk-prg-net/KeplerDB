@@ -107,6 +107,11 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 query = query.Where(r => minKm <= r.Orbit.SemiMajorAxisInKilometer && r.Orbit.SemiMajorAxisInKilometer <= maxKm);
 
             }
+
+            public void defNameLike(string Pattern)
+            {
+                query = query.Where(r => r.Name.Contains(Pattern));
+            }
         }
 
     }   

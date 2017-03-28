@@ -10,7 +10,7 @@ namespace KeplerBI.Parser.RPN
     {
         public bool descending;
 
-        public OrderByMassData(bool descending) : base(Tokenizer.OrderByMass)        
+        public OrderByMassData(bool descending) : base(Tokens.OrderByMass)        
         {
             this.descending = descending;
         }

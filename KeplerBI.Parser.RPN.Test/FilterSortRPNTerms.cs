@@ -34,9 +34,9 @@ namespace KeplerBI.Parser.RPN.Test
             using (var Universum = new KeplerBI.DB.AstroCatalog())
             {
 
-                var tokenizer  = new Tokenizer("2 AU 10 AU " + Tokenizer.SemiMajorAxisLengthRng);
+                var tokenizer  = new Tokens("2 AU 10 AU " + Tokens.SemiMajorAxisLengthRng);
 
-                Parser.Parse(tokenizer, Tokenizer.EvalFunctions);
+                Parser.Parse(tokenizer, Tokens.EvalFunctions);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(1, Parser.Stack.Count);
                 Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(SemiMajorAxisLengthRngData));
@@ -49,10 +49,10 @@ namespace KeplerBI.Parser.RPN.Test
                 Assert.IsTrue(fltSet.Any());
                 
 
-                tokenizer = new Tokenizer("2 AU 10 AU " + Tokenizer.SemiMajorAxisLengthRng + " desc " + Tokenizer.OrderBySemiMajorAxisLength);
+                tokenizer = new Tokens("2 AU 10 AU " + Tokens.SemiMajorAxisLengthRng + " desc " + Tokens.OrderBySemiMajorAxisLength);
 
                 Parser.TokenBuffer.Reset();
-                Parser.Parse(tokenizer, Tokenizer.EvalFunctions);
+                Parser.Parse(tokenizer, Tokens.EvalFunctions);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(2, Parser.Stack.Count);
                 
@@ -74,9 +74,9 @@ namespace KeplerBI.Parser.RPN.Test
             using (var Universum = new KeplerBI.DB.AstroCatalog())
             {
 
-                var tokenizer = new Tokenizer("2 EM 20 EM " + Tokenizer.MassRng);
+                var tokenizer = new Tokens("2 EM 20 EM " + Tokens.MassRng);
 
-                Parser.Parse(tokenizer, Tokenizer.EvalFunctions);
+                Parser.Parse(tokenizer, Tokens.EvalFunctions);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(1, Parser.Stack.Count);
                 Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(MassRngData));
@@ -89,9 +89,9 @@ namespace KeplerBI.Parser.RPN.Test
                 Assert.IsTrue(fltSet.Any());
 
 
-                tokenizer = new Tokenizer("2 EM 20 EM " + Tokenizer.MassRng + " desc " + Tokenizer.OrderByMass);
+                tokenizer = new Tokens("2 EM 20 EM " + Tokens.MassRng + " desc " + Tokens.OrderByMass);
 
-                Parser.Parse(tokenizer, Tokenizer.EvalFunctions);
+                Parser.Parse(tokenizer, Tokens.EvalFunctions);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(2, Parser.Stack.Count);
 

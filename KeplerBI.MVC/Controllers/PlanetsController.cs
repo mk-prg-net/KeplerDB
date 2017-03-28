@@ -45,7 +45,11 @@ namespace KeplerBI.MVC.Controllers
     public class PlanetsController : Controller
     {
         KeplerBI.IAstroCatalog catalog;
-        mko.RPN.Parser RPNParser = new mko.RPN.Parser();
+
+        /// <summary>
+        /// Definition und Konfiguration eines Parsers für RPN- Terme mit Filter- und Sortierausdrücken
+        /// </summary>
+        mko.RPN.Parser RPNParser = new mko.RPN.Parser(KeplerBI.Parser.RPN.Tokens.EvalFunctions);
 
         /// <summary>
         /// Zugriff auf astronomischen Katalog via Dependency- Injection
@@ -76,11 +80,8 @@ namespace KeplerBI.MVC.Controllers
                 viewModel.Tokens = new mko.RPN.IToken[]{};
             }
             else
-            {
-                rpn = rpn.Trim();
-                var tokenizer = new KeplerBI.Parser.RPN.Tokenizer(rpn);
-
-                RPNParser.Parse(tokenizer, KeplerBI.Parser.RPN.Tokenizer.EvalFunctions);
+            {                
+                RPNParser.Parse(rpn);
                 if (RPNParser.Succsessful)
                 {
                     viewModel.Tokens = RPNParser.TokenBuffer.Tokens;
