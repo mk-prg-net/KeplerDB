@@ -24,7 +24,7 @@ namespace KeplerBI.Parser.RPN.Test
 
         public FilterSortRPNTerms()
         {
-            Parser = new mko.RPN.Parser();
+            Parser = new mko.RPN.Parser(KeplerBI.Parser.RPN.Tokens.EvalFunctions);
             mko.Newton.Init.Do();
         }
 
@@ -34,9 +34,8 @@ namespace KeplerBI.Parser.RPN.Test
             using (var Universum = new KeplerBI.DB.AstroCatalog())
             {
 
-                var tokenizer  = new Tokens("2 AU 10 AU " + Tokens.SemiMajorAxisLengthRng);
 
-                Parser.Parse(tokenizer, Tokens.EvalFunctions);
+                Parser.Parse("2 AU 10 AU " + Tokens.SemiMajorAxisLengthRng);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(1, Parser.Stack.Count);
                 Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(SemiMajorAxisLengthRngData));
@@ -46,13 +45,12 @@ namespace KeplerBI.Parser.RPN.Test
                 fltBldConfig1.Apply(fltBld);                
 
                 var fltSet = fltBld.GetSet();
-                Assert.IsTrue(fltSet.Any());
+                Assert.IsTrue(fltSet.Any());               
+
                 
 
-                tokenizer = new Tokens("2 AU 10 AU " + Tokens.SemiMajorAxisLengthRng + " desc " + Tokens.OrderBySemiMajorAxisLength);
-
-                Parser.TokenBuffer.Reset();
-                Parser.Parse(tokenizer, Tokens.EvalFunctions);
+                Parser.Parse("2 AU 10 AU " + Tokens.SemiMajorAxisLengthRng + " desc " + Tokens.OrderBySemiMajorAxisLength);
+                //Parser.TokenBuffer.Reset();                
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(2, Parser.Stack.Count);
                 
@@ -73,10 +71,7 @@ namespace KeplerBI.Parser.RPN.Test
         {
             using (var Universum = new KeplerBI.DB.AstroCatalog())
             {
-
-                var tokenizer = new Tokens("2 EM 20 EM " + Tokens.MassRng);
-
-                Parser.Parse(tokenizer, Tokens.EvalFunctions);
+                Parser.Parse("2 EM 20 EM " + Tokens.MassRng);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(1, Parser.Stack.Count);
                 Assert.IsInstanceOfType(Parser.Stack.Peek(), typeof(MassRngData));
@@ -87,11 +82,9 @@ namespace KeplerBI.Parser.RPN.Test
 
                 var fltSet = fltBld.GetSet();
                 Assert.IsTrue(fltSet.Any());
+                
 
-
-                tokenizer = new Tokens("2 EM 20 EM " + Tokens.MassRng + " desc " + Tokens.OrderByMass);
-
-                Parser.Parse(tokenizer, Tokens.EvalFunctions);
+                Parser.Parse("2 EM 20 EM " + Tokens.MassRng + " desc " + Tokens.OrderByMass);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(2, Parser.Stack.Count);
 
@@ -101,11 +94,7 @@ namespace KeplerBI.Parser.RPN.Test
 
                 fltSet = fltBld.GetSet();
                 Assert.IsTrue(fltSet.Any());
-
-
             }
-
         }
-
     }
 }

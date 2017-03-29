@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using mko.RPN;
+
 namespace KeplerBI.MVC.Controllers
 {
     public class AsteroidsController : Controller
@@ -60,26 +62,32 @@ namespace KeplerBI.MVC.Controllers
                     var takeDat = RPNParser.Stack.FirstOrDefault(r => r is KeplerBI.Parser.RPN.TakeData);
                     var skipDat = RPNParser.Stack.FirstOrDefault(r => r is KeplerBI.Parser.RPN.SkipData);
 
+                    //mko.RPN.ParserHelper.
 
-                    Tokens = RPNParser.TokenBuffer.Tokens;
+                    var TokensWithoutSkipTake = mko.RPN.ParserHelper.Copy(RPNParser.TokenBuffer.Tokens);
 
+                    // Alte Skip und Take- Tokens entfernen
                     if (takeDat != null)
                     {
                         take = ((KeplerBI.Parser.RPN.TakeData)takeDat).count;                        
-                        Tokens =  Models.RPNTools.RemoveToken(Tokens, "Take");                        
+                        TokensWithoutSkipTake =  TokensWithoutSkipTake.RemoveFunction("Take");                        
                     }
 
                     if (skipDat != null)
                     {
                         skip = ((KeplerBI.Parser.RPN.SkipData)skipDat).count;
-                        Tokens = Models.RPNTools.RemoveToken(Tokens, "Skip");                        
+                        TokensWithoutSkipTake = TokensWithoutSkipTake.RemoveFunction("Skip");
                     }
 
+                    string rpnWithoutSkipTake = mko.RPN.ParserHelper.ToRPNString(TokensWithoutSkipTake);
+
+                    // Neue Parameter für Skip und Take berechnen
                     var skipPrev = Math.Max(0, skip - take);
                     var skipNext = Math.Min(countAll - take, skip + take);
 
-                    rpnPrev = Models.RPNTools.TokensToString(Tokens) + skipPrev + " Skip " + take + " Take";
-                    rpnNext = Models.RPNTools.TokensToString(Tokens) + skipNext + " Skip " + take + " Take";
+                    // rpn um Skip und Take erweitern
+                    rpnPrev = rpnWithoutSkipTake + skipPrev + " Skip " + take + " Take";
+                    rpnNext = rpnWithoutSkipTake + skipNext + " Skip " + take + " Take";
 
                 }
                 else
