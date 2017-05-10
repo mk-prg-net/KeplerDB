@@ -45,7 +45,7 @@ namespace KeplerBI.Parser.RPN
     {
         public int count { get; set; }
 
-        public TakeData(int count) : base(Tokens.Take)
+        public TakeData(IFunctionNames fn, int count) : base(fn.Take)
         {
             this.count = count;
         }

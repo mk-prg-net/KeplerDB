@@ -25,10 +25,9 @@
 //<unit_history>
 //------------------------------------------------------------------
 //
-//  Version.......: 1.1
 //  Autor.........: Martin Korneffel (mko)
-//  Datum.........: 
-//  Änderungen....: 
+//  Datum.........: 4.4.2017
+//  Änderungen....: GetMinMaxdiameter(...) definiert
 //
 //</unit_history>
 //</unit_header>        
@@ -49,6 +48,16 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
     {
         IAsteroidsCo_FilteredSortedSetBuilder createFiltertedSortedSetBuilder();
 
+        mko.BI.Bo.Interval<double> GetMinMaxDiameter();
+
+        /// <summary>
+        /// Liefert den kleinsten und den größten Wert der Spalte, deren Namen im Parameter übergeben wird
+        /// </summary>
+        /// <param name="ColName"></param>
+        /// <returns></returns>
+        Tuple<mko.BI.Bo.Interval<double>, string> GetMinMaxRng(string ColName);
+        
+
         void BulkInsertOn();
 
         void BulkInsertOff();
@@ -60,20 +69,6 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
     public interface IAsteroidsCo_FilteredSortedSetBuilder : INCB_FilteredSortedSetBuilder<IAsteroid>
     {
 
-        /// <summary>
-        /// Anzahl der zu überspringenden Datensätze in der gefilterten und sortierten Datenmengen.
-        /// Die vom Builder eingeschränkte Menge enthält nur die Datensätze, die nach dem 
-        /// Überspringen der count Datensätze übrigbleiben
-        /// </summary>
-        /// <param name="count"></param>
-        void defSkip(int count);
-
-        /// <summary>
-        /// Anzahl der maximal in der Menge aufzunehmenden Datensätze. Gezählt wird ab dem ersten Datensatz,
-        /// der nach Anwenden von Skip übrig bleibt.
-        /// </summary>
-        /// <param name="count"></param>
-        void defTake(int count);
 
         /// <summary>
         /// Einschränken auf alle Asteroiden deren Albedo (Helligkeit) im definierten Bereich liegt

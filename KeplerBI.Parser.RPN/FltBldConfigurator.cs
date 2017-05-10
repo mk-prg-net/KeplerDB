@@ -93,16 +93,12 @@ namespace KeplerBI.Parser.RPN
                     var tdata = (SemiMajorAxisLengthRngData)data;
                     bld.defSemiMajorAxisLengthRange(mko.Newton.Length.Meter(tdata.Min), mko.Newton.Length.Meter(tdata.Max));
                 }
-            }
-        }
-
-        public void ApplyAstro(KeplerBI.NaturalCelesticalBodies.Repositories.IAsteroidsCo_FilteredSortedSetBuilder bld)
-        {
-            Apply(bld);
-
-            foreach (var data in configDatas)
-            {
-                if (data is SkipData)
+                else if (data is NameLikeData)
+                {
+                    var tdata = (NameLikeData)data;
+                    bld.defNameLike(tdata.Pattern);
+                }
+                else if (data is SkipData)
                 {
                     var tdata = (SkipData)data;
                     bld.defSkip(tdata.count);
@@ -112,7 +108,17 @@ namespace KeplerBI.Parser.RPN
                     var tdata = (TakeData)data;
                     bld.defTake(tdata.count);
                 }
-                else if (data is AlbedoRng)
+
+            }
+        }
+
+        public void ApplyAstro(KeplerBI.NaturalCelesticalBodies.Repositories.IAsteroidsCo_FilteredSortedSetBuilder bld)
+        {
+            Apply(bld);
+
+            foreach (var data in configDatas)
+            {
+                if (data is AlbedoRng)
                 {
                     var tdata = (AlbedoRng)data;
                     bld.defAlbedoRange(tdata.min, tdata.max);

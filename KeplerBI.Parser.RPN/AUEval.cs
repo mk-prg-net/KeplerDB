@@ -12,8 +12,10 @@ namespace KeplerBI.Parser.RPN
     /// </summary>
     public class AUEval: mko.RPN.BasicEvaluator 
     {
-        public AUEval() : base(1) { }
-
+        public AUEval() : base(1)
+        {            
+        }
+        
         public override void ReadParametersAndEvaluate(Stack<mko.RPN.IToken> stack)
         {
             var val = PopNummeric(stack);

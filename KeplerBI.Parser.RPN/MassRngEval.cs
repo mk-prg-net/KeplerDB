@@ -47,17 +47,22 @@ namespace KeplerBI.Parser.RPN
     /// </summary>
     public class MassRngEval : mko.RPN.BasicEvaluator
     {
-        public MassRngEval() : base(2) { }
+        public MassRngEval(IFunctionNames fn) : base(2)
+        {
+            this.fn = fn;
+        }
+
+        IFunctionNames fn;
 
         public override void ReadParametersAndEvaluate(Stack<mko.RPN.IToken> stack)
         {
-            var max = PopNummeric(stack);
             var min = PopNummeric(stack);
+            var max = PopNummeric(stack);
 
             var minEM = mko.Newton.Mass.EarthMasses(mko.Newton.Mass.Kilogram(min.Item1)).Value;
             var maxEM = mko.Newton.Mass.EarthMasses(mko.Newton.Mass.Kilogram(max.Item1)).Value; 
 
-            stack.Push(new MassRngData(minEM, maxEM));            
+            stack.Push(new MassRngData(fn, minEM, maxEM));            
         }
     }
 }

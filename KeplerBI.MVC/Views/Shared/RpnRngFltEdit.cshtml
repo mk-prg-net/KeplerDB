@@ -1,0 +1,46 @@
+﻿@model KeplerBI.MVC.Models.Filters.RpnRngFlt
+
+<input type="hidden" id="AppFolder" value="@Url.Content("~/")" />
+<input type="hidden" id="rpnFName" value="@Model.Name" />
+<input type="hidden" id="ControllerName" value="@Model.ControllerName"/>
+<input type="hidden" id="pnWithoutFunction" value="@Model.pnWithoutFunction" />
+
+@{
+
+    var begin =  Model.fn.IsSemanticDescriptor(Model.ParameterSubTrees[0].Key) ? ".." +  Model.BeginName : "";
+    var end =   Model.fn.IsSemanticDescriptor(Model.ParameterSubTrees[1].Key) ? ".." +  Model.EndName : "";    
+}
+
+<input type="hidden" id="BeginTag" value="@begin"/>
+<input type="hidden" id="EndTag" value="@end" />
+
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        @Model.Name <text>edit</text>
+    </div>
+    <div class="panel-body">
+        <dl class="rpn">
+            <dt>@Html.DisplayFor(m => m.BeginName)</dt>
+            <dd>@Html.EditorFor(m => m.Begin)</dd>
+
+            <dt>@Html.DisplayFor(m => m.EndName)</dt>
+            <dd>@Html.EditorFor(m => m.End)</dd>
+        </dl>        
+
+        <button type="button" id="btnSave" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-save"></span></button>
+        <a href="@Url.Action("Index", new {controller="Asteroids", pn=Model.pnWithoutFunction})" class="btn btn-danger btn-xs" style="margin-left: 1em;"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/My/RpnRngFltEdit/DocumentReady.js")
+}
+
+
+
+
+
+

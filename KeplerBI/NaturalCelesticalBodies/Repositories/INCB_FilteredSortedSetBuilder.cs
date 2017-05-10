@@ -52,6 +52,22 @@ namespace KeplerBI.NaturalCelesticalBodies.Repositories
         where TEntity : INaturalCelesticalBody
     {
         /// <summary>
+        /// Anzahl der zu überspringenden Datensätze in der gefilterten und sortierten Datenmengen.
+        /// Die vom Builder eingeschränkte Menge enthält nur die Datensätze, die nach dem 
+        /// Überspringen der count Datensätze übrigbleiben
+        /// </summary>
+        /// <param name="count"></param>
+        void defSkip(int count);
+
+        /// <summary>
+        /// Anzahl der maximal in der Menge aufzunehmenden Datensätze. Gezählt wird ab dem ersten Datensatz,
+        /// der nach Anwenden von Skip übrig bleibt.
+        /// </summary>
+        /// <param name="count"></param>
+        void defTake(int count);
+
+
+        /// <summary>
         /// Einschränken auf alle Himmelskörper, deren Namen das Muster enthält
         /// </summary>
         /// <param name="Pattern"></param>

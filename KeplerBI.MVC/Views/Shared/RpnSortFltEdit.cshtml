@@ -1,0 +1,61 @@
+﻿@model KeplerBI.MVC.Models.Filters.RpnSortFlt
+
+<input type="hidden" id="AppFolder" value="@Url.Content("~/")" />
+<input type="hidden" id="rpnFName" value="@Model.Name" />
+<input type="hidden" id="ControllerName" value="@Model.ControllerName" />
+<input type="hidden" id="pnWithoutFunction" value="@Model.pnWithoutFunction" />
+
+@{
+
+    var ParamTag = Model.fn.IsSemanticDescriptor(Model.ParameterSubTrees[0].Key) ? ".." + Model.ParamTag : "";    
+}
+
+@helper CheckDesc(bool SortDesc, bool outputActive) {
+    if (SortDesc)
+    {
+        if (outputActive)
+        {
+                <text>active</text>
+        }
+        else
+        {
+                <text>checked</text>
+        }
+
+    }
+}
+
+
+
+<input type="hidden" id="ParamTag" value="@ParamTag" />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        @Model.Name <text>edit</text>
+    </div>
+    <div class="panel-body">
+        <dl class="rpn">
+            <dt>@Html.DisplayFor(m => m.ParamTag)</dt>
+            <dd>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default @CheckDesc(!Model.SortDescending, true)">
+                        <input type="radio" name="option" id="option1" value="asc" @CheckDesc(!Model.SortDescending, false) autocomplete="off"/>
+                        &uArr; asc
+                    </label>
+                    <label class="btn btn-default @CheckDesc(Model.SortDescending, true)">
+                        <input type="radio" name="option" id="option2" value="desc" @CheckDesc(Model.SortDescending, false) autocomplete="off" />
+                        &dArr; desc
+                    </label>
+                </div>
+            </dd>
+        </dl>
+
+        <button type="button" id="btnSave" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-save"></span></button>
+        <a href="@Url.Action("Index", new {controller="Asteroids", pn=Model.pnWithoutFunction})" class="btn btn-danger btn-xs" style="margin-left: 1em;"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/My/RpnsortFltEdit/DocumentReady.js")
+}

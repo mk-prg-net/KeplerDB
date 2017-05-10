@@ -17,6 +17,11 @@ namespace KeplerBI.MVC
             bundles.Add(new ScriptBundle("~/bundles/Planets/Index")
                 .Include("~/Scripts/My/Planets/Index/DocumentReady.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Asteroids/Index")
+                .Include("~/Scripts/My/Asteroids/Index/DocumentReady.js"));
+
+
+
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

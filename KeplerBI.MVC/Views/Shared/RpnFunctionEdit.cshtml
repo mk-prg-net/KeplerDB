@@ -1,0 +1,46 @@
+﻿@model KeplerBI.MVC.Models.Filters.Rpn
+
+@using mko.RPN
+<input type="hidden" id="AppFolder" value="@Url.Content("~/")" />
+<input type="hidden" id="rpnFName" value="@Model.Name" />
+<input type="hidden" id="ControllerName" value="@Model.ControllerName" />
+<input type="hidden" id="pnWithoutFunction" value="@Model.pnWithoutFunction" />
+<input type="hidden" id="ParameterCount" value="@Model.ParameterCount" />
+
+@for(int i = 0; i < Model.ParameterCount; i++)
+{
+    <input type="hidden" id="@string.Format("PName{0:D}", i)" value="@Model.ParameterSubTrees[i].Key" />
+}
+
+<li>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            @Model.Name
+        </div>
+        <div class="panel-body">
+            <dl class="rpn">
+                @for (int i = 0; i < Model.ParameterCount; i++)
+                {
+                    var key = Model.ParameterSubTrees[i].Key;
+                    var Name = Model.fn.IsSemanticDescriptor(key) ? Model.fn.ReduceSematicFunctionName(key) : key;
+
+                    <dt>@Name</dt>
+                    <dd><input type="text" id="@string.Format("PVal{0:D0}", i)" value="@Model.ParameterSubTrees[i].Value.ToPNString()"/></dd>
+                }
+            </dl>
+
+            <button type="button" id="btnSave" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-save"></span></button>
+            <a href="@Url.Action("Index", new {controller="Asteroids", pn=Model.pnWithoutFunction})" class="btn btn-danger btn-xs" style="margin-left: 1em;"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+
+    </div>
+
+</li>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/My/RpnFunctionEdit/DocumentReady.js")
+}
+
+
+
+

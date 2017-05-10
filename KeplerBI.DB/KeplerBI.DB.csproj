@@ -38,8 +38,8 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko, Version=7.2.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.7.2.1\lib\net45\mko.dll</HintPath>
+    <Reference Include="mko, Version=7.3.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.7.3.2\lib\net45\mko.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Algo, Version=1.2.2.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -50,8 +50,8 @@
       <HintPath>..\packages\mko.Ballistik.1.1.2.0\lib\net45\mko.Ballistik.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.3.2.1\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.BI, Version=3.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.2.3\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -118,6 +118,11 @@
     <Compile Include="NaturalCelesticalBodies\Star.cs" />
     <Compile Include="Orbit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\CelesticalBodySystemsCo.cs" />
     <Compile Include="AstroCatalog.cs" />
   </ItemGroup>
@@ -142,6 +147,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703081603222_DifferentSchemas.resx">
       <DependentUpon>201703081603222_DifferentSchemas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

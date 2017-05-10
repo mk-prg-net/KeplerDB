@@ -43,7 +43,7 @@ namespace KeplerBI.Parser.RPN
 {
     public class NameLikeData : ConfigDataToken
     {
-        public NameLikeData(string pattern): base("NameLike") {
+        public NameLikeData(IFunctionNames fn, string pattern): base(fn.NameLike) {
             this.Pattern = pattern;
         }
 

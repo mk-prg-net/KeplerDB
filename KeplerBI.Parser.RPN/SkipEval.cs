@@ -44,12 +44,17 @@ namespace KeplerBI.Parser.RPN
 {
     public class SkipEval : mko.RPN.BasicEvaluator
     {
-        public SkipEval(): base(1) { }
+        public SkipEval(IFunctionNames fn): base(1)
+        {
+            this.fn = fn;
+        }
+
+        IFunctionNames fn;
 
         public override void ReadParametersAndEvaluate(Stack<IToken> stack)
         {
             var count = PopNummeric(stack);
-            stack.Push(new SkipData((int)count.Item1));
+            stack.Push(new SkipData(fn, (int)count.Item1));
         }
 
     }

@@ -41,7 +41,7 @@ $(document).ready(function () {
         let AppFolder = $("#AppFolder").attr("value");
 
         let queryOption = begin + " " + end + " SemiMajorAxisLengthRng";
-        let uri = AppFolder + 'Planets?rpn=' + encodeURI(queryOption);
+        let uri = AppFolder + 'Planets?pn=' + encodeURI(queryOption);
 
         //window.location.href = uri;
         window.location.assign(uri);

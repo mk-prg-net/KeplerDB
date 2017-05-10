@@ -11,8 +11,8 @@ namespace KeplerBI.Parser.RPN
         public double min;
         public double max;
 
-        public AlbedoRng(double min, double max)
-            : base(Tokens.AlbedoRng)
+        public AlbedoRng(IFunctionNames fn, double min, double max)
+            : base(fn.AlbedoRng)
         {
             this.min = min;
             this.max = max;

@@ -48,14 +48,19 @@ namespace KeplerBI.Parser.RPN
     /// </summary>
     public class DiameterRngEval : mko.RPN.BasicEvaluator
     {
-        public DiameterRngEval() : base(2) { }
+        public DiameterRngEval(IFunctionNames fn) : base(2)
+        {
+            this.fn = fn;
+        }
+
+        IFunctionNames fn;
 
         public override void ReadParametersAndEvaluate(Stack<mko.RPN.IToken> stack)
         {
-            var max = PopNummeric(stack);
             var min = PopNummeric(stack);
+            var max = PopNummeric(stack);
 
-            stack.Push(new DiameterRngData(min.Item1, max.Item1));
+            stack.Push(new DiameterRngData(fn, min.Item1, max.Item1));
         }
     }
 }

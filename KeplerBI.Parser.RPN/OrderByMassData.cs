@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class OrderByMassData : ConfigDataToken
+    public class OrderByMassData : OrderByConfigDataToken
     {
-        public bool descending;
-
-        public OrderByMassData(bool descending) : base(Tokens.OrderByMass)        
-        {
-            this.descending = descending;
+        public OrderByMassData(IFunctionNames fn, bool descending) : base(fn.OrderByMass, descending)        
+        {            
         }
 
     }

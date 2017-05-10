@@ -117,10 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String1" xml:space="preserve">
-    <value>Hallo</value>
+  <data name="CfgLengthRangeFlt_View_end_param_invalid" xml:space="preserve">
+    <value>Der Längenbereich End- Parameter ist ungültig</value>
   </data>
-  <data name="String2" xml:space="preserve">
-    <value>Huhu</value>
+  <data name="fgLengthRangeFlt_View_begin_param_invalid" xml:space="preserve">
+    <value>Der Längenbereich Begin- Parameter ist ungültig</value>
+  </data>
+  <data name="Models_Filters_ConfigData_rpn_function_functionname_token_missing" xml:space="preserve">
+    <value>Der darzustellenden RPN- Term muss mit eine Funktion sein</value>
+  </data>
+  <data name="Models_Filters_ConfigData_rpn_function_invalid_paramlist" xml:space="preserve">
+    <value>Die Parameterliste der RPN Funktion {0:s} ist ungültig</value>
+  </data>
+  <data name="PNParseFailed" xml:space="preserve">
+    <value>PN- Term in URL konnte nicht korrekt geparst werden:</value>
+  </data>
+  <data name="PNParseFailed_StackInconsistent" xml:space="preserve">
+    <value>Auf dem Stapel gibt es nach dem erfolgreichen Parsen Objekte, deren Typ verschieden von ConfigDataToken ist.</value>
+  </data>
+  <data name="PN_ConfigCol_required" xml:space="preserve">
+    <value>Der RPN- Term Parameter der Action enthält nicht das erfolderliche Configcol Kommando</value>
+  </data>
+  <data name="RpnRngFlt_ParameterCount_2_expected" xml:space="preserve">
+    <value>Das Range- Filter erwartet genau zwei Parameter (begin, end)</value>
+  </data>
+  <data name="SubtreeAsRangeFlt_expected" xml:space="preserve">
+    <value>Als fSubTree wurde ein Rangefilter erwartet</value>
+  </data>
+  <data name="SubtreeAsSortFlt_expected" xml:space="preserve">
+    <value>Als fSubTree wurde ein Sortfilter erwartet</value>
   </data>
 </root>

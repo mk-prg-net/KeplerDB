@@ -25,14 +25,13 @@
 //<unit_history>
 //------------------------------------------------------------------
 //
-//  Version.......: 1.1
 //  Autor.........: Martin Korneffel (mko)
-//  Datum.........: 
-//  Änderungen....: 
+//  Datum.........: 4.4.2017
+//  Änderungen....: GetMinMaxDiameter implementiert
 //
 //</unit_history>
 //</unit_header>        
-        
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +39,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.Entity;
+using mko.BI.Bo;
 
 namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 {
@@ -77,15 +77,58 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
             return _ctx.CelesticalBodies.OfType<Asteroid>().First(r => r.Name == id);
         }
 
+        public Interval<double> GetMinMaxDiameter()
+        {
+            var min = _ctx.CelesticalBodies.OfType<Asteroid>().Min(r => r.EquatorialDiameterInKilometer);
+            var max = _ctx.CelesticalBodies.OfType<Asteroid>().Max(r => r.EquatorialDiameterInKilometer);
+
+            return new Interval<double>(min, max);
+        }
+
+        public Tuple<Interval<double>, string> GetMinMaxRng(string ColName)
+        {
+            switch (ColName)
+            {
+                case "Diameter":
+                    {
+                        var min = _ctx.CelesticalBodies.OfType<Asteroid>().Min(r => r.EquatorialDiameterInKilometer);
+                        var max = _ctx.CelesticalBodies.OfType<Asteroid>().Max(r => r.EquatorialDiameterInKilometer);
+
+                        return Tuple.Create(Interval.Create(min, max), "km");
+                    }
+                case "Albedo":
+                    {
+                        var min = _ctx.CelesticalBodies.OfType<Asteroid>().Min(r => r.Albedo);
+                        var max = _ctx.CelesticalBodies.OfType<Asteroid>().Max(r => r.Albedo);
+
+                        return Tuple.Create(Interval.Create(min, max), "");
+                    }
+                case "SemiMajorAxisLength":
+                    {
+                        var min = _ctx.CelesticalBodies.OfType<Asteroid>().Min(r => r.Orbit.SemiMajorAxisInKilometer);
+                        var max = _ctx.CelesticalBodies.OfType<Asteroid>().Max(r => r.Orbit.SemiMajorAxisInKilometer);
+
+                        return Tuple.Create(Interval.Create(min, max), "km");
+                    }
+                case "Velocity":
+                    {
+                        var min = _ctx.CelesticalBodies.OfType<Asteroid>().Min(r => r.Orbit.MeanVelocitiOfCirculationInKmPerSec);
+                        var max = _ctx.CelesticalBodies.OfType<Asteroid>().Max(r => r.Orbit.MeanVelocitiOfCirculationInKmPerSec);
+
+                        return  Tuple.Create(Interval.Create(min, max), "KmPerSec");
+                    }
+                default:
+                    throw new ArgumentException(Properties.Resources.AsteroidsCo_GetMinMaxRng + ColName);
+            }
+        }
+
+        
 
         public class FileredSortedSetBuilder : KeplerBI.NaturalCelesticalBodies.Repositories.IAsteroidsCo_FilteredSortedSetBuilder
         {
             KeplerDBContext ctx;
             IQueryable<Asteroid> query;
             List<mko.BI.Repositories.DefSortOrder<Asteroid>> SortOrders = new List<mko.BI.Repositories.DefSortOrder<Asteroid>>();
-
-            int? toSkip;
-            int? Top;
 
             public FileredSortedSetBuilder(KeplerDBContext ctx)
             {
@@ -95,6 +138,9 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 // readonly Dataset.
                 query = ctx.CelesticalBodies.OfType<Asteroid>().AsNoTracking();
             }
+
+            int? toSkip;
+            int? Top;
 
             public void defSkip(int count)
             {
@@ -167,7 +213,24 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
 
             public void defNameLike(string Pattern)
             {
-                query = query.Where(r => r.Name.Contains(Pattern));
+                if (Pattern.StartsWith("*"))
+                {
+                    if (Pattern.EndsWith("*"))
+                    {
+                        Pattern = Pattern.Replace("*", "");
+                        query = query.Where(r => r.Name.Contains(Pattern));
+                    } else
+                    {
+                        Pattern = Pattern.Replace("*", "");
+                        query = query.Where(r => r.Name.EndsWith(Pattern));
+                    }
+                    
+                } else
+                {
+                    Pattern = Pattern.Replace("*", "");
+                    query = query.Where(r => r.Name.StartsWith(Pattern));
+                }
+                
             }
         }
     }   

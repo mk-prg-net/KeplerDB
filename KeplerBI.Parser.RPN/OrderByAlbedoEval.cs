@@ -43,9 +43,11 @@ namespace KeplerBI.Parser.RPN
 {
     public class OrderByAlbedoEval : BasicOrderByEval
     {
-        protected override void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens)
+        public OrderByAlbedoEval(IFunctionNames  fn) : base(fn){ }
+
+        protected override void BindArgOrderBy(IFunctionNames fn, Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens)
         {
-            stack.Push(new OrderByAlbedo(descending));
+            stack.Push(new OrderByAlbedo(fn, descending));
         }
     }
 }

@@ -81,6 +81,20 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                 query = ctx.CelesticalBodies.OfType<Planet>();
             }
 
+            int? toSkip;
+            int? Top;
+
+            public void defSkip(int count)
+            {
+                toSkip = count;
+            }
+
+            public void defTake(int count)
+            {
+                Top = count;
+            }
+
+
             public void defAequatorialDiameterRange(mko.Newton.Length minDiammeter, mko.Newton.Length maxDiammeter)
             {
                 double min = mko.Newton.Length.Kilometer(minDiammeter).Vector[0];
@@ -127,7 +141,7 @@ namespace KeplerBI.DB.NaturalCelesticalBodies.Repositories
                     OrderBySemiMajorAxisLength(false);
                 }
 
-                return new mko.BI.Repositories.FilteredSortedSet<Planet>(query.ToArray().AsQueryable(), SortOrders);
+                return new mko.BI.Repositories.FilteredSortedSet<Planet>(query.ToArray().AsQueryable(), SortOrders, toSkip ?? -1, Top ?? -1);
             }
 
             public void OrderByMoonCount(bool descending)

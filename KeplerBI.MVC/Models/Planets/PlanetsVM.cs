@@ -5,76 +5,57 @@ using System.Web;
 
 using mko.BI.Repositories.Interfaces;
 
+using mko.RPN;
+
 namespace KeplerBI.MVC.Models.Planets
 {
     public class PlanetsVM
     {
-        public IEnumerable<PlanetDeco> Planets { get; set; }
+
+        public PlanetsVM(KeplerBI.Parser.RPN.IFunctionNames fn, mko.RPN.IToken[] Tokens, IEnumerable<PlanetDeco> Planets)
+        {
+            this.fn = fn;
+            this.Planets = Planets;
+            this.Tokens = Tokens;
+            this.cpsr = new Parser.RPN.Composer(fn);
+
+        }
+
+        Parser.RPN.IFunctionNames fn;
+        Parser.RPN.Composer cpsr;
+
+        public IEnumerable<PlanetDeco> Planets { get; }
 
         public mko.RPN.IToken[] Tokens { get; set; }
 
-        public int IndexOfFunctionNameToken(string FunctionName, out int CountOfParams)
+        public string OrderBySemiMajorAxisPN(Cfg.SortDirection dir)
         {
-            if (Tokens.Any(t => t.IsFunctionName && t.Value == FunctionName))
+            switch (dir)
             {
-                var tok = Tokens.First(t => t.IsFunctionName && t.Value == FunctionName);
-                CountOfParams = tok.CountOfEvaluatedTokens;
-                return Array.IndexOf(Tokens, tok);
-            }
-            else
-            {
-                CountOfParams = -1;
-                return -1;
+                case Cfg.SortDirection.down:
+                    return Tokens.RemoveFunction(fn.OrderBySemiMajorAxisLength).ToPNString() + cpsr.OrderBySemiMajorAxisLength("desc");
+                case Cfg.SortDirection.none:
+                    return Tokens.RemoveFunction(fn.OrderBySemiMajorAxisLength).ToPNString();
+                case Cfg.SortDirection.up:
+                    return Tokens.RemoveFunction(fn.OrderBySemiMajorAxisLength).ToPNString() + cpsr.OrderBySemiMajorAxisLength("asc");
+                default:
+                    throw new Exception("unbakannter Wert für Sort- Direction: " + dir);
             }
         }
 
-        public string TokensToString(int begin, int end)
+        public string OrderByMassPN(Cfg.SortDirection dir)
         {
-            if (begin < Tokens.Length)
+            switch (dir)
             {
-                end = Math.Min(end, Tokens.Length - 1);
-                var bld = new System.Text.StringBuilder();
-                for (int i = begin; i <= end; i++)
-                {
-                    bld.Append(Tokens[i].Value);
-                    bld.Append(" ");
-                }
-                return bld.ToString();
+                case Cfg.SortDirection.down:
+                    return Tokens.RemoveFunction(fn.OrderByMass).ToPNString() + cpsr.OrderByMass("desc");
+                case Cfg.SortDirection.none:
+                    return Tokens.RemoveFunction(fn.OrderByMass).ToPNString();
+                case Cfg.SortDirection.up:
+                    return Tokens.RemoveFunction(fn.OrderByMass).ToPNString() + cpsr.OrderByMass("asc");
+                default:
+                    throw new Exception("unbakannter Wert für Sort- Direction: " + dir);
             }
-            else
-            {
-                return "";
-            }
-        }
-
-        public string OrderBySemiMajorAxisRPN(bool desc)
-        {
-            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokens.OrderBySemiMajorAxisLength + " ";
-
-            int CountOfParams;
-            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokens.OrderBySemiMajorAxisLength, out CountOfParams);
-            return CreateRPNString(sortOrder, ix, CountOfParams);
-        }
-
-        private string CreateRPNString(string sortOrder, int ix, int CountOfParams)
-        {
-            if (ix != -1)
-            {
-                return TokensToString(0, ix - CountOfParams) + sortOrder + TokensToString(ix + 1, Tokens.Length - 1);
-            }
-            else
-            {
-                return TokensToString(0, Tokens.Length) + sortOrder;
-            }
-        }
-
-        public string OrderByMassRPN(bool desc)
-        {
-            var sortOrder = (desc ? " desc " : " asc ") + KeplerBI.Parser.RPN.Tokens.OrderByMass + " ";
-
-            int CountOfParams;
-            int ix = IndexOfFunctionNameToken(KeplerBI.Parser.RPN.Tokens.OrderByMass, out CountOfParams);
-            return CreateRPNString(sortOrder, ix, CountOfParams);
         }
 
 

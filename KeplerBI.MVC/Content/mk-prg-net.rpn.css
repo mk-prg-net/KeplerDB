@@ -1,0 +1,83 @@
+﻿/*
+    (C) Martin Korneffel, Stuttgart 2017
+    
+    Formatierungen für die Elemente zur darstellung und Bearbeitung von
+    RPN- ausdrücken
+*/
+
+
+/*
+    Rahmen, in dem eine Liste aus RPN- Ausdrücken 
+    dargestellt wird
+*/
+ul.rpn {
+    list-style-type: none;
+    clear: both;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 8px;
+}
+
+    /*
+    Rahmen für einen rpnTerm
+*/
+    ul.rpn li {
+        display: block;
+        column-count: 1;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        /*height: 200px;*/
+        width: 200px;
+        margin: 8px;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-bottom: 0px;
+        padding: 2px;
+        /*border-style: solid;
+        border-color: #606060;
+        border-radius: 8px;
+        background-color: lightgray;*/
+        /*text-align: center;*/
+    }
+
+        ul.rpn li h1 {
+            color: black;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+dl.rpn {
+    margin-top: 0px;
+}
+
+    dl.rpn dt {
+        float: left;
+        width: 70px;
+        clear: left;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 1em;
+    }
+
+    dl.rpn dd {
+        text-align: left;
+        margin-left: 4px;
+        /*-webkit-margin-start: 4px;*/
+    }
+
+        dl.rpn dd:before,
+        dl.rpn dd:after {
+            content: " ";
+            display: table;
+        }
+
+        dl.rpn dd:after {
+            clear: both;
+        }

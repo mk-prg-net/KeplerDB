@@ -1,14 +1,20 @@
 ﻿@model KeplerBI.MVC.Models.Planets.PlanetsVM
 
+@using Cfg = KeplerBI.MVC.Models.Cfg
+@using mko.RPN;
+
 @{
     ViewBag.Title = "Planeten";
+    var fn = new KeplerBI.Parser.RPN.BasicFunctionNames();
+    var cpsr = new KeplerBI.Parser.RPN.Composer(fn);
+
 }
 
 <h2><img src="~/Content/pics/space/Planet-2.png" style="display:inline" /> Katalog der Planeten</h2>
 <p>
     @if (Model.Tokens.Any())
     {
-        <text>Gefiltert durch:</text><code>@Model.TokensToString(0, Model.Tokens.Count() - 1)</code>
+        <text>Gefiltert durch:</text><code>@Model.Tokens.ToPNString()</code>
     }
 </p>
 
@@ -21,13 +27,13 @@
         <a class="btn btn-default" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span> </a>
     </div>
     <div class="btn-group">
-            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = Model.OrderByMassRPN(true)})">Massen <span class="glyphicon glyphicon-arrow-down"></span> </a>
-            <a class="btn btn-default" href="@Url.Action("Index", new { rpn = Model.OrderByMassRPN(false)})"><span class="glyphicon glyphicon-arrow-up"></span> </a>
+            <a class="btn btn-default" href="@Url.Action("Index", new { pn = Model.OrderByMassPN(Cfg.SortDirection.down)})">Massen <span class="glyphicon glyphicon-arrow-down"></span> </a>
+            <a class="btn btn-default" href="@Url.Action("Index", new { pn = Model.OrderByMassPN(Cfg.SortDirection.up)})"><span class="glyphicon glyphicon-arrow-up"></span> </a>
     </div>
 
     <div class="btn-group">
-        <a class="btn btn-default" href="@Url.Action("Index", new { rpn = Model.OrderBySemiMajorAxisRPN(true) })">Abstände <span class="glyphicon glyphicon-arrow-down"></span> </a>
-        <a class="btn btn-default" href="@Url.Action("Index", new { rpn = Model.OrderBySemiMajorAxisRPN(false) })"><span class="glyphicon glyphicon-arrow-up"></span> </a>
+        <a class="btn btn-default" href="@Url.Action("Index", new { pn = Model.OrderBySemiMajorAxisPN(Cfg.SortDirection.down) })">Abstände <span class="glyphicon glyphicon-arrow-down"></span> </a>
+        <a class="btn btn-default" href="@Url.Action("Index", new { pn = Model.OrderBySemiMajorAxisPN(Cfg.SortDirection.up) })"><span class="glyphicon glyphicon-arrow-up"></span> </a>
     </div>
 
     <div class="input-group">

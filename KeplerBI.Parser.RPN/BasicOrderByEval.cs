@@ -8,7 +8,12 @@ namespace KeplerBI.Parser.RPN
 {
     public abstract class BasicOrderByEval : mko.RPN.BasicEvaluator
     {
-        public BasicOrderByEval() : base(1) { }
+        public BasicOrderByEval(IFunctionNames fn) : base(1)
+        {
+            this.fn = fn;
+        }
+
+        IFunctionNames fn;
 
         public override void ReadParametersAndEvaluate(Stack<mko.RPN.IToken> stack)
         {
@@ -18,13 +23,13 @@ namespace KeplerBI.Parser.RPN
                 arg = stack.Pop();
                 bool descending = arg.Value == "desc";
 
-                BindArgOrderBy(stack, descending, arg.CountOfEvaluatedTokens);
+                BindArgOrderBy(fn, stack, descending, arg.CountOfEvaluatedTokens);
             }
             else
             {
                 throw new ArgumentException(mko.TraceHlp.FormatErrMsg(this, "ReadParametersAndEvaluate", arg.Value));
             }
         }
-        protected abstract void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens);
+        protected abstract void BindArgOrderBy(IFunctionNames fn, Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens);
     }
 }

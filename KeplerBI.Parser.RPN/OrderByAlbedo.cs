@@ -41,13 +41,13 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class OrderByAlbedo : ConfigDataToken
+    public class OrderByAlbedo : OrderByConfigDataToken
     {
-        public bool descending;
+        
 
-        public OrderByAlbedo(bool descending) : base(Tokens.OrderByAlbedo)
-        {
-            this.descending = descending;
+        public OrderByAlbedo(IFunctionNames fn, bool descending) 
+            : base(fn.OrderByAlbedo, descending)
+        {        
         }
 
     }

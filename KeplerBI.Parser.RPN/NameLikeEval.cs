@@ -44,13 +44,18 @@ namespace KeplerBI.Parser.RPN
 {
     public class NameLikeEval: mko.RPN.BasicEvaluator
     {
-        public NameLikeEval(): base(1) { }
+        public NameLikeEval(IFunctionNames fn): base(1)
+        {
+            this.fn = fn;
+        }
+
+        IFunctionNames fn;
 
         public override void ReadParametersAndEvaluate(Stack<IToken> stack)
         {
             if (mko.RPN.StringToken.Test(stack.Peek()))
             {
-                stack.Push(new NameLikeData(((mko.RPN.StringToken)stack.Pop()).Value));
+                stack.Push(new NameLikeData(fn, ((mko.RPN.StringToken)stack.Pop()).Value));
             } else
             {
                 throw new Exception("NameLike muss als Parameter einen String haben");

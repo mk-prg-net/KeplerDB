@@ -8,9 +8,11 @@ namespace KeplerBI.Parser.RPN
 {
     public class OrderByMassEval : BasicOrderByEval
     {
-        protected override void BindArgOrderBy(Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens)
+        public OrderByMassEval(IFunctionNames fn) :base(fn) { }
+
+        protected override void BindArgOrderBy(IFunctionNames fn, Stack<mko.RPN.IToken> stack, bool descending, int CountOfEvaluatedTokens)
         {
-            stack.Push(new OrderByMassData(descending));
+            stack.Push(new OrderByMassData(fn, descending));
         }
     }
 }

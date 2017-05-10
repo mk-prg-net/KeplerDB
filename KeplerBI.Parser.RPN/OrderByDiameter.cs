@@ -41,13 +41,12 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class OrderByDiameter : ConfigDataToken
-    {
-        public bool descending;
+    public class OrderByDiameter : OrderByConfigDataToken
+    {        
 
-        public OrderByDiameter(bool descending) : base(Tokens.OrderByDiameter)        
-        {
-            this.descending = descending;
+        public OrderByDiameter(IFunctionNames fn, bool descending) 
+            : base(fn.OrderByDiameter, descending)        
+        {            
         }
 
     }

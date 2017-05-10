@@ -5,11 +5,20 @@
     int i = Model.SkipValue;
     long CountOfSelected = Model.fssbld.Count();
     double SelectionRate = 100.0 * CountOfSelected / Model.countAll;
+
+    var fn = new KeplerBI.Parser.RPN.BasicFunctionNames();
+    var cpsr = new KeplerBI.Parser.RPN.Composer(fn);
+
+
 }
+
+<input type="hidden" id="AppFolder" value="@Url.Content("~/")" />
 
 <div class="row">
     <div class="col-md-12">
         <h2><img src="~/Content/pics/space/Asteroid.png" style="display:inline" /> Asteroiden</h2>
+
+
 
         @using (Html.BeginForm())
             {
@@ -18,33 +27,42 @@
                 <input type="text" class="form-control" name="rpn" id="rpn" value="@Model.rpn"  />
 
                 <div class="input-group-btn">
-                    <button type="submit" class="btn btn-primary">filtern</button>
+                    <button id="btnFilter" type="button" class="btn btn-primary">filtern</button>
                 </div>
             </div>
         }
+        @Html.Partial("RpnList", Model.Tokens)
+        <hr />
 
         <p>
             Liste von Asteroiden. Gewonnen aus den Daten von <a href="http://ssd.jpl.nasa.gov/sbdb_query.cgi#x" target="_blank">JPL Small-Body Database Search Engine</a>.
             Interessante Teilmengen:
 
             <dl class="dl-horizontal">
-                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", rpn = "25 Take" })">Alle</a></dt>
+                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.Take(cpsr.Int(100)) })">Alle</a></dt>
                 <dd>Alle Asteroiden, nach dem Abstand der Sonne aufsteigend sortiert</dd>
-                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", rpn = "200 KM 1000 KM DiameterRng" })">Große Asteroiden</a></dt>
+                <dt>Sortierungen</dt>
+                <dd>
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderBySemiMajorAxisLength("asc")})">Sonnenabstand</a>, 
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderByAlbedo("asc")})">Albedo</a>,
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderByDiameter("asc")})">Durchmesser</a>,
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderByMass("asc")})">Masse</a>
+                </dd>
+                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(200)), cpsr.KM(cpsr.Dbl(1000))) + cpsr.OrderByDiameter("desc") + cpsr.Take(cpsr.Int(100)) })">Große Asteroiden</a></dt>
                 <dd>Große Asteroiden mit Durchmessern von 200 km bis 1000 km</dd>
-                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", rpn = "0 KM 50 KM DiameterRng" })">Kleine Asteroiden</a></dt>
+                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(0)), cpsr.KM(cpsr.Dbl(50))) + cpsr.Take(cpsr.Int(100)) + cpsr.OrderByDiameter("desc") })">Kleine Asteroiden</a></dt>
                 <dd>Kleine Asteroiden bis 50 km Durchmesser</dd>
-                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", rpn = "desc OrderByAlbedo 100 Take" })">Die 100 hellsten</a></dt>
+                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.OrderByAlbedo("desc") + cpsr.Take(cpsr.Int(100)) })">Die 100 hellsten</a></dt>
                 <dd>Asteroiden beszüglich der Helligkeit absteigend sortiert. Beschränkt auf die ersten 100</dd>
             </dl>
         </p>
 
         
         <div class="btn-group">
-            <a href="@Url.Action("Index", new { controller = "Asteroids", rpn = Model.rpnPrev })"
+            <a href="@Url.Action("Index", new { controller = "Asteroids", pn = Model.rpnPrev })"
                class="btn btn-primary">Prev</a>
             &nbsp;
-            <a href="@Url.Action("Index", new { controller = "Asteroids", rpn = Model.rpnNext })"
+            <a href="@Url.Action("Index", new { controller = "Asteroids", pn = Model.rpnNext })"
                class="btn btn-primary">Next</a>
         </div>
 
@@ -56,12 +74,13 @@
             <table class="table table-striped">
                 <tr>
                     <th>Nr.</th>
-                    <th>Name</th>
-                    <th style="text-align:right;">D <sub>Sonnen</sub> AU</th>
-                    <th style="text-align:right;">V<sub>Bahn</sub> km/sec</th>
-                    <th style="text-align:right;">Albedo Num.</th>
-                    <th>Albedo</th>
-                    <th>D<sub>äquator</sub> Km</th>
+                    <th><a href="@Url.Action("RpnFunctionEdit", new { pn=Model.rpn, pnFSubtree = cpsr.NameLike("*")})">Name</a></th>
+                    <th><a href="@Url.Action("RpnRngFltEdit", new { pn = Model.rpn, pnFSubtree= cpsr.SemiMajorAxisLengthRng(cpsr.AU(cpsr.Dbl(0)), cpsr.AU(cpsr.Dbl(10.0)))})">D <sub>Sonnen</sub> AU</a></th>
+                    <th>V<sub>Bahn</sub> km/sec</th>
+                    <th>Albedo Num.</th>
+                    <th><a href="@Url.Action("RpnRngFltEdit", new { pn = Model.rpn, pnFSubtree= cpsr.AlbedoRng(cpsr.Dbl(0), cpsr.Dbl(1.0))})">Albedo</a></th>
+                    <th><a href="@Url.Action("RpnRngFltEdit", new { pn = Model.rpn, pnFSubtree= cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(0)), cpsr.KM(cpsr.Dbl(1000)))})">D<sub>äquator</sub> Km</a></th>
+                    <th>Mass x Earthmoon</th>
                 </tr>
                 @foreach (var cb in Model.fssbld.Get())
             {
@@ -102,9 +121,25 @@
                         <td>
                             @cb.EquatorialDiameter.Vector.Length
                         </td>
+                        <td>
+                            @(mko.Newton.Mass.Kilogram(cb.Mass).Value/mko.Newton.Mass.MassOfEarthMoon.Value)
+                        </td>
                     </tr>
                                 }
             </table>
         </p>
+
+        <div class="btn-group">
+            <a href="@Url.Action("Index", new { controller = "Asteroids", rpn = Model.rpnPrev })"
+               class="btn btn-primary">Prev</a>
+            &nbsp;
+            <a href="@Url.Action("Index", new { controller = "Asteroids", rpn = Model.rpnNext })"
+               class="btn btn-primary">Next</a>
+        </div>
+
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/Asteroids/Index")
+}

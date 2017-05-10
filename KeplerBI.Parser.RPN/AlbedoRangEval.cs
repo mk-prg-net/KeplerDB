@@ -47,14 +47,18 @@ namespace KeplerBI.Parser.RPN
     /// </summary>
     public class AlbedoRngEval : mko.RPN.BasicEvaluator
     {
-        public AlbedoRngEval() : base(2) { }
+        public AlbedoRngEval(IFunctionNames fn) : base(2)
+        {
+            this.fn = fn;
+        }
 
+        IFunctionNames fn;
         public override void ReadParametersAndEvaluate(Stack<mko.RPN.IToken> stack)
         {
-            var max = PopNummeric(stack);
             var min = PopNummeric(stack);
+            var max = PopNummeric(stack);
 
-            stack.Push(new AlbedoRng(min.Item1, max.Item1));
+            stack.Push(new AlbedoRng(fn, min.Item1, max.Item1));
         }
     }
 }

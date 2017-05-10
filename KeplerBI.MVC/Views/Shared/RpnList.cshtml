@@ -1,0 +1,64 @@
+﻿@model mko.RPN.IToken[]
+@using mko.RPN
+@using KeplerBI.Parser.RPN
+@{
+
+    var fn = new BasicFunctionNames();
+
+    var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+
+    var rpnFuncModels = new List<KeplerBI.MVC.Models.Filters.Rpn>(Model.Length);
+
+    int paraCount = 0;
+    for (int i = Model.Length - 1; i >= 0; i -= paraCount)
+    {
+        mko.TraceHlp.ThrowArgExIfNot(Model[i].IsFunctionName, "Es wurde eine RPN- Funktion erwartet");
+
+        var Token = (mko.RPN.FunctionNameToken)Model[i];
+        paraCount = Token.CountOfEvaluatedTokens;
+
+        var subTree = Model.GetSubtree(i);
+        KeplerBI.MVC.Models.Filters.Rpn rpnFunc;
+
+        if (fn.Factories.IsRngFilter(Token.Value))
+        {
+            rpnFunc = new KeplerBI.MVC.Models.Filters.RpnRngFlt(controllerName, fn, Model, subTree, "max", "min");
+        }
+        else if (fn.Factories.IsSortFilter(Token.Value))
+        {
+            rpnFunc = new KeplerBI.MVC.Models.Filters.RpnSortFlt(controllerName, fn, Model, subTree, "dir");
+        }
+        else if (fn.Factories.IsKeyFilter(Token.Value))
+        {
+            rpnFunc = new KeplerBI.MVC.Models.Filters.Rpn(controllerName, fn, Model, subTree, "key");
+        }
+        else if (fn.Factories.IsSetFilter(Token.Value))
+        {
+            rpnFunc = new KeplerBI.MVC.Models.Filters.Rpn(controllerName, fn, Model, subTree, "enum");
+        }
+        else if (fn.Factories.IsLikeFilter(Token.Value))
+        {
+            rpnFunc = new KeplerBI.MVC.Models.Filters.Rpn(controllerName, fn, Model, subTree, "like");
+        }
+        else //if(Token.Value == fn.Take || Token.Value == fn.Skip)
+        {
+            rpnFunc = new KeplerBI.MVC.Models.Filters.Rpn(controllerName, fn, Model, subTree, "#");
+        }// else
+         //{
+         //    throw new ArgumentException("unbekannte Funktion");
+         //}
+
+        rpnFuncModels.Add(rpnFunc);
+    }
+}
+
+<ul class="rpn">
+
+    @foreach (var model in rpnFuncModels)
+    {
+        @Html.Partial(model.GetType().Name, model)
+
+    }
+</ul>
+
+

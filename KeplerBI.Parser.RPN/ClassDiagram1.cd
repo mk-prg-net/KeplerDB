@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KeplerBI.Parser.RPN.AlbedoRngEval" Collapsed="true">
+    <Position X="26.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>AlbedoRangEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.AlbedoRng" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AlbedoRng.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.AUEval" Collapsed="true">
+    <Position X="28" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>AUEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.BasicOrderByEval" Collapsed="true">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAE=</HashCode>
+      <FileName>BasicOrderByEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.ConfigDataToken" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>ConfigDataToken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.DiameterRngData" Collapsed="true">
+    <Position X="23.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiameterRngData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.DiameterRngEval" Collapsed="true">
+    <Position X="29.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>DiameterRngEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.EMEval" Collapsed="true">
+    <Position X="31.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>EMEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.FltBldConfigurator" Collapsed="true">
+    <Position X="26.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FltBldConfigurator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.KMEval" Collapsed="true">
+    <Position X="29.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>KMEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.MassRngData" Collapsed="true">
+    <Position X="17" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAA=</HashCode>
+      <FileName>MassRngData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.MassRngEval" Collapsed="true">
+    <Position X="31.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>MassRngEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.NameLikeData" Collapsed="true">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NameLikeData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.NameLikeEval" Collapsed="true">
+    <Position X="26.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>NameLikeEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderByAlbedo" Collapsed="true">
+    <Position X="10.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OrderByAlbedo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderByAlbedoEval" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>OrderByAlbedoEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderByDiameter" Collapsed="true">
+    <Position X="19.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OrderByDiameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderByDiameterEval" Collapsed="true">
+    <Position X="7.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>OrderByDiameterEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderByMassData" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OrderByMassData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderByMassEval" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>OrderByMassEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderBySemiMajorAxisLengthData" Collapsed="true">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OrderBySemiMajorAxisLengthData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.OrderBySemiMajorAxisLengthEval" Collapsed="true">
+    <Position X="5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>OrderBySemiMajorAxisLengthEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.SemiMajorAxisLengthRngData" Collapsed="true">
+    <Position X="21.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAABAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemiMajorAxisLengthRngData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.SemiMajorAxisLengthRngEval" Collapsed="true">
+    <Position X="28" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>SemiMajorAxisLengthRngEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.SkipData" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SkipData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.SkipEval" Collapsed="true">
+    <Position X="29.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>SkipEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.SMEval" Collapsed="true">
+    <Position X="31.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>SMEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.TakeData" Collapsed="true">
+    <Position X="14.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TakeData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.TakeEval" Collapsed="true">
+    <Position X="26.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>TakeEval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.Tokens" Collapsed="true">
+    <Position X="28" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgBGAAAAAlhRAAAEAAAAEAAACEAAAQAEAA=</HashCode>
+      <FileName>Tokens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeplerBI.Parser.RPN.Planets.FltBldConfigurator" Collapsed="true">
+    <Position X="28" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Planets\FltBldConfigurator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

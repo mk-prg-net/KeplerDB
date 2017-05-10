@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace KeplerBI.Parser.RPN
 {
-    public class OrderBySemiMajorAxisLengthData: ConfigDataToken
+    public class OrderBySemiMajorAxisLengthData: OrderByConfigDataToken
     {
-        public bool descending;
 
-        public OrderBySemiMajorAxisLengthData(bool descending) : base(Tokens.OrderBySemiMajorAxisLength)        
-        {
-            this.descending = descending;
+        public OrderBySemiMajorAxisLengthData(IFunctionNames fn, bool descending) : base(fn.OrderBySemiMajorAxisLength, descending)        
+        {        
         }
     }
 }

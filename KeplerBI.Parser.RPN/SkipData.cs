@@ -45,7 +45,7 @@ namespace KeplerBI.Parser.RPN
     {
         public int count { get; set; }
 
-        public SkipData(int count): base(Tokens.Skip)
+        public SkipData(IFunctionNames fn, int count): base(fn.Skip)
         {
             this.count = count;
         }

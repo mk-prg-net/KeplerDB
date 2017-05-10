@@ -32,12 +32,15 @@
 //
 //</unit_history>
 //</unit_header>        
-        
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using Trc = mko.TraceHlp;
+using mko.RPN;
 
 namespace KeplerBI.MVC.Controllers
 {
@@ -46,10 +49,13 @@ namespace KeplerBI.MVC.Controllers
     {
         KeplerBI.IAstroCatalog catalog;
 
+        Parser.RPN.IFunctionNames fn = new Parser.RPN.BasicFunctionNames();
+        Parser.RPN.FnameEvalTab fnEvalTab;
+
         /// <summary>
         /// Definition und Konfiguration eines Parsers für RPN- Terme mit Filter- und Sortierausdrücken
         /// </summary>
-        mko.RPN.Parser RPNParser = new mko.RPN.Parser(KeplerBI.Parser.RPN.Tokens.EvalFunctions);
+        mko.RPN.Parser Parser;
 
         /// <summary>
         /// Zugriff auf astronomischen Katalog via Dependency- Injection
@@ -58,6 +64,8 @@ namespace KeplerBI.MVC.Controllers
         public PlanetsController(KeplerBI.IAstroCatalog catalog)
         {
             this.catalog = catalog;
+            this.fnEvalTab = new KeplerBI.Parser.RPN.FnameEvalTab(fn);
+            this.Parser = new mko.RPN.Parser(fnEvalTab.FuncEvaluators);
             mko.Newton.Init.Do();
         }
 
@@ -65,38 +73,33 @@ namespace KeplerBI.MVC.Controllers
         /// <summary>
         /// Demo: Filterung über RPN- Ausdrücke
         /// </summary>
-        /// <param name="rpn"></param>
+        /// <param name="pn"></param>
         /// <returns></returns>
-        public ActionResult Index(string rpn = "")
+        public ActionResult Index(string pn = "")
         {
             var fltBld = catalog.Planets.createFiltertedSortedSetBuilder();
+            var Tokens = new mko.RPN.IToken[] { };
 
-            var viewModel = new Models.Planets.PlanetsVM();
-
-            if (String.IsNullOrEmpty(rpn))
+            if (String.IsNullOrEmpty(pn))
             {
                 //rpn = "asc " + KeplerBI.Parser.RPN.Tokenizer.OrderBySemiMajorAxisLength;
                 fltBld.OrderBySemiMajorAxisLength(false);
-                viewModel.Tokens = new mko.RPN.IToken[]{};
             }
             else
-            {                
-                RPNParser.Parse(rpn);
-                if (RPNParser.Succsessful)
-                {
-                    viewModel.Tokens = RPNParser.TokenBuffer.Tokens;
+            {
+                var inputTokens =  Parser.TokenizePN(pn);
+                Trc.ThrowArgExIfNot(Parser.Succsessful, Properties.Resources.PNParseFailed);
 
-                    var configurator = new KeplerBI.Parser.RPN.FltBldConfigurator(RPNParser.Stack);
-                    configurator.Apply(fltBld);
+                Parser.Parse(inputTokens);
+                Trc.ThrowArgExIfNot(Parser.Succsessful, Properties.Resources.PNParseFailed);
 
-                }
-                else
-                {
-                    throw new Exception("RPN- Term in URL konnte nicht korrekt geparst werden:" + mko.ExceptionHelper.FlattenExceptionMessages(RPNParser.LastException));
-                }
+                Tokens = Parser.TokenBuffer.Tokens.Copy();
+
+                var configurator = new KeplerBI.Parser.RPN.FltBldConfigurator(Parser.Stack);
+                configurator.Apply(fltBld);
             }
 
-            List<Models.Planets.PlanetDeco> PlanetsWithMoons = new List<Models.Planets.PlanetDeco>();
+            var PlanetsWithMoons = new List<Models.Planets.PlanetDeco>();
             var planetSet = fltBld.GetSet();
             var planets = planetSet.Get();
             foreach (var planet in planets)
@@ -109,14 +112,16 @@ namespace KeplerBI.MVC.Controllers
                 {
                     var deco = new Models.Planets.PlanetDeco(planet, moonSet.Get());
                     PlanetsWithMoons.Add(deco);
-                } else {
-                    var deco = new Models.Planets.PlanetDeco(planet, new KeplerBI.NaturalCelesticalBodies.IMoon[]{});
+                }
+                else
+                {
+                    var deco = new Models.Planets.PlanetDeco(planet, new KeplerBI.NaturalCelesticalBodies.IMoon[] { });
                     PlanetsWithMoons.Add(deco);
                 }
             }
 
-            viewModel.Planets = PlanetsWithMoons;
-            return View(viewModel);
+            var model = new Models.Planets.PlanetsVM(fn, Tokens, PlanetsWithMoons);
+            return View(model);
         }
 
 
@@ -129,7 +134,7 @@ namespace KeplerBI.MVC.Controllers
 
             catalog.SubmitChanges();
 
-            return Json(new {Planet=Name, Rank = planet.RankSum / planet.RankCount, Sum = planet.RankSum, Count = planet.RankCount }, JsonRequestBehavior.AllowGet);
+            return Json(new { Planet = Name, Rank = planet.RankSum / planet.RankCount, Sum = planet.RankSum, Count = planet.RankCount }, JsonRequestBehavior.AllowGet);
 
         }
     }

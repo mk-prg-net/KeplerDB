@@ -44,12 +44,16 @@ namespace KeplerBI.Parser.RPN
 {
     public class TakeEval : mko.RPN.BasicEvaluator
     {
-        public TakeEval() : base(1) { }
+        public TakeEval(IFunctionNames fn) : base(1)
+        {
+            this.fn = fn;
+        }
 
+        IFunctionNames fn;
         public override void ReadParametersAndEvaluate(Stack<IToken> stack)
         {
             var count = PopNummeric(stack);
-            stack.Push(new TakeData((int)count.Item1));
+            stack.Push(new TakeData(fn, (int)count.Item1));
         }
 
     }

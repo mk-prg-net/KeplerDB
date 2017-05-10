@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 using mko.RPN;
+using Trc = mko.TraceHlp;
 
 namespace KeplerBI.MVC.Controllers
 {
@@ -12,7 +11,9 @@ namespace KeplerBI.MVC.Controllers
     {
 
         KeplerBI.IAstroCatalog catalog;
-        mko.RPN.Parser RPNParser = new mko.RPN.Parser(KeplerBI.Parser.RPN.Tokens.EvalFunctions);
+        mko.RPN.Parser RPNParser;
+        KeplerBI.Parser.RPN.Composer cpsr;
+        KeplerBI.Parser.RPN.IFunctionNames fn = new KeplerBI.Parser.RPN.BasicFunctionNames();
 
         /// <summary>
         /// Zugriff auf astronomischen Katalog via Dependency- Injection
@@ -23,11 +24,20 @@ namespace KeplerBI.MVC.Controllers
             //Properties.Resources.
             this.catalog = catalog;
             mko.Newton.Init.Do();
+
+            cpsr = new Parser.RPN.Composer(fn);
+            var fnEvalTab = new KeplerBI.Parser.RPN.FnameEvalTab(fn);
+            RPNParser = new mko.RPN.Parser(fnEvalTab.FuncEvaluators);
         }
 
 
         // GET: Asteroids
-        public ActionResult Index(string rpn = "")
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pn">Filter- und Sortierterme in polnischer Notation</param>
+        /// <returns></returns>
+        public ActionResult Index(string pn = "")
         {
             var fssbld = catalog.Asteroids.createFiltertedSortedSetBuilder();
             var countAll = fssbld.GetSet().Count();
@@ -38,12 +48,12 @@ namespace KeplerBI.MVC.Controllers
             int skip = 0;
             int take = 25;
 
-            string rpnNext = "1000 Skip 1000 Take";
-            string rpnPrev = "0 Skip 1000 Take";
+            string pnNext = cpsr.Skip(cpsr.Int(1000)) + cpsr.Take(cpsr.Int(1000));
+            string pnPrev = cpsr.Skip(cpsr.Int(0)) + cpsr.Take(cpsr.Int(1000));
 
-            mko.RPN.IToken[] Tokens = new mko.RPN.IToken[] { };
+            IToken[] AllTokens = new IToken[] { };
 
-            if (String.IsNullOrEmpty(rpn))
+            if (String.IsNullOrEmpty(pn))
             {
                 // Keine Filter- und Sortiereinschränkungen definiert
                 // Begrenzen, damit nicht zu große Ergebnismengen geliefert werden
@@ -52,51 +62,115 @@ namespace KeplerBI.MVC.Controllers
             }
             else
             {
-                RPNParser.Parse(rpn);
-                if (RPNParser.Succsessful)
-                {                    
+                var InputTokens = RPNParser.TokenizePN(pn);
+                Trc.ThrowArgExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);
 
-                    var configurator = new KeplerBI.Parser.RPN.FltBldConfigurator(RPNParser.Stack);
-                    configurator.ApplyAstro(fssbld);
+                RPNParser.Parse(InputTokens);
+                Trc.ThrowExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);
+                AllTokens = RPNParser.TokenBuffer.Tokens.Copy();
 
-                    var takeDat = RPNParser.Stack.FirstOrDefault(r => r is KeplerBI.Parser.RPN.TakeData);
-                    var skipDat = RPNParser.Stack.FirstOrDefault(r => r is KeplerBI.Parser.RPN.SkipData);
+                var configurator = new Parser.RPN.FltBldConfigurator(RPNParser.Stack);
+                configurator.ApplyAstro(fssbld);
 
-                    //mko.RPN.ParserHelper.
 
-                    var TokensWithoutSkipTake = mko.RPN.ParserHelper.Copy(RPNParser.TokenBuffer.Tokens);
+                var TokensWithoutSkipTake = RPNParser.TokenBuffer.Tokens.Copy();
 
-                    // Alte Skip und Take- Tokens entfernen
-                    if (takeDat != null)
-                    {
-                        take = ((KeplerBI.Parser.RPN.TakeData)takeDat).count;                        
-                        TokensWithoutSkipTake =  TokensWithoutSkipTake.RemoveFunction("Take");                        
-                    }
 
-                    if (skipDat != null)
-                    {
-                        skip = ((KeplerBI.Parser.RPN.SkipData)skipDat).count;
-                        TokensWithoutSkipTake = TokensWithoutSkipTake.RemoveFunction("Skip");
-                    }
+                
+                var takeDat = RPNParser.Stack.FirstOrDefault(r => r is Parser.RPN.TakeData);
+                var skipDat = RPNParser.Stack.FirstOrDefault(r => r is Parser.RPN.SkipData);                
 
-                    string rpnWithoutSkipTake = mko.RPN.ParserHelper.ToRPNString(TokensWithoutSkipTake);
 
-                    // Neue Parameter für Skip und Take berechnen
-                    var skipPrev = Math.Max(0, skip - take);
-                    var skipNext = Math.Min(countAll - take, skip + take);
-
-                    // rpn um Skip und Take erweitern
-                    rpnPrev = rpnWithoutSkipTake + skipPrev + " Skip " + take + " Take";
-                    rpnNext = rpnWithoutSkipTake + skipNext + " Skip " + take + " Take";
-
-                }
-                else
+                // Alte Skip und Take- Tokens entfernen
+                if (takeDat != null)
                 {
-                    throw new Exception("RPN- Term in URL konnte nicht korrekt geparst werden:" + mko.ExceptionHelper.FlattenExceptionMessages(RPNParser.LastException));
+                    take = ((Parser.RPN.TakeData)takeDat).count;
+                    TokensWithoutSkipTake = TokensWithoutSkipTake.RemoveFunction(fn.Take);
                 }
+
+                if (skipDat != null)
+                {
+                    skip = ((Parser.RPN.SkipData)skipDat).count;
+                    TokensWithoutSkipTake = TokensWithoutSkipTake.RemoveFunction(fn.Skip);
+                }
+
+                string pnWithoutSkipTake = TokensWithoutSkipTake.ToPNString();
+
+                // Neue Parameter für Skip und Take berechnen
+                var skipPrev = Math.Max(0, skip - take);
+                var skipNext = (int)Math.Min(countAll - take, skip + take);
+
+                // rpn um Skip und Take erweitern
+                pnPrev = pnWithoutSkipTake + cpsr.Skip(cpsr.Int(skipPrev)) + cpsr.Take(cpsr.Int(take));
+                pnNext = pnWithoutSkipTake + cpsr.Skip(cpsr.Int(skipNext)) + cpsr.Take(cpsr.Int(take));
+
             }
             var s = fssbld.GetSet();
-            return View(new Models.Asteroids.AsteroidVM(rpn, s, skip, take, (int)countAll, Tokens, rpnNext, rpnPrev));
+            return View(new Models.Asteroids.AsteroidVM(pn, s, skip, take, (int)countAll, AllTokens, pnNext, pnPrev));
         }
+
+
+        public ActionResult RpnRngFltEdit(string pn, string pnFSubtree)
+        {            
+
+            var AllRawTokens = RPNParser.TokenizePN(pn);
+            var fSubtreeRawTokens = RPNParser.TokenizePN(pnFSubtree);
+
+            RPNParser.Parse(AllRawTokens);
+            Trc.ThrowArgExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);           
+
+            var AllTokens = RPNParser.TokenBuffer.Tokens.Copy();
+
+            RPNParser.Parse(fSubtreeRawTokens);
+            Trc.ThrowArgExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);
+
+            var fSubtreeTokens = RPNParser.TokenBuffer.Tokens.Copy();
+            Trc.ThrowArgExIfNot(fn.Factories.IsRngFilter(fSubtreeTokens.FunctionName()), Properties.Resources.SubtreeAsRangeFlt_expected);
+
+            return View(new Models.Filters.RpnRngFlt("Asteroids", fn, AllTokens, fSubtreeTokens));           
+
+        }
+
+        public ActionResult RpnSortFltEdit(string pn, string pnFSubtree)
+        {
+            var AllRawTokens = RPNParser.TokenizePN(pn);
+            var fSubtreeRawTokens = RPNParser.TokenizePN(pnFSubtree);
+
+            RPNParser.Parse(AllRawTokens);
+            Trc.ThrowArgExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);
+
+            var AllTokens = RPNParser.TokenBuffer.Tokens.Copy();
+
+            RPNParser.Parse(fSubtreeRawTokens);
+            Trc.ThrowArgExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);
+
+            var fSubtreeTokens = RPNParser.TokenBuffer.Tokens.Copy();
+            Trc.ThrowArgExIfNot(fn.Factories.IsSortFilter(fSubtreeTokens.FunctionName()), Properties.Resources.SubtreeAsSortFlt_expected);
+
+            return View(new Models.Filters.RpnSortFlt("Asteroids", fn, AllTokens, fSubtreeTokens));
+        }
+
+
+        public ActionResult RpnFunctionEdit(string pn, string pnFSubtree)
+        {
+
+            var AllRawTokens = RPNParser.TokenizePN(pn);
+            var fSubtreeRawTokens = RPNParser.TokenizePN(pnFSubtree);
+
+            RPNParser.Parse(AllRawTokens);
+            Trc.ThrowArgExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);
+
+            var AllTokens = RPNParser.TokenBuffer.Tokens.Copy();
+
+            RPNParser.Parse(fSubtreeRawTokens);
+            Trc.ThrowArgExIfNot(RPNParser.Succsessful, Properties.Resources.PNParseFailed);
+
+            var fSubtreeTokens = RPNParser.TokenBuffer.Tokens.Copy();
+
+            return View(new Models.Filters.Rpn("Asteroids", fn, AllTokens, fSubtreeTokens));
+
+        }
+
+
     }
 }

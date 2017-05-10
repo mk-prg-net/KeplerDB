@@ -61,20 +61,92 @@ namespace KeplerBI.MVC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hallo.
+        ///   Looks up a localized string similar to Der Längenbereich End- Parameter ist ungültig.
         /// </summary>
-        internal static string String1 {
+        internal static string CfgLengthRangeFlt_View_end_param_invalid {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("CfgLengthRangeFlt_View_end_param_invalid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Huhu.
+        ///   Looks up a localized string similar to Der Längenbereich Begin- Parameter ist ungültig.
         /// </summary>
-        internal static string String2 {
+        internal static string fgLengthRangeFlt_View_begin_param_invalid {
             get {
-                return ResourceManager.GetString("String2", resourceCulture);
+                return ResourceManager.GetString("fgLengthRangeFlt_View_begin_param_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der darzustellenden RPN- Term muss mit eine Funktion sein.
+        /// </summary>
+        internal static string Models_Filters_ConfigData_rpn_function_functionname_token_missing {
+            get {
+                return ResourceManager.GetString("Models_Filters_ConfigData_rpn_function_functionname_token_missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Parameterliste der RPN Funktion {0:s} ist ungültig.
+        /// </summary>
+        internal static string Models_Filters_ConfigData_rpn_function_invalid_paramlist {
+            get {
+                return ResourceManager.GetString("Models_Filters_ConfigData_rpn_function_invalid_paramlist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der RPN- Term Parameter der Action enthält nicht das erfolderliche Configcol Kommando.
+        /// </summary>
+        internal static string PN_ConfigCol_required {
+            get {
+                return ResourceManager.GetString("PN_ConfigCol_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PN- Term in URL konnte nicht korrekt geparst werden:.
+        /// </summary>
+        internal static string PNParseFailed {
+            get {
+                return ResourceManager.GetString("PNParseFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auf dem Stapel gibt es nach dem erfolgreichen Parsen Objekte, deren Typ verschieden von ConfigDataToken ist..
+        /// </summary>
+        internal static string PNParseFailed_StackInconsistent {
+            get {
+                return ResourceManager.GetString("PNParseFailed_StackInconsistent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Range- Filter erwartet genau zwei Parameter (begin, end).
+        /// </summary>
+        internal static string RpnRngFlt_ParameterCount_2_expected {
+            get {
+                return ResourceManager.GetString("RpnRngFlt_ParameterCount_2_expected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Als fSubTree wurde ein Rangefilter erwartet.
+        /// </summary>
+        internal static string SubtreeAsRangeFlt_expected {
+            get {
+                return ResourceManager.GetString("SubtreeAsRangeFlt_expected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Als fSubTree wurde ein Sortfilter erwartet.
+        /// </summary>
+        internal static string SubtreeAsSortFlt_expected {
+            get {
+                return ResourceManager.GetString("SubtreeAsSortFlt_expected", resourceCulture);
             }
         }
     }

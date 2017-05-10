@@ -28,7 +28,7 @@ namespace KeplerBI.Parser.RPN
         }
         double max;
 
-        public SemiMajorAxisLengthRngData(double min, double max) : base(Tokens.SemiMajorAxisLengthRng)        
+        public SemiMajorAxisLengthRngData(IFunctionNames fn, double min, double max) : base(fn.SemiMajorAxisLengthRng)        
         {
             this.min = min;
             this.max = max;

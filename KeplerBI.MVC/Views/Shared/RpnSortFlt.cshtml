@@ -1,0 +1,29 @@
+﻿@model KeplerBI.MVC.Models.Filters.RpnSortFlt
+
+<li>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            @Model.Name
+        </div>
+        <div class="panel-body">
+            <dl class="rpn">
+                <dt>@Html.DisplayFor(m => m.ParamTag)</dt>
+                <dd>
+                    @if (Model.SortDescending)
+                    {
+                        <text>&dArr; desc</text>
+                    }
+                    else
+                    {
+                        <text>&uArr; asc</text>
+                    }
+                </dd>
+            </dl>
+
+            <a href="@Url.Action("RpnSortFltEdit", new {controller=Model.ControllerName, pn=Model.pn, pnFSubtree= Model.pnFSubtree})" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
+            <a href="@Url.Action("Index", new {controller="Asteroids", pn=Model.pnWithoutFunction})" class="btn btn-danger btn-xs" style="margin-left: 1em;"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+
+    </div>
+
+</li>

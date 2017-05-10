@@ -51,8 +51,8 @@
       <HintPath>..\packages\mko.Algo.1.2.2.0\lib\net45\mko.Algo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.BI, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.BI.3.2.1\lib\net45\mko.BI.dll</HintPath>
+    <Reference Include="mko.BI, Version=3.2.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.BI.3.2.4\lib\net45\mko.BI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mko.Euklid, Version=1.1.1.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
@@ -63,8 +63,12 @@
       <HintPath>..\packages\mko.Newton.1.1.2.0\lib\net45\mko.Newton.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mko.RPN, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mko.RPN.1.1.3\lib\net45\mko.RPN.dll</HintPath>
+    <Reference Include="mko.RPN, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.RPN.1.1.11\lib\net45\mko.RPN.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mko.RPN.Filter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mko.RPN.Filter.1.0.0\lib\net45\mko.RPN.Filter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

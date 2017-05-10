@@ -14,10 +14,10 @@ namespace KeplerBI.Parser.RPN
         public double minEM { get; }
         public double maxEM { get; }
 
-        public MassRngData(double minEM, double maxEM) : base(Tokens.MassRng)
-        {
+        public MassRngData(IFunctionNames fn, double minEM, double maxEM) : base(fn.MassRng)
+        {            
             this.minEM = minEM;
             this.maxEM = maxEM;
-        }
+        }        
     }
 }
