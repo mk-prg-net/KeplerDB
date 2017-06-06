@@ -51,6 +51,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.tools.cmd", "Keple
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Kepler.EF60.tools.cmd", "DB.Kepler.EF60.tools.cmd\DB.Kepler.EF60.tools.cmd.csproj", "{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.RAM", "KeplerBI.RAM\KeplerBI.RAM.csproj", "{DC503EE8-0307-4A35-B556-C199956D0857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeplerBI.WinForm", "KeplerBI.WinForm\KeplerBI.WinForm.csproj", "{0D2A4EF5-252C-4725-8C98-B3881A088BA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +163,14 @@ Global
 		{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E28BDB35-D213-4B6D-9A53-8CF764A04FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC503EE8-0307-4A35-B556-C199956D0857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC503EE8-0307-4A35-B556-C199956D0857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC503EE8-0307-4A35-B556-C199956D0857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC503EE8-0307-4A35-B556-C199956D0857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D2A4EF5-252C-4725-8C98-B3881A088BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D2A4EF5-252C-4725-8C98-B3881A088BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D2A4EF5-252C-4725-8C98-B3881A088BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D2A4EF5-252C-4725-8C98-B3881A088BA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

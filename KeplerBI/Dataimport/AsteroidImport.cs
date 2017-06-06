@@ -56,6 +56,15 @@ namespace KeplerBI.Dataimport
             _catalog = catalog;
         }
 
+        public AsteroidImport(IAstroCatalog catalog, System.Threading.CancellationToken cancelToken)
+        {
+            _catalog = catalog;
+            this.cancelToken = cancelToken;
+        }
+
+        System.Threading.CancellationToken cancelToken;
+
+
         /// <summary>
         /// Importiert die Asteroiden aus einer csv- Datei
         /// </summary>
@@ -84,6 +93,8 @@ namespace KeplerBI.Dataimport
                 {
                     while (!reader.EndOfStream)
                     {
+                        cancelToken.ThrowIfCancellationRequested();
+
                         string line = reader.ReadLine();
                         lines++;
 
@@ -177,7 +188,10 @@ namespace KeplerBI.Dataimport
                     throw new Exception("" + i + " Asteroiden insgesamt eingelesen und eine Ausnahme beim Sichern aufgetreten", ex);
                 }
             }
-
+            catch (System.OperationCanceledException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new Exception(mko.TraceHlp.FormatErrMsg(this, "Import"), ex);
