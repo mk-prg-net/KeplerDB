@@ -43,7 +43,7 @@ namespace KeplerBI.Parser.RPN
 {
     public class Composer : mko.RPN.Composer
     {
-        IFunctionNames fn;
+        new IFunctionNames fn;
 
         public Composer(IFunctionNames fn)
             : base(fn)

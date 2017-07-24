@@ -48,8 +48,8 @@ namespace KeplerBI.MVC.Controllers
             int skip = 0;
             int take = 25;
 
-            string pnNext = cpsr.Skip(cpsr.Int(1000)) + cpsr.Take(cpsr.Int(1000));
-            string pnPrev = cpsr.Skip(cpsr.Int(0)) + cpsr.Take(cpsr.Int(1000));
+            string pnNext = cpsr.combinePn(cpsr.Skip(cpsr.Int(1000)), cpsr.Take(cpsr.Int(1000)));
+            string pnPrev = cpsr.combinePn(cpsr.Skip(cpsr.Int(0)) + cpsr.Take(cpsr.Int(1000)));
 
             IToken[] AllTokens = new IToken[] { };
 
@@ -74,12 +74,9 @@ namespace KeplerBI.MVC.Controllers
 
 
                 var TokensWithoutSkipTake = RPNParser.TokenBuffer.Tokens.Copy();
-
-
                 
                 var takeDat = RPNParser.Stack.FirstOrDefault(r => r is Parser.RPN.TakeData);
                 var skipDat = RPNParser.Stack.FirstOrDefault(r => r is Parser.RPN.SkipData);                
-
 
                 // Alte Skip und Take- Tokens entfernen
                 if (takeDat != null)

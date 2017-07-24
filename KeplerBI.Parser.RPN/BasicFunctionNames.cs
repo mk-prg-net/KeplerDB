@@ -206,7 +206,8 @@ namespace KeplerBI.Parser.RPN
         {
             get
             {
-                return ".bool";
+                //return ".bool";
+                return "";
             }
         }
 
@@ -214,7 +215,8 @@ namespace KeplerBI.Parser.RPN
         {
             get
             {
-                return ".int";
+                //return ".int";
+                return "";
             }
         }
 
@@ -222,7 +224,9 @@ namespace KeplerBI.Parser.RPN
         {
             get
             {
-                return ".dbl";
+                //return ".dbl";
+                return "";
+
             }
         }
 
@@ -263,6 +267,46 @@ namespace KeplerBI.Parser.RPN
             get
             {
                 return "..dir";
+            }
+        }
+
+        public string constStr
+        {
+            get
+            {
+                return "";
+            }
+        }
+
+        public string ListEnd
+        {
+            get
+            {
+                return ".lend";
+            }
+        }
+
+        public string NamePrefix
+        {
+            get
+            {
+                return ".";
+            }
+        }
+
+        public string ParamNamePrefix
+        {
+            get
+            {
+                return "..";
+            }
+        }
+
+        public string DerivedTokenPrefix
+        {
+            get
+            {
+                return NamePrefix + "derv";
             }
         }
 

@@ -52,7 +52,7 @@ namespace KeplerBI.MVC.Models.Asteroids
             string rpnNext,
             string rpnPrev)
         {
-            this.rpn = rpn;
+            this.pn = rpn;
             this.fssbld = fssbld;
             this.SkipValue = SkipValue;
             this.TakeValue = TakeValue;
@@ -72,7 +72,7 @@ namespace KeplerBI.MVC.Models.Asteroids
         public string rpnPrev { get; }
 
         // der aktuell gültige Filterausdruck
-        public string rpn { get; set; }
+        public string pn { get; set; }
 
 
 

@@ -83,7 +83,7 @@ namespace KeplerBI.Parser.RPN.Test
                 Assert.IsTrue(fltSet.Any());
 
 
-                rpn += cpsr.rOrderBySemiMajorAxisLength("desc");
+                rpn = cpsr.combineRpn(rpn, cpsr.rOrderBySemiMajorAxisLength("desc"));
                 Parser.Parse(rpn);
                 //Parser.TokenBuffer.Reset();                
                 Assert.IsTrue(Parser.Succsessful);
@@ -120,7 +120,7 @@ namespace KeplerBI.Parser.RPN.Test
                 var fltSet = fltBld.GetSet();
                 Assert.IsTrue(fltSet.Any());
 
-                rpn += cpsr.rOrderByMass("desc");
+                rpn = cpsr.combineRpn(rpn, cpsr.rOrderByMass("desc"));
                 Parser.Parse(rpn);
                 Assert.IsTrue(Parser.Succsessful);
                 Assert.AreEqual(2, Parser.Stack.Count);

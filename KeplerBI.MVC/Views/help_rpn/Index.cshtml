@@ -1,0 +1,82 @@
+﻿@model KeplerBI.MVC.Models.rpn_help.AstroComposers
+@{
+    ViewBag.Title = "help_rpn";
+}
+
+@helper RpnLink(string pnxmp)
+{
+    <code>@Html.ActionLink(pnxmp, "Index", new { controller = "Asteroids", pn = Model.composer.combinePn(Model.pn, pnxmp) })</code>
+}
+
+
+<h2><span class="glyph mk-glyph-cuby-happy"></span> help_rpn</h2>
+<p>
+    Liste aller Filterausdrücke, die an den Querystring für Listen von Sternen,
+    Planeten, Monde und Asteroiden angehangen werden können.
+</p>
+
+<h3>Listenverarbeitung</h3>
+<dl>
+    <dt>@RpnLink(Model.composer.Skip(Model.composer.Dbl(100)))</dt>
+    <dd>Die #Zeilen werden am Anfang der Menge von Himmelskörpern übersprungen</dd>
+
+    <dt>@RpnLink(Model.composer.Take(Model.composer.Dbl(25)))</dt>
+    <dd>Schränkt auf die nächsten 25 Zeilen ein</dd>
+</dl>
+
+<h3>Name</h3>
+<dl>
+    <dt>@RpnLink(Model.composer.NameLike("*"))</dt>
+    <dd>Schränkt auf Himmelskörper ein, deren Namen mit dem Präfix beginnt</dd>
+</dl>
+
+<h3>Masse</h3>
+<dl>
+    <dt>@RpnLink(Model.composer.OrderByMass("asc"))</dt>
+    <dd>Sortiert bezüglich Masse aufsteigend</dd>
+
+    <dt>@RpnLink(Model.composer.Kg(Model.composer.Dbl(1)))</dt>
+    <dd>Definiert eine Masse in Vielfachen vom Kilogramm</dd>
+
+    <dt>@RpnLink(Model.composer.EM(Model.composer.Dbl(1)))</dt>
+    <dd>Definiert eine Masse in Vielfachen der Erdmasse</dd>
+
+    <dt>@RpnLink(Model.composer.SM(Model.composer.Dbl(1)))</dt>
+    <dd>Definiert eine Masse in Vielfachen der Sonnenmasse</dd>
+
+    <dt>@RpnLink(Model.composer.MassRng(Model.composer.EM(Model.composer.Dbl(0.00001)), Model.composer.EM(Model.composer.Dbl(0.001))))</dt>
+    <dd>Schränkt auf Himmelskörper mit einer Masse zwischen 1/10000 und 1/1000 Erdmasse ein</dd>
+
+</dl>
+<h3>Abstand</h3>
+<dl>
+    <dt>@RpnLink(Model.composer.OrderByDiameter("asc"))</dt>
+    <dd>Sortiert bezüglich Durchmesser aufsteigend</dd>
+
+    <dt>@RpnLink(Model.composer.OrderBySemiMajorAxisLength("asc"))</dt>
+    <dd>Sortiert bezüglich Sonnenabstand aufsteigend</dd>
+
+
+    <dt>@RpnLink(Model.composer.KM(Model.composer.Dbl(1)))</dt>
+    <dd>Definiert einen Abstand in Vielfachen eines Kilometers</dd>
+
+    <dt>@RpnLink(Model.composer.AU(Model.composer.Dbl(1)))</dt>
+    <dd>Definiert einen Abstand in Vielfachen einer astronomischen Einheit (Abstand Erde/Sonne)</dd>
+
+    <dt>@RpnLink(Model.composer.DiameterRng(Model.composer.KM(Model.composer.Dbl(100)), Model.composer.KM(Model.composer.Dbl(500))))</dt>
+    <dd>Schränkt ein auf Himmelskörper mit einem Durchmesser zwischen 100 und 200 Kilometern</dd>
+
+    <dt>@RpnLink(Model.composer.SemiMajorAxisLengthRng(Model.composer.AU(Model.composer.Dbl(2)), Model.composer.AU(Model.composer.Dbl(3))))</dt>
+    <dd>Schränkt auf Himmelkörper ein, die im Abstand von 2 bis 3 astronomischen Einheiten die Sonne umkreisen</dd>
+
+    </dl>
+<h3>Albedo</h3>
+<dl>
+    <dt>@RpnLink(Model.composer.AlbedoRng(Model.composer.Dbl(0), Model.composer.Dbl(0.2)))</dt>
+    <dd>Schränkt auf Asteroiden mit einer Albedo zwischen 0 und 0.2 ein</dd>
+
+    <dt>@RpnLink(Model.composer.OrderByAlbedo("asc"))</dt>
+    <dd>Sortiert bezüglich Albedo aufsteigend</dd>
+
+</dl>
+

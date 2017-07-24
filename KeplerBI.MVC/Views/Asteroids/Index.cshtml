@@ -1,4 +1,8 @@
 ﻿@model KeplerBI.MVC.Models.Asteroids.AsteroidVM
+
+@*
+    (C) Martin Korneffel, Stuttgart 2017
+*@
 @{
     ViewBag.Title = "Index";
     mko.Newton.Init.Do();
@@ -19,12 +23,17 @@
         <h2><img src="~/Content/pics/space/Asteroid.png" style="display:inline" /> Asteroiden</h2>
 
 
-
+        @* Kommandozueile mit Filter*@
         @using (Html.BeginForm())
             {
 
             <div class="input-group">
-                <input type="text" class="form-control" name="rpn" id="rpn" value="@Model.rpn"  />
+
+                <div class="input-group-btn">
+                    <a href="@Url.Action("Index", new { controller= "help_rpn", SupportedController="Asteroids", SupportedAction="Index", pn= Model.pn})" class="btn btn-success">?</a>
+                </div>
+
+                <input type="text" class="form-control" name="rpn" id="rpn" value="@Model.pn"  />
 
                 <div class="input-group-btn">
                     <button id="btnFilter" type="button" class="btn btn-primary">filtern</button>
@@ -43,16 +52,16 @@
                 <dd>Alle Asteroiden, nach dem Abstand der Sonne aufsteigend sortiert</dd>
                 <dt>Sortierungen</dt>
                 <dd>
-                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderBySemiMajorAxisLength("asc")})">Sonnenabstand</a>, 
-                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderByAlbedo("asc")})">Albedo</a>,
-                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderByDiameter("asc")})">Durchmesser</a>,
-                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.rpn, pnFSubtree=cpsr.OrderByMass("asc")})">Masse</a>
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.pn, pnFSubtree=cpsr.OrderBySemiMajorAxisLength("asc")})">Sonnenabstand</a>, 
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.pn, pnFSubtree=cpsr.OrderByAlbedo("asc")})">Albedo</a>,
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.pn, pnFSubtree=cpsr.OrderByDiameter("asc")})">Durchmesser</a>,
+                    <a href="@Url.Action("RpnSortFltEdit", new {pn= Model.pn, pnFSubtree=cpsr.OrderByMass("asc")})">Masse</a>
                 </dd>
-                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(200)), cpsr.KM(cpsr.Dbl(1000))) + cpsr.OrderByDiameter("desc") + cpsr.Take(cpsr.Int(100)) })">Große Asteroiden</a></dt>
+                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.combinePn(cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(200)), cpsr.KM(cpsr.Dbl(1000))), cpsr.OrderByDiameter("desc"), cpsr.Take(cpsr.Int(100))) })">Große Asteroiden</a></dt>
                 <dd>Große Asteroiden mit Durchmessern von 200 km bis 1000 km</dd>
-                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(0)), cpsr.KM(cpsr.Dbl(50))) + cpsr.Take(cpsr.Int(100)) + cpsr.OrderByDiameter("desc") })">Kleine Asteroiden</a></dt>
+                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.combinePn(cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(0)), cpsr.KM(cpsr.Dbl(50))), cpsr.Take(cpsr.Int(100)), cpsr.OrderByDiameter("desc")) })">Kleine Asteroiden</a></dt>
                 <dd>Kleine Asteroiden bis 50 km Durchmesser</dd>
-                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.OrderByAlbedo("desc") + cpsr.Take(cpsr.Int(100)) })">Die 100 hellsten</a></dt>
+                <dt><a href="@Url.Action("Index", new { controller = "Asteroids", pn = cpsr.combinePn(cpsr.OrderByAlbedo("desc"), cpsr.Take(cpsr.Int(100))) })">Die 100 hellsten</a></dt>
                 <dd>Asteroiden beszüglich der Helligkeit absteigend sortiert. Beschränkt auf die ersten 100</dd>
             </dl>
         </p>
@@ -66,20 +75,18 @@
                class="btn btn-primary">Next</a>
         </div>
 
-
-
         <p>
 
             Gesamtzahl der Asteroiden aktuell: <b>@Model.countAll</b>, Anzahl aktuell ausgewählten: <b>@CountOfSelected</b>, Anteil: <b>@SelectionRate.ToString("N4")%</b>
             <table class="table table-striped">
                 <tr>
                     <th>Nr.</th>
-                    <th><a href="@Url.Action("RpnFunctionEdit", new { pn=Model.rpn, pnFSubtree = cpsr.NameLike("*")})">Name</a></th>
-                    <th><a href="@Url.Action("RpnRngFltEdit", new { pn = Model.rpn, pnFSubtree= cpsr.SemiMajorAxisLengthRng(cpsr.AU(cpsr.Dbl(0)), cpsr.AU(cpsr.Dbl(10.0)))})">D <sub>Sonnen</sub> AU</a></th>
+                    <th><a href="@Url.Action("RpnFunctionEdit", new { pn=Model.pn, pnFSubtree = cpsr.NameLike("*")})">Name</a></th>
+                    <th><a href="@Url.Action("RpnSortFltEdit", new { pn = Model.pn, pnFSubtree= cpsr.OrderBySemiMajorAxisLength("asc")})">D <sub>Sonnen</sub> AU</a></th>
                     <th>V<sub>Bahn</sub> km/sec</th>
                     <th>Albedo Num.</th>
-                    <th><a href="@Url.Action("RpnRngFltEdit", new { pn = Model.rpn, pnFSubtree= cpsr.AlbedoRng(cpsr.Dbl(0), cpsr.Dbl(1.0))})">Albedo</a></th>
-                    <th><a href="@Url.Action("RpnRngFltEdit", new { pn = Model.rpn, pnFSubtree= cpsr.DiameterRng(cpsr.KM(cpsr.Dbl(0)), cpsr.KM(cpsr.Dbl(1000)))})">D<sub>äquator</sub> Km</a></th>
+                    <th><a href="@Url.Action("RpnSortFltEdit", new { pn = Model.pn, pnFSubtree= cpsr.OrderByAlbedo("asc")})">Albedo</a></th>
+                    <th><a href="@Url.Action("RpnSortFltEdit", new { pn = Model.pn, pnFSubtree= cpsr.OrderByDiameter("asc")})">D<sub>äquator</sub> Km</a></th>
                     <th>Mass x Earthmoon</th>
                 </tr>
                 @foreach (var cb in Model.fssbld.Get())
