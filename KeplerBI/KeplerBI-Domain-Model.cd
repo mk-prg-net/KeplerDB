@@ -61,7 +61,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="KeplerBI.NaturalCelesticalBodies.INaturalCelesticalBody">
-    <Position X="6.5" Y="3" Width="1.5" />
+    <Position X="6.5" Y="3" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAIAgAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\INaturalsCelesticalBody.cs</FileName>

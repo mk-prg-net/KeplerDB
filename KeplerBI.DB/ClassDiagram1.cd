@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="KeplerBI.DB.AstroCatalog" BaseTypeListCollapsed="true">
-    <Position X="12.5" Y="0.5" Width="3" />
+    <Position X="23.5" Y="3.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AEAgAgAAACABAAAGAAJIAAAAABABgQAhACACAAAABAA=</HashCode>
+      <HashCode>AEAgAgAAACABAAAGAAJIAAAAABAhgQAhACACAAAABAA=</HashCode>
       <FileName>AstroCatalog.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="KeplerBI.DB.CelestialBodyBase">
-    <Position X="8.25" Y="0.5" Width="3" />
+    <Position X="11.5" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAgAAAAAAAAAQAAAAEAAAAIQAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAgAAAAAAAAAQAQBAEBBAAIQAAAACAAAA=</HashCode>
       <FileName>CelestialBodyBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -42,14 +42,14 @@
   <Class Name="KeplerBI.DB.DBUtil" Collapsed="true">
     <Position X="22.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>DBUtil.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KeplerBI.DB.KeplerDBContext" Collapsed="true">
     <Position X="24" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAwAABAAAAAAAAAAAAAAAEAAAAAIAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAwAQBAAAAAAAAAAAAAAAEAAAABIAAAAAAEAAAAA=</HashCode>
       <FileName>KeplerDBContext.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -60,12 +60,16 @@
       <FileName>KeplerDBException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="KeplerBI.DB.Orbit" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.25" Y="2.5" Width="1.5" />
+  <Class Name="KeplerBI.DB.Orbit" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAgAACAACABAAAABAoABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Orbit.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CentralBody" />
+      <Property Name="Satellite" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.Asteroid" Collapsed="true">
@@ -117,7 +121,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeplerBI.DB.NaturalCelesticalBodies.NaturalCelesticalBody">
-    <Position X="8.25" Y="3.25" Width="3" />
+    <Position X="7" Y="3.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AEgAAAAAAAAIAAAEAAAIAAAAAAAAAABAAAAAIAiAAAA=</HashCode>
       <FileName>NaturalCelesticalBodies\NaturalsCelesticalBody.cs</FileName>

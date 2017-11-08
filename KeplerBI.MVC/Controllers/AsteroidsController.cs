@@ -98,8 +98,8 @@ namespace KeplerBI.MVC.Controllers
                 var skipNext = (int)Math.Min(countAll - take, skip + take);
 
                 // rpn um Skip und Take erweitern
-                pnPrev = pnWithoutSkipTake + cpsr.Skip(cpsr.Int(skipPrev)) + cpsr.Take(cpsr.Int(take));
-                pnNext = pnWithoutSkipTake + cpsr.Skip(cpsr.Int(skipNext)) + cpsr.Take(cpsr.Int(take));
+                pnPrev = cpsr.combinePn(pnWithoutSkipTake, cpsr.Skip(cpsr.Int(skipPrev)), cpsr.Take(cpsr.Int(take)));
+                pnNext = cpsr.combinePn(pnWithoutSkipTake, cpsr.Skip(cpsr.Int(skipNext)), cpsr.Take(cpsr.Int(take)));
 
             }
             var s = fssbld.GetSet();

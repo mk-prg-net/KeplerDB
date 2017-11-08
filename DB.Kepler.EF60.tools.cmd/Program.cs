@@ -25,10 +25,9 @@
 //<unit_history>
 //------------------------------------------------------------------
 //
-//  Version.......: 1.1
 //  Autor.........: Martin Korneffel (mko)
-//  Datum.........: 
-//  Änderungen....: 
+//  Datum.........: 9.8.2017
+//  Änderungen....: Argument Datenbankname hinzugefügt
 //
 //</unit_history>
 //</unit_header>        
@@ -44,7 +43,9 @@ namespace DB.Kepler.EF60.tools.cmd
 {
     class Program
     {
-        const string dbServerArg = "dbServer";
+        const string serverNameArg = "serverName";
+
+        const string databaseNameArg = "databaseName";
 
         /// Befehl zum neu Anlegen der KeplerBiDB
         /// </summary>
@@ -76,16 +77,28 @@ namespace DB.Kepler.EF60.tools.cmd
                         break;
                     case createSolarSysPlanetsArg:
                         break;
-                    case dbServerArg:
+                    case serverNameArg:
                         {
                             i++;
                             if (i >= argc)
                             {
-                                Console.WriteLine("Fehler: Parameter " + dbServerArg + " erfordert einen UNC- Namen für einen Datenbankserver");
+                                Console.WriteLine("Fehler: Parameter " + serverNameArg + " erfordert einen UNC- Namen für einen Datenbankserver");
                                 return false;
                             }
 
                         }break;
+                    case databaseNameArg:
+                        {
+                            i++;
+                            if (i >= argc)
+                            {
+                                Console.WriteLine("Fehler: Parameter " + databaseNameArg + " erfordert einen Datenbank- Namen");
+                                return false;
+                            }
+
+                        }
+                        break;
+
                     case asteroidsCsvArg:
                         {
                             i++;
@@ -141,7 +154,8 @@ namespace DB.Kepler.EF60.tools.cmd
             Console.WriteLine("Kommandozeile: ");
             Console.WriteLine(@"\>DB.Kepler.EF60.tools [command [parameter]]");
             Console.WriteLine("Kommandos: ");
-            Console.WriteLine("{0,-22:s} {1:s}", dbServerArg, "UNC- Name für die SQL- Serverinstanz");
+            Console.WriteLine("{0,-22:s} {1:s}", serverNameArg, "UNC- Name für die SQL- Serverinstanz");
+            Console.WriteLine("{0,-22:s} {1:s}", databaseNameArg, "Name der Kepler- Datenbank auf dem Server");
             Console.WriteLine("{0,-22:s} {1:s}", createDbArg, "Datenbank neu anlegen, falls noch nicht existiert");
             Console.WriteLine("{0,-22:s} {1:s}", initDBArg, "Datenbank mit Basidaten initialisieren");
             Console.WriteLine("{0,-22:s} {1:s}", createSolarSysPlanetsArg, "Sonne, Planeten und Monde anlegen");
@@ -156,14 +170,26 @@ namespace DB.Kepler.EF60.tools.cmd
             {
                 using (var ctx = new KeplerDBEntities())
                 {
-                    if (args.Contains(dbServerArg))
+                    if (args.Contains(serverNameArg) || args.Contains(databaseNameArg))
                     {
-                        var param = args.SkipWhile(r => r != dbServerArg);
-                        string dbServer = param.Skip(1).First();
 
                         string connString = ctx.Database.Connection.ConnectionString;
                         var bld = new System.Data.SqlClient.SqlConnectionStringBuilder(connString);
-                        bld.DataSource = dbServer;
+
+                        if (args.Contains(serverNameArg))
+                        {
+                            var param = args.SkipWhile(r => r != serverNameArg);
+                            string dbServer = param.Skip(1).First();
+                            bld.DataSource = dbServer;
+                        }
+
+                        if (args.Contains(databaseNameArg))
+                        {
+                            var param = args.SkipWhile(r => r != databaseNameArg);
+                            string arg = param.Skip(1).First();
+                            bld.InitialCatalog = arg;
+                        }
+
                         ctx.Database.Connection.ConnectionString = bld.ToString();
                     }
 
